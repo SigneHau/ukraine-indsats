@@ -19,7 +19,7 @@ export default function NavBar () {
 
         <div className="flex items-center">
           <Image
-            src="/kk-logo.svg"
+            src="/img/kk-logo.svg"
             alt="KK-Logo"
             width={300} // Øget for at give plads til højere opløsning
             height={180}

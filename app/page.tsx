@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
+import ActivityFilter from "@/components/ActivityFilter";
 
 export default function Home() {
   return (
@@ -17,18 +18,36 @@ export default function Home() {
             - mx-auto: Centrerer boksen.
             - px-6: Sikrer at teksten ikke rører kanten på mobil.
         */}
-        <section className="py-24 max-w-7xl mx-auto w-full px-6">
-          
-          <div className="bg-white p-10 border border-gray-200 shadow-sm rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">Indhold starter her</h2>
-            <p className="mb-6">
-              Denne boks flugter nu med dit logo og dine menupunkter, 
-              fordi den bruger den samme 'max-w-7xl' container.
-            </p>
-            
-          </div>
+       {/* Vi bruger mt-32 eller mt-40 for at skubbe den rigtig langt ned */}
+<section className="max-w-7xl mx-auto px-4 mt-84 mb-8 text-left">
+  
+  {/* Ukrainsk version */}
+  <div className="mb-10">
+    <h2 className="text-3xl md:text-5xl font-bold text-navy mb-6 font-kbh leading-tight">
+      Активності у місцях тимчасового проживання
+    </h2>
+    <p className="text-xl text-navy/90 font-kbhtekst max-w-3xl leading-relaxed">
+      Спробуй різні активності безпосередньо у своєму місці тимчасового проживання — 
+      представники місцевих організацій приїжджають до вас, щоб ти міг/могла 
+      спробувати та зрозуміти, чи це підходить саме тобі.
+    </p>
+  </div>
 
-        </section>
+  {/* Dansk version */}
+  <div className="border-l-4 border-ua-yellow pl-8 py-2">
+    <h3 className="text-2xl font-bold text-navy mb-3 font-kbh">
+      Aktiviteter på indkvarteringsstedet
+    </h3>
+    <p className="text-lg text-navy/70 font-kbhtekst max-w-2xl leading-relaxed">
+      Prøv forskellige aktiviteter direkte på dit indkvarteringssted – 
+      lokale foreninger kommer ud til jer, så du kan prøve det af og 
+      finde ud af, om det er noget for dig.
+    </p>
+  </div>
+</section>
+
+
+        <ActivityFilter/>
         
       </main>
     </div>

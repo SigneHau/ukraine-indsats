@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="flex justify-start md:justify-end mb-4 md:mb-12">
           <div className="relative z-20 p-1 w-24 -mt-12 md:w-40 md:-mt-18 transition-all">
             <Image
-              src="/kk-logo.svg"
+              src="/img/kk-logo.svg"
               alt="Københavns Kommune logo"
               width={200}
               height={200}
