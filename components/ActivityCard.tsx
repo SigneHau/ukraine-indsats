@@ -1,38 +1,32 @@
 // components/ActivityCard.tsx
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowRight } from "lucide-react";
-
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ActivityProps {
   title: string;
-  description: string;
   image: string;
-  link: string;
 }
 
-export function ActivityCard({ title, description, image, link }: ActivityProps) {
+export function ActivityCard({ title, image }: ActivityProps) {
   return (
-    <Card className="overflow-hidden flex flex-col h-full border-2 border-slate-100 hover:border-ua-blue transition-colors">
-      <div className="relative h-48 w-full">
-        <img src={image} alt={title} className="object-cover w-full h-full" />
+    /* 1. Tilføj 'rounded-none' her for at fjerne kanten på selve kortet */
+    <Card className="overflow-hidden bg-white rounded-none border-0 border-none shadow-sm">
+      {/* Billede i bredformat (h-48) */}
+      <div className="relative h-64 w-full overflow-hidden shrink-0">
+        <Image 
+          src={image} 
+          alt={title} 
+          fill 
+          className="object-cover transition-transform duration-500 hover:scale-105"
+          sizes="(max-w-768px) 100vw, 33vw"
+        />
       </div>
-      <CardHeader>
-        <CardTitle className="text-xl font-kbh text-navy font-bold">{title}</CardTitle>
-      </CardHeader>
-    <CardContent className="flex flex-col flex-grow">
-  {/* P-tag med tekst */}
-  <p className="text-sm font-kbhtekst text-navy mb-6">
-    {description}
-  </p>
 
-  {/* Læs mere med GUL PIL */}
-  <div className="flex items-center text-sm font-semibold font-kbhtekst text-navy mt-auto">
-    <a href="#" className="hover:underline  text-ua-yellow flex items-center">
-      Tilmeld
-      <ArrowRight className="ml-2 h-4 w-4 text-ua-yellow" /> {/* HER er den gule pil */}
-    </a>
-  </div>
-    </CardContent>
+     <CardContent className="p-4 bg-white text-center flex items-center justify-center grow">
+        <h3 className="text-lg font-kbh text-navy font-bold leading-tight line-clamp-2">
+          {title}
+        </h3>
+      </CardContent>
     </Card>
-  )
+  );
 }

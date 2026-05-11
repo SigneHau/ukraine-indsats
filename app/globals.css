@@ -10,12 +10,22 @@
 }
 
 @theme inline {
-  --font-kbh: 'KBH', sans-serif;
+  /* KK egne skrifttyper  og farver*/
+ --font-kbh: 'KBH', sans-serif;
   --font-kbhtekst: 'KBHTekst', sans-serif;
   --color-navy: #000c2e;
   --color-offwhite: #F5F3E8;
-  --color-ua-blue: #0057b8;
-  --color-ua-yellow: #ffd700;
+  
+  /* Primær farve (den lyseblå) */
+  --color-primary-blue: #BEE2FE;
+  
+  /* Sekundær farve (den lilla) */
+  --color-secondary-purple: #7C4BFF;
+  
+  /* Lys sekundær farve (Lilla med 30% styrke/opacity) */
+  /* Vi bruger 'rgba' for at kunne styre gennemsigtigheden direkte i variablen */
+  --color-secondary-light: rgba(124, 75, 255, 0.3);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
