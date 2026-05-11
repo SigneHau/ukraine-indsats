@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
 import ActivityManager from "@/components/ActivityManager";
+import Newsletter from "@/components/Newsletter";
 
 export default function Home() {
   return (
@@ -18,8 +19,12 @@ export default function Home() {
             - px-4: Sikrer luft til kanten på mobil (matcher Hero's left-4).
             - mt-96 md:mt-80: Justeret afstand så den ikke rammer den hvide boks.
         */}
-        <section className="w-full max-w-7xl mx-auto px-4 mt-84 md:mt-74 mb-24"> 
+        <section className="w-full max-w-7xl mx-auto px-4 mt-84 md:mt-74 mb-10"> 
           <ActivityManager />
+        </section>
+
+        <section className="w-full max-w-7xl mx-auto px-4 mb-16"> 
+          <Newsletter />
         </section>
 
 
