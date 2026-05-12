@@ -1,10 +1,9 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
 import ActivityManager from "@/components/ActivityManager";
 import Newsletter from "@/components/Newsletter";
 import VideoSektion from "@/components/VideoSektion";
 import SuccessStories from "@/components/SuccessStories";
+import LeisureGuides from "@/components/LeisureGuides";
 
 export default function Home() {
   return (
@@ -19,7 +18,7 @@ export default function Home() {
             - max-w-7xl: Samme bredde som i Hero (1280px).
             - mx-auto: Centrerer den.
             - px-4: Sikrer luft til kanten på mobil (matcher Hero's left-4).
-            - mt-96 md:mt-80: Justeret afstand så den ikke rammer den hvide boks.
+            - mt-96 md:mt-74: Justeret afstand så den ikke rammer den hvide boks.
         */}
         <section className="w-full max-w-7xl mx-auto px-4 mt-74 md:mt-74"> 
           <ActivityManager />
@@ -33,10 +32,17 @@ export default function Home() {
             <section className="w-full mb-2 md:mb-8">
               <VideoSektion/> 
             </section>
-                      {/*Sektion med succe historiene */}
+                      {/*Sektion med succes historiene */}
             <section className="w-full mb-4 md:mb-8">
               <SuccessStories/> 
             </section>
+
+
+          {/*Sektion med fritidsguiderne */}
+            <section className="w-full mb-4 md:mb-8">
+             <LeisureGuides/>
+            </section>
+            
 
       </main>
     </div>

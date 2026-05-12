@@ -31,7 +31,7 @@ export default function Hero() {
             <h1 className="text-2xl md:text-5xl mb-2 font-kbh font-bold text-black">
               Стань частиною спільноти | Bliv en del af et fællesskab
             </h1>
-            <p className="text-sm md:text-xl font-kbhtekst text-navy">
+            <p className="text-base md:text-xl font-kbhtekst text-navy">
               Копенгаген має насичене спортивне та культурне життя. Наші консультанти допоможуть вам сконтактувати з організацією, яка вас цікавить, та підтримають у процесі реєстрації. Оберіть те, що вам до душі, і ми допоможемо з усім іншим.
             </p>
           </div>
