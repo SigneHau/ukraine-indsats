@@ -19,17 +19,16 @@ export default function Home() {
             - px-4: Sikrer luft til kanten på mobil (matcher Hero's left-4).
             - mt-96 md:mt-80: Justeret afstand så den ikke rammer den hvide boks.
         */}
-        <section className="w-full max-w-7xl mx-auto px-4 mt-84 md:mt-74 mb-10"> 
+        <section className="w-full max-w-7xl mx-auto px-4 mt-84 md:mt-74"> 
           <ActivityManager />
         </section>
 
-        <section className="w-full max-w-7xl mx-auto px-4 mb-16"> 
-          <Newsletter />
-        </section>
+        {/*Sektion med newsletter */}
+      <section className="w-full mb-20"> 
+        <Newsletter />
+      </section>
 
-
-        
-        
+ 
       </main>
     </div>
   );

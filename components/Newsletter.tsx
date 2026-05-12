@@ -16,17 +16,15 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-// 1. Definer validering (Zod schema)
 const formSchema = z.object({
   email: z.string().email({
-    message: "Indtast venligst en gyldig e-mailadresse.",
+    message: "Будь ласка, введіть коректну адресу електронної пошти.",
   }),
 })
 
 export default function Newsletter() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
-  // 2. Initialiser formen
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,12 +32,11 @@ export default function Newsletter() {
     },
   })
 
-  // 3. Submit funktion
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setStatus("loading")
     
     const { error } = await supabase
-      .from('newsletter') // Retter til dit rigtige tabelnavn
+      .from('newsletter')
       .insert([{ email: values.email }])
 
     if (error) {
@@ -52,58 +49,61 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="bg-primary-blue p-10 text-center rounded-none">
-      <div className="mb-6">
-        <h2 className="text-navy text-3xl font-bold mb-1">Інформаційний бюлетень</h2>
-        <p className="text-navy text-lg italic opacity-80">Nyhedsbrev</p><p className="text-navy text-lg italic opacity-80"> Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna.</p>
+    <section className="w-full bg-primary-blue py-6">
+      <div className="mt-10 px-8 md:px-6 flex flex-col items-center text-center">
+        
+        <div className=" w-full">
+          <h2 className="text-navy  text-3xl font-bold mb-1">Інформаційний бюлетень</h2>
+          <p className="text-navy text-lg italic opacity-80">Nyhedsbrev</p>
+          <p className="text-navy italic opacity-80 max-w-sm mt-2 mb-8 mx-auto text-center">
+            Підпишіться на наші новини, щоб бути в курсі останніх подій.
+          </p>
+        </div>
 
-      </div>
-
-      <Form {...form}>
-        <form 
-          onSubmit={form.handleSubmit(onSubmit)} 
-          className="flex flex-col sm:flex-row gap-6 max-w-lg mx-auto items-start"
-        >
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="w-full space-y-0">
-                <FormControl>
-                  <Input 
-                    placeholder="імейл" 
-                    {...field} 
-                    className="h-14 bg-white border-none rounded-none text-navy focus-visible:ring-1 focus-visible:ring-secondary-purple"
-                  />
-                </FormControl>
-                {/* Fejlbesked vises her hvis mailen er ugyldig */}
-                <FormMessage className="text-left text-red-600 mt-1 absolute" />
-              </FormItem>
-            )}
-          />
-          
-          <Button 
+        <Form {...form}>
+          <form 
+            onSubmit={form.handleSubmit(onSubmit)} 
+            className="flex flex-col sm:flex-row gap-4 w-full max-w-2xl items-stretch sm:items-start"
+          >
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="flex-grow: 1; space-y-0 text-left w-full">
+                  <FormControl>
+                    <Input 
+                      placeholder="імейл" 
+                      {...field} 
+                      className="h-12 bg-white border-none rounded-none text-navy focus-visible:ring-secondary-purple text-lg w-full"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-600 mt-1 absolute text-xs font-bold" />
+                </FormItem>
+              )}
+            />
+            
+           <Button 
             type="submit" 
             disabled={status === "loading"}
-            className="h-14 bg-secondary-purple text-white px-8 font-bold rounded-none hover:bg-secondary-light hover:text-navy transition-colors w-full sm:w-auto mt-6 sm:mt-0"
-          >
-            {status === "loading" ? "Sender..." : "відправити"}
+            className="h-12 bg-secondary-purple text-white px-8 text-[20px] font-bold rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none"
+              >
+            {status === "loading" ? "..." : "відправити"}
           </Button>
-        </form>
-      </Form>
+          </form>
+        </Form>
 
-      {/* Status besked til brugeren */}
-      <div className="h-8 mt-4"> 
-        {status === "success" && (
-          <p className="text-green-700 font-bold animate-in fade-in slide-in-from-top-1">
-            Tak! Du er nu tilmeldt nyhedsbrevet.
-          </p>
-        )}
-        {status === "error" && (
-          <p className="text-red-600 font-bold">
-            Der skete en fejl. Prøv venligst igen.
-          </p>
-        )}
+        <div className="h-8 mt-4 w-full"> 
+          {status === "success" && (
+            <p className="text-green-700 font-bold animate-in fade-in slide-in-from-top-1 text-sm">
+              Дякуємо! Ви успішно підписалися на розсилку.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-red-600 font-bold text-sm">
+              Сталася помилка. Будь ласка, спробуйте ще раз.
+            </p>
+          )}
+        </div>
       </div>
     </section>
   )

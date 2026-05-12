@@ -80,17 +80,17 @@ export default function ActivityManager() {
     };
   }, [carouselControl]);
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 py-12">
+    <div className="w-full max-w-7xl mx-auto px-3 py-12">
       
       {/* 1. Overskrift */}
       <div className="text-left mb-10">
-        <h2 className="text-navy text-2xl md:text-4xl font-bold mb-1 font-kbh text-balance">
+        <h2 className="text-navy text-2xl md:text-4xl mb-1 font-kbh text-balance">
           Різноманітні можливості в Копенгагені | Mange forskellige tilbud i København
         </h2>
       </div>
 
       {/* 2. Filtre */}
-      <div className="w-full mb-10">
+      <div className="w-full mb-5">
         <div className="flex gap-4 overflow-x-auto flex-nowrap pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:justify-between md:flex-wrap">
           {categories.map((cat) => (
             <button

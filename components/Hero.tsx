@@ -14,7 +14,7 @@ export default function Hero() {
     <section className="relative w-full h-150 md:h-175 overflow-visible z-20">
       
       <Image
-        src="/img/intro-uk.png"
+        src="/img/intro-uk2.png"
         alt="Ukraine indsats intro"
         fill
         className="object-cover"
@@ -46,9 +46,9 @@ export default function Hero() {
   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-10">
     
     
-    <Button className="bg-secondary-purple hover:bg-secondary-light hover:text-black text-white rounded-none px-10 py-6 text-2xl transition-colors w-fit font-kbhtekst mx-auto md:mx-0 border-none">
-    Контакт
-    </Button>
+  <Button className="h-12 bg-secondary-purple text-white px-8 text-[20px] font-bold rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none mx-auto md:ml-auto">
+  Контакт
+</Button>
   </div>
 </div>
       </div>
