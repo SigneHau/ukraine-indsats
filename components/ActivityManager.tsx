@@ -142,13 +142,7 @@ export default function ActivityManager() {
                   ))}
                 </div>
 
-                {/* Linket - Højrestillet - OBS: senere tilføjer jeg linket til denne */}
-                <div className="flex justify-end px-2 py-4">
-                  <button className="text-black text-lg font-bold flex items-center gap-1 hover:opacity-70 transition">
-                    Показати всі
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
+               
               </div>
             </div>
 
@@ -162,6 +156,13 @@ export default function ActivityManager() {
                 />
               ))}
             </div>
+            {/* VIS ALLE LINK */}
+              <div className="flex justify-end w-full mt-8 py-6">
+                <button className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group">
+                  Показати всі
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
           </>
         ) : (
           <div className="py-20 text-center border-2 border-dashed rounded-xl border-slate-100 text-slate-400 font-bold">

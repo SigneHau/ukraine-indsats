@@ -6,13 +6,11 @@ export default function VideoSektion() {
         
         {/* Tekst-sektion: Altid venstrestillet (text-left og items-start) */}
         <div className="w-full lg:w-2/5 text-left flex flex-col items-start">
-          <h2 className="text-navy text-3xl font-bold mb-2">
-            Співпраця з організаціями Копенгагена
+          <h2 className="text-navy text-3xl mb-2">
+            Співпраця з організаціями Копенгагена | I Samarbejde med foreninger i København
           </h2>
-          <p className="text-navy text-lg italic opacity-80 mb-4">
-            I Samarbejde med foreninger i København
-          </p>
-          <p className="text-navy text-base italic opacity-80">
+          
+          <p className="text-navy text-base opacity-80">
             Ми співпрацюємо з місцевими організаціями та клубами по всьому місту, 
             щоб ви могли легко долучитися до активного життя.
           </p>
