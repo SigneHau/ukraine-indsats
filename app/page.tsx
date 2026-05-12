@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
 import ActivityManager from "@/components/ActivityManager";
 import Newsletter from "@/components/Newsletter";
+import VideoSektion from "@/components/VideoSektion";
 
 export default function Home() {
   return (
@@ -24,10 +25,11 @@ export default function Home() {
         </section>
 
         {/*Sektion med newsletter */}
-      <section className="w-full mb-20"> 
+      <section className="w-full "> 
         <Newsletter />
       </section>
 
+      <VideoSektion/>    
  
       </main>
     </div>
