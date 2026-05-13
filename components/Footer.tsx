@@ -8,7 +8,7 @@ import { Phone, ArrowRight } from 'lucide-react'
 export default function Footer() {
   return (
     <footer className="bg-offwhite border-t border-navy/10 pb-16 font-kbhtekst">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-15">
         
         {/* Logo-overlap sektionen */}
         <div className="flex justify-start md:justify-end mb-4 md:mb-12">

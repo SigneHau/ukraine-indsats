@@ -45,7 +45,7 @@ export default function Home() {
             </section>
 
             {/*Sektion med fritidsguiderne */}
-            <section className="w-full mb-4 md:mb-8">
+            <section className="w-full mb-20 md:mb-20">
              <Registration/>
             </section>
             

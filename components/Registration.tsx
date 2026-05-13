@@ -55,7 +55,7 @@ export default function Registration() {
                 
                 {/* Cirkler: Bevaret w-20 h-20 jf. dine rettelser */}
                 <div className="w-20 h-20 bg-secondary-light rounded-full flex items-center justify-center shadow-sm z-10">
-                  <span className="text-secondary-purple font-bold text-xl font-kbh">
+                  <span className="text-secondary-purple font-bold text-3xl font-kbh">
                     {step.number}
                   </span>
                 </div>

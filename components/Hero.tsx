@@ -2,8 +2,13 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation";
+
 
 export default function Hero() {
+
+  const router = useRouter();
+
   return (
     /* SEKTION: 
        - h-96 (384px) på mobil for at undgå det meget aflange look.
@@ -37,7 +42,7 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-6 md:mt-10">
-            <Button className="h-12 bg-secondary-purple text-white px-8 text-[20px] font-bold rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none mx-auto md:ml-auto ">
+            <Button onClick={() => router.push('/registration')} className="h-12 bg-secondary-purple text-white px-8 text-[20px] font-bold rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none mx-auto md:ml-auto ">
               Контакт
             </Button>
           </div>

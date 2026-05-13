@@ -15,25 +15,28 @@ export default function NavBar () {
          Vi ændrer md:h-20 til md:min-h-24 og tilføjer py-4. 
          Det giver logoet plads til at vokse uden at ramme kanten.
       */}
-      <nav className="max-w-7xl mx-auto min-h-16 md:min-h-28 px-6 flex items-center justify-between py-2 md:py-4">
+      <nav className="max-w-7xl mx-auto min-h-20 md:min-h-24 px-6 flex items-center justify-between py-1 md:py-2">
 
         <div className="flex items-center">
-          <Image
-            src="/img/kk-logo.svg"
-            alt="KK-Logo"
-            width={300} // Øget for at give plads til højere opløsning
-            height={180}
-            /* 
-               h-14: Størrelsen på mobil.
-               md:h-24: En flot stor størrelse på web (96px).
-               w-auto object-contain: Sikrer at den aldrig strækker eller beskærer.
-            */
-            className="h-16 md:h-42 w-auto object-contain"
-            priority
-          />
+          <Link href="/">
+            <Image
+              src="/img/kk-logo.svg"
+              alt="KK-Logo"
+              width={300} // Øget for at give plads til højere opløsning
+              height={180}
+              
+              /* 
+                h-14: Størrelsen på mobil.
+                md:h-24: En flot stor størrelse på web (96px).
+                w-auto object-contain: Sikrer at den aldrig strækker eller beskærer.
+              */
+              className="h-16 md:h-42 w-auto object-contain"
+              priority
+            />
+          </Link>
         </div>
 
-        <div className="hidden md:flex items-center gap-10 tracking-wider text-sm font-medium">
+        <div className="hidden md:flex items-center gap-10 tracking-wider text-lg font-medium">
           <Link href="https://www.kk.dk/" className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Borger</Link>
           <Link href="https://www.kk.dk/erhverv" className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Erhverv</Link>
           <Link href="https://www.kk.dk/brug-byen" className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Brug byen</Link>
