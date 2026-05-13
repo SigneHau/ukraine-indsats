@@ -11,7 +11,7 @@ export default function RegistrationLayout({
 }) {
   return (
     <html lang="da">
-      <body className="min-h-screen bg-primary-blue relative overflow-hidden font-kbhtekst">
+      <body className="min-h-screen bg-white relative overflow-hidden font-kbhtekst">
         
         {/* LOGO SEKTION */}
         <div className="p-6 md:p-10">

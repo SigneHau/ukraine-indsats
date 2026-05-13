@@ -1,3 +1,4 @@
+"use client";
 import Hero from "@/components/Hero";
 import ActivityManager from "@/components/ActivityManager";
 import Newsletter from "@/components/Newsletter";
@@ -5,8 +6,16 @@ import VideoSektion from "@/components/VideoSektion";
 import SuccessStories from "@/components/SuccessStories";
 import LeisureGuides from "@/components/LeisureGuides";
 import Registration from "@/components/Registration";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    // Dette nulstiller scroll og fjerner eventuelle "pointer-events-none" 
+    // der kan være blevet hængende fra en animation.
+    document.body.style.pointerEvents = "auto";
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="flex flex-col flex-1">
       <main className="flex flex-col w-full">
