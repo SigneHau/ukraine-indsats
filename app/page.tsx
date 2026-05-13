@@ -4,6 +4,7 @@ import Newsletter from "@/components/Newsletter";
 import VideoSektion from "@/components/VideoSektion";
 import SuccessStories from "@/components/SuccessStories";
 import LeisureGuides from "@/components/LeisureGuides";
+import Registration from "@/components/Registration";
 
 export default function Home() {
   return (
@@ -41,6 +42,11 @@ export default function Home() {
           {/*Sektion med fritidsguiderne */}
             <section className="w-full mb-4 md:mb-8">
              <LeisureGuides/>
+            </section>
+
+            {/*Sektion med fritidsguiderne */}
+            <section className="w-full mb-4 md:mb-8">
+             <Registration/>
             </section>
             
 

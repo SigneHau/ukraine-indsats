@@ -125,6 +125,7 @@ export default function ActivityManager() {
                       <ActivityCard title={activity.title} image={activity.image} />
                     </CarouselItem>
                   ))}
+
                 </CarouselContent>
               </Carousel>
 
