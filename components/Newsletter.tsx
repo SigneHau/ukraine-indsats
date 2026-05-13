@@ -54,7 +54,7 @@ export default function Newsletter() {
         
         <div className=" w-full">
           <h2 className="text-navy  text-3xl font-bold mb-1">Інформаційний бюлетень</h2>
-          <p className="text-navy text-lg italic opacity-80">Nyhedsbrev</p>
+          <p className="text-navy text-lg opacity-80">Nyhedsbrev</p>
           <p className="text-navy italic opacity-80 max-w-sm mt-2 mb-8 mx-auto text-center">
             Підпишіться на наші новини, щоб бути в курсі останніх подій.
           </p>

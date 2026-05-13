@@ -84,12 +84,16 @@ export default function ActivityManager() {
   return (
     <div className="w-full max-w-7xl mx-auto px-3 py-12">
       
+      
+  
       {/* 1. Overskrift */}
-      <div className="text-left mb-10">
-        <h2 className="text-navy text-2xl md:text-4xl mb-1 font-kbh text-balance">
-          Різноманітні можливості в Копенгагені | Mange forskellige tilbud i København
-        </h2>
-      </div>
+        <div className="text-left md:text-center mb-10 w-full">
+          <h2 className="text-navy text-2xl md:text-3xl mb-1 font-kbh">
+            Різноманітні можливості в Копенгагені
+            <br />
+            Mange forskellige tilbud i København
+          </h2>
+        </div>
 
       {/* 2. Filtre */}
       <div className="w-full mb-5">

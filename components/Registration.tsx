@@ -32,10 +32,12 @@ export default function Registration() {
         
         {/* Overskrift */}
         <div className="text-center mb-16">
-          <h2 className="text-navy text-2xl md:text-4xl mb-2 font-kbh text-balance">
-            Як це працює | Sådan hjælper vi dig
+          <h2 className="text-navy text-3xl font-bold md:text-4xl mb-2 font-kbh">
+            Як це працює 
           </h2>
+          <p className="text-navy text-lg opacity-80">Sådan hjælper vi dig</p>
         </div>
+        
 
         {/* Steps Container */}
         <div className="grid grid-cols-1 md:grid-cols-3 md:gap-12 mb-16 relative">
