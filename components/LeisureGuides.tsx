@@ -1,7 +1,9 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
+
 export default function LeisureGuides() {
+  
   return (
     <section className="w-full max-w-7xl mx-auto py-16 relative z-40">
       {/* Indrykning styres af px-6 på mobil og md:px-12 på desktop */}
@@ -19,13 +21,18 @@ export default function LeisureGuides() {
           Ми допоможемо вам знайти саме те, що вам цікаво, та підтримаємо на першому етапі.
         </p>
 
-        {/* Link - Samme stil som i ActivityManager */}
-        <div className="flex justify-end w-full mt-8 py-6">
-            <button className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group">
-            Гіди з дозвілля
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-        </div>
+        {/* Link til ekstern side (Fritidsguiderne) */}
+          <div className="flex justify-end w-full mt-8 py-6">
+            <a 
+              href="https://fritidsguiderne.kk.dk/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group cursor-pointer"
+            >
+              Гіди з дозвілля
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
       </div>
     </section>
   );

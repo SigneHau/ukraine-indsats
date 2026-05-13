@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="absolute -bottom-72 md:-bottom-64 left-0 z-30 w-full md:max-w-2xl bg-primary-blue p-6 md:p-12 shadow-1xl">
           
           <div className="mb-8">
-            <h1 className="text-2xl md:text-5xl mb-2 font-kbh font-bold text-black">
+            <h1 className="text-3xl md:text-5xl mb-2 font-kbh text-black">
               Стань частиною спільноти | Bliv en del af et fællesskab
             </h1>
             <p className="text-base md:text-xl font-kbhtekst text-navy">

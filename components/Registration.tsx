@@ -1,8 +1,13 @@
+"use client"
 import React from 'react';
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
 
 export default function Registration() {
-  const steps = [
+  
+    const router = useRouter();
+    const steps = [
     {
       number: 1,
       title: "Ви реєструєтеся",
@@ -18,6 +23,7 @@ export default function Registration() {
       title: "Ви починаєте",
       text: "Клуб зв'яжеться з вами та запросить на перше заняття."
     }
+    
   ];
 
   return (
@@ -70,7 +76,9 @@ export default function Registration() {
 
         {/* CTA Knap - Centreret og uden pil */}
         <div className="flex justify-center w-full mt-8">
-          <Button className="h-12 bg-secondary-purple text-white px-12 md:px-16 rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none shadow-lg font-kbh text-[20px] font-bold">
+          <Button 
+          onClick={() => router.push('/registration')}
+          className="h-12 bg-secondary-purple text-white px-12 md:px-16 rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none shadow-lg font-kbh text-[20px] font-bold">
             Контакт
           </Button>
         </div>

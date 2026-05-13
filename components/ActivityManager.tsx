@@ -9,6 +9,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const categories = [
   { id: 'ballgames', nameUk: "Ігри з м'ячем", nameDk: 'Boldspil' },
@@ -59,6 +60,7 @@ export default function ActivityManager() {
   const [activeCategory, setActiveCategory] = useState('ballgames');
   const [carouselControl, setCarouselControl] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const router = useRouter();
 
   const filteredActivities = activitiesData.filter(act => act.category === activeCategory);
 
@@ -159,7 +161,7 @@ export default function ActivityManager() {
             </div>
             {/* VIS ALLE LINK */}
               <div className="flex justify-end w-full mt-8 py-6">
-                <button className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group">
+                <button onClick={() => router.push('/activities')} className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group">
                   Показати всі
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
