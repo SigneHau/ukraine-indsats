@@ -15,7 +15,7 @@ export function ActivityCard({ title, image }: ActivityProps) {
 
   return (
     /* 1. Tilføj 'rounded-none' her for at fjerne kanten på selve kortet */
-    <Card className="overflow-hidden bg-white rounded-none border-0 border-none shadow-sm">
+    <Card className="overflow-hidden bg-white rounded-none border-0 border-none shadow-lg">
       {/* Billede i bredformat (h-48) */}
       <div className="relative h-64 w-full overflow-hidden shrink-0">
         <Image 
@@ -33,9 +33,14 @@ export function ActivityCard({ title, image }: ActivityProps) {
         </h3>
 
         {/* Knap indsat centreret */}
-        <Button onClick={() => router.push('/registration')} className="h-10 bg-secondary-purple text-white px-6 text-[16px] font-bold rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none flex items-center gap-2 group/btn">
-          Контакт
-        </Button>
+        <Button 
+              variant="purple" 
+              size="md" 
+              onClick={() => router.push('/registration')}
+              className="mx-auto md:ml-auto mt-5"
+              >
+              Контакт
+            </Button>
       </CardContent>
     </Card>
   );

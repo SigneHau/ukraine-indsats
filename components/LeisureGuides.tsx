@@ -10,8 +10,8 @@ export default function LeisureGuides() {
       <div className=" px-8 md:px-12">
         
         {/* Overskrift */}
-        <h2 className="text-navy text-2xl md:text-center md:text-3xl mb-6 font-kbh text-balance leading-tight">
-          Fritidsguiderne допоможуть вам  <br /> Fritidsguiderne er her for at hjælpe
+        <h2 className="text-navy text-2xl md:text-center md:text-3xl mb-6 font-kbh">
+          Fritidsguiderne допоможуть вам <br /> <span className="text-1xl md:text-2xl"> Fritidsguiderne er her for at hjælpe</span>
         </h2>
 
         {/* Besked */}

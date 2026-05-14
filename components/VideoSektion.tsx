@@ -7,7 +7,7 @@ export default function VideoSektion() {
         {/* Tekst-sektion: Altid venstrestillet (text-left og items-start) */}
         <div className="w-full lg:w-2/5 text-left flex flex-col items-start">
           <h2 className="text-navy text-2xl mb-2 md:text-3xl">
-            Співпраця з організаціями Копенгагена | I Samarbejde med foreninger i København
+            Співпраця з організаціями Копенгагена <br /> <span className="text-1xl md:text-2xl"> I Samarbejde med foreninger i København</span>
           </h2>
           
           <p className="text-navy text-base opacity-80">

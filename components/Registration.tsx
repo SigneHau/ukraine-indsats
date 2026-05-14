@@ -79,10 +79,13 @@ export default function Registration() {
         {/* CTA Knap - Centreret og uden pil */}
         <div className="flex justify-center w-full mt-8">
           <Button 
-          onClick={() => router.push('/registration')}
-          className="h-12 bg-secondary-purple text-white px-12 md:px-16 rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none shadow-lg font-kbh text-[20px] font-bold">
-            Контакт
-          </Button>
+              variant="purple" 
+              size="xl" 
+              onClick={() => router.push('/registration')}
+              className="mx-auto md:ml-auto"
+              >
+              Контакт
+            </Button>
         </div>
 
       </div>

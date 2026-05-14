@@ -63,13 +63,13 @@ export default function Newsletter() {
         <Form {...form}>
           <form 
             onSubmit={form.handleSubmit(onSubmit)} 
-            className="flex flex-col sm:flex-row gap-4 w-full max-w-2xl items-stretch sm:items-start"
+            className="flex flex-col md:flex-row gap-4 w-full max-w-2xl items-stretch md:items-start"
           >
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="flex-grow: 1; space-y-0 text-left w-full">
+                <FormItem className="flex-1 space-y-0 text-left w-full">
                   <FormControl>
                     <Input 
                       placeholder="імейл" 
@@ -83,12 +83,15 @@ export default function Newsletter() {
             />
             
            <Button 
-            type="submit" 
-            disabled={status === "loading"}
-            className="h-12 bg-secondary-purple text-white px-8 text-[20px] font-bold rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none"
-              >
-            {status === "loading" ? "..." : "відправити"}
-          </Button>
+                type="submit" 
+                disabled={status === "loading"}
+                variant="purple" 
+                size="xl" 
+                className="w-full md:w-fit md:min-w-50 flex-shrink-0"
+                  >
+                {status === "loading" ? "..." : "відправити"}
+            </Button>
+          
           </form>
         </Form>
 

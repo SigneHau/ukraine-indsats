@@ -91,7 +91,7 @@ export default function ActivityManager() {
           <h2 className="text-navy text-2xl md:text-3xl mb-1 font-kbh">
             Різноманітні можливості в Копенгагені
             <br />
-            Mange forskellige tilbud i København
+           <span className=" text-1xl md:text-2xl"> Mange forskellige tilbud i København</span>
           </h2>
         </div>
 
@@ -102,7 +102,7 @@ export default function ActivityManager() {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`flex-none px-6 py-3 transition-all border-2 font-kbhtekst text-center flex flex-col
+              className={`flex-none px-6 py-1 transition-all border-2 font-kbhtekst text-center flex flex-col
                 ${activeCategory === cat.id ? 'bg-primary-blue border-uk-blue text-black shadow-md' : 'bg-white border-slate-200 text-navy'}`}
             >
               <span className="text-lg font-bold whitespace-nowrap">{cat.nameUk}</span>

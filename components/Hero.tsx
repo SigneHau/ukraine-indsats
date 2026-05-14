@@ -34,7 +34,7 @@ export default function Hero() {
           
           <div className="mb-8">
             <h1 className="text-3xl md:text-5xl mb-2 font-kbh text-black">
-              Стань частиною спільноти | Bliv en del af et fællesskab
+              Стань частиною спільноти <br /> <span className="text-2xl md:text-4xl">Bliv en del af et fællesskab</span> 
             </h1>
             <p className="text-base md:text-xl font-kbhtekst text-navy">
               Копенгаген має насичене спортивне та культурне життя. Наші консультанти допоможуть вам сконтактувати з організацією, яка вас цікавить, та підтримають у процесі реєстрації. Оберіть те, що вам до душі, і ми допоможемо з усім іншим.
@@ -42,7 +42,12 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-6 md:mt-10">
-            <Button onClick={() => router.push('/registration')} className="h-12 bg-secondary-purple text-white px-8 text-[20px] font-bold rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none mx-auto md:ml-auto ">
+            <Button 
+              variant="purple" 
+              size="xl" 
+              onClick={() => router.push('/registration')}
+              className="mx-auto md:ml-auto"
+              >
               Контакт
             </Button>
           </div>
