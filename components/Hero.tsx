@@ -18,7 +18,7 @@ export default function Hero() {
     <section className="relative w-full h-96 md:h-175 overflow-visible z-20">
       
       <Image
-        src="/img/intro-uk3.png"
+        src="/img/hero1.png"
         alt="Ukraine indsats intro"
         fill
         className="object-cover"
