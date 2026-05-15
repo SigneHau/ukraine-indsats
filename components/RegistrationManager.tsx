@@ -7,6 +7,7 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
+import Step6 from "./Step6";
 
 export default function RegistrationManager() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -72,7 +73,20 @@ export default function RegistrationManager() {
                 initialData={formData} // Så den husker data hvis man går frem og tilbage
               />
             );
+
+            case 6:
+                return (
+                  <Step6 
+                    formData={formData} 
+                    onBack={prevStep} 
+                    onSubmit={(finalData) => {
+                      console.log("Form indsendt:", finalData);
+                      // Her kan du sende data til din database eller vise en succes-besked
+                    }} 
+                  />
+                );
     }
+         
   };
 
   return (
