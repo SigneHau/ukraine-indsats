@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+import Step4 from "./Step4";
 
 export default function RegistrationManager() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -45,6 +46,17 @@ export default function RegistrationManager() {
             onBack={prevStep} 
           />
         );
+
+        case 4:
+          return (
+            <Step4 
+              onNext={(data) => {
+                setFormData((prev) => ({ ...prev, ...data }));
+                  nextStep();
+                  }} 
+              onBack={prevStep} 
+            />
+          );
     }
   };
 

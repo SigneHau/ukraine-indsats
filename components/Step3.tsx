@@ -7,12 +7,13 @@ import { Input } from "@/components/ui/input";
 interface Step3Props {
   onNext: (data: any) => void;
   onBack: () => void;
+  initialData?:any;
 }
 
-export default function Step3({ onNext, onBack }: Step3Props) {
-  const [gender, setGender] = useState<string | null>(null);
-  const [name, setName] = useState("");
-  const [birthday, setBirthday] = useState({ day: "", month: "", year: "" });
+export default function Step3({ onNext, onBack, initialData }: Step3Props) {
+  const [gender, setGender] = useState<string | null>(initialData?.gender || null);
+  const [name, setName] = useState(initialData?.name || "");
+  const [birthday, setBirthday] = useState(initialData?.birthday || { day: "", month: "", year: "" });
 
   const handleNext = () => {
     onNext({
