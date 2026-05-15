@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
+import Step3 from "./Step3";
 
 export default function RegistrationManager() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -33,13 +34,21 @@ export default function RegistrationManager() {
           />
         );
 
-      default:
-        return <div className="text-navy text-center">Indhold på vej...</div>;
+      case 3:
+        return (
+          <Step3 
+            onNext={(data) => {
+              setFormData((prev) => ({ ...prev, ...data }));
+                nextStep();
+                }} 
+            onBack={prevStep} 
+          />
+        );
     }
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto flex flex-col items-center px-4">
+    <div className="w-full max-w-7xl mx-auto flex flex-col items-center px-4 min-h-screen">
       {/* Progress Bar */}
       <div className="flex items-center justify-between w-full mb-20 md:mb-20 relative md:px-20">
         {[1, 2, 3, 4, 5, 6].map((step) => (

@@ -1,7 +1,7 @@
 // app/(blank)/registration/layout.tsx
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link'; // Rettet: Nu importeres Link fra Next.js
+import Link from 'next/link'; 
 import "../../globals.css";
 
 export default function RegistrationLayout({
@@ -11,10 +11,11 @@ export default function RegistrationLayout({
 }) {
   return (
     <html lang="da">
-      <body className="min-h-screen bg-white relative overflow-hidden font-kbhtekst">
+      {/* FJERNEDE: overflow-hidden. TILFØJEDE: bg-white og scroll-behavior */}
+      <body className="min-h-screen bg-white font-kbhtekst overflow-y-auto">
         
         {/* LOGO SEKTION */}
-        <div className="p-6 md:p-10">
+        <div className="p-6 md:p-10 relative z-20">
           <Link href="/">
             <Image
               src="/img/kk-logo.svg"
@@ -27,8 +28,10 @@ export default function RegistrationLayout({
           </Link>
         </div>
 
-        {/* INDHOLDET AF DIN REGISTRATION PAGE */}
-        <main className="relative z-10">
+        {/* ÆNDRET: Vi sikrer at main kan fylde mere end skærmen 
+            og vi fjerner de stramme begrænsninger 
+        */}
+        <main className="relative z-10 w-full">
           {children}
         </main>
       </body>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 interface Step1Props {
   onNext: () => void;
@@ -37,13 +38,19 @@ export default function Step1({ onNext }: Step1Props) {
 
         {/* Hovedknap (Begynd) - Centreret */}
         <div className="flex flex-col items-center w-full mb-24">
-          <button
-            onClick={onNext}
-            className="h-12 bg-secondary-purple text-white px-16 text-[20px] font-bold rounded-none hover:bg-secondary-light hover:text-black transition-colors whitespace-nowrap border-none mx-auto flex flex-col items-center justify-center leading-none py-8 shadow-xl"
-          >
-            <span className="uppercase tracking-wider font-kbh">Почати</span>
-            <span className="text-[10px] font-normal opacity-70 font-kbhtekst lowercase italic mt-1">(Begynd)</span>
-          </button>
+          <Button
+              variant="purple" 
+              size="xl" 
+              onClick={onNext}
+              className="h-14 rounded-none shadow-xl flex flex-col items-center justify-center leading-none border-none"
+             >
+              <span className="text-[20px] tracking-wider font-kbh">
+                Далі
+              </span>
+              <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic mt-1 lowercase">
+                (Næste)
+              </span>
+            </Button>
         </div>
 
         {/* Tilbage-knap: Placeret til VENSTRE i bunden af containeren */}
