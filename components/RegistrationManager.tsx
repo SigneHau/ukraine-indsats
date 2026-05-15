@@ -31,6 +31,7 @@ export default function RegistrationManager() {
           <Step2 
             onNext={handleStep2Data} 
             onBack={prevStep} 
+            initialData={formData.userType} 
           />
         );
 
