@@ -55,15 +55,15 @@ export default function Registration() {
                 <div className="flex flex-col items-center mr-6 md:mr-0 md:mb-4 shrink-0 relative">
                   
                  {/* LODRET LINJE (MOBIL) */}
-                    {index !== steps.length - 1 && (
-                      <div 
-                        className="absolute left-1/2 w-0 border-l-2 border-dashed border-secondary-light md:hidden -translate-x-1/2 z-0" 
-                        style={{ 
-                          top: "80px", // Starter præcis under cirklen (cirkel er h-20 = 80px)
-                          bottom: "0px" // Strækker sig helt ned til bunden af tekst-containeren (hvor næste cirkel starter)
-                        }}
-                      />
-                    )}
+              {index !== steps.length - 1 && (
+                <div 
+                  className="absolute left-1/2 w-0 border-l-2 border-dashed border-secondary-light md:hidden -translate-x-1/2 z-0" 
+                  style={{ 
+                    top: "84px", // Starter 4px under cirklen
+                    height: "calc(100% + 30px)" // Tvinger den ned i næste sektion (gap + margin)
+                  }}
+                />
+              )}
 
                   {/* Cirkel */}
                   <div className="w-20 h-20 bg-secondary-light rounded-full flex items-center justify-center shadow-sm z-10 relative">
