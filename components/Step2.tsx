@@ -5,12 +5,12 @@ import { useState } from "react";
 interface Step2Props {
   onNext: (data: any) => void;
   onBack: () => void;
-  initialData?: string; // Vi tilføjer denne for at kunne huske tidligere valg
+  initialData?: any; 
 }
 
 export default function Step2({ onNext, onBack, initialData }: Step2Props) {
   // Vi sætter state til det tidligere valg, hvis det findes
-  const [selectedType, setSelectedType] = useState<string | null>(initialData || null);
+  const [selectedType, setSelectedType] = useState<string | null>(initialData?.userType|| null);
 
   const handleSelect = (type: string) => {
     setSelectedType(type);

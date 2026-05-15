@@ -6,6 +6,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
+import Step5 from "./Step5";
 
 export default function RegistrationManager() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -32,7 +33,7 @@ export default function RegistrationManager() {
           <Step2 
             onNext={handleStep2Data} 
             onBack={prevStep} 
-            initialData={formData.userType} 
+            initialData={formData} 
           />
         );
 
@@ -43,7 +44,8 @@ export default function RegistrationManager() {
               setFormData((prev) => ({ ...prev, ...data }));
                 nextStep();
                 }} 
-            onBack={prevStep} 
+            onBack={prevStep}
+            initialData={formData} 
           />
         );
 
@@ -55,8 +57,21 @@ export default function RegistrationManager() {
                   nextStep();
                   }} 
               onBack={prevStep} 
+              initialData={formData}
             />
           );
+
+          case 5:
+            return (
+              <Step5 
+                onNext={(data) => {
+                  setFormData((prev) => ({ ...prev, ...data }));
+                  nextStep();
+                }} 
+                onBack={prevStep}
+                initialData={formData} // Så den husker data hvis man går frem og tilbage
+              />
+            );
     }
   };
 

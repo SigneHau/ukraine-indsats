@@ -112,7 +112,7 @@ export default function Step4({ onNext, onBack, initialData }: Step4Props) {
         </div>
 
         {/* Navigation Container - Samme Flexbox-løsning som Step 3 */}
-        <div className="flex items-center justify-between w-full max-w-md mx-auto pt-10 border-t border-gray-100 px-2">
+        <div className="flex items-center justify-between w-full max-w-md mx-auto pt-10  px-2">
           
           {/* Tilbage-knap */}
           <button 
