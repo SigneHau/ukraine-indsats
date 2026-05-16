@@ -26,83 +26,86 @@ export default function RegistrationManager() {
     nextStep();
   };
 
+  
   const renderStep = () => {
-    switch (currentStep) {
-      case 1:
-        return <Step1 onNext={nextStep} />;
+  switch (currentStep) {
+    case 1:
+      return <Step1 onNext={nextStep} />;
 
-      case 2:
-        return (
-          <Step2 
-            onNext={handleStep2Data} 
-            onBack={prevStep} 
-            initialData={formData} 
-          />
-        );
+    case 2:
+      return (
+        <Step2 
+          onNext={handleStep2Data} 
+          onBack={prevStep} 
+          initialData={formData} 
+        />
+      );
 
-      case 3:
-        return (
-          <Step3 
-            onNext={(data) => {
-              setFormData((prev) => ({ ...prev, ...data }));
-              nextStep();
-            }} 
-            onBack={prevStep}
-            initialData={formData} 
-          />
-        );
+    case 3:
+      return (
+        <Step3 
+          onNext={(data) => {
+            setFormData((prev) => ({ ...prev, ...data }));
+            nextStep();
+          }} 
+          onBack={prevStep}
+          initialData={formData}
+          userType={formData.userType} // <--- Sender typen med
+        />
+      );
 
-      case 4:
-        return (
-          <Step4 
-            onNext={(data) => {
-              setFormData((prev) => ({ ...prev, ...data }));
-              nextStep();
-            }} 
-            onBack={prevStep} 
-            initialData={formData}
-          />
-        );
+    case 4:
+      return (
+        <Step4 
+          onNext={(data) => {
+            setFormData((prev) => ({ ...prev, ...data }));
+            nextStep();
+          }} 
+          onBack={prevStep} 
+          initialData={formData}
+          userType={formData.userType} // <--- Sender typen med
+        />
+      );
 
-      case 5:
-        return (
-          <Step5 
-            onNext={(data) => {
-              setFormData((prev) => ({ ...prev, ...data }));
-              nextStep();
-            }} 
-            onBack={prevStep}
-            initialData={formData} 
-          />
-        );
+    case 5:
+      return (
+        <Step5 
+          onNext={(data) => {
+            setFormData((prev) => ({ ...prev, ...data }));
+            nextStep();
+          }} 
+          onBack={prevStep}
+          initialData={formData} 
+          userType={formData.userType} // <--- Sender typen med
+        />
+      );
 
-      case 6:
-        return (
-          <Step6 
-            formData={formData} 
-            onBack={prevStep} 
-            onEdit={(stepNumber) => setCurrentStep(stepNumber)} 
-            onSubmit={(finalData) => {
-              console.log("Afsendt data:", finalData);
-              nextStep(); 
-            }} 
-          />
-        );
+    case 6:
+      return (
+        <Step6 
+          formData={formData} 
+          onBack={prevStep} 
+          onEdit={(stepNumber) => setCurrentStep(stepNumber)} 
+          onSubmit={(finalData) => {
+            console.log("Afsendt data:", finalData);
+            nextStep(); 
+          }} 
+        />
+      );
 
-      case 7:
-        return (
-          <Step7 
-            onReset={() => {
-              // Sender brugeren trygt tilbage til forsiden af sitet
-              window.location.href = '/'; 
-            }} 
-          />
-        );
-        
-      default:
-        return null;
-    }
-  };
+    case 7:
+      return (
+        <Step7 
+          onReset={() => {
+            window.location.href = '/'; 
+          }} 
+        />
+      );
+      
+    default:
+      return null;
+  }
+};
 
   return (
     <div className="w-full max-w-7xl mx-auto flex flex-col items-center px-4 min-h-screen">
