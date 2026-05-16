@@ -36,7 +36,10 @@ const buttonVariants = cva(
         sm: "h-8 gap-1 rounded-[min(var(--radius-md),10px)] px-2.5 in-data-[slot=button-group]:rounded-md has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5",
         lg: "h-10 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         
-        md: "h-10 w-50 text-[16px] ",
+        md: "h-10 w-40 text-[16px] ",
+
+        kk: "h-10 w-30 text-[16px] rounded-sm",
+
         // Din specielle Hero-størrelse (h-12 og stor tekst)
         xl: "h-12 w-60 text-[20px]",
         

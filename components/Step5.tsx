@@ -153,7 +153,7 @@ export default function Step5({ onNext, onBack, initialData }: Step5Props) {
             </div>
           </button>
 
-          <Button variant="purple" size="md" onClick={handleNext} className="h-14 px-10 rounded-none shadow-xl flex flex-col items-center justify-center border-none">
+          <Button variant="purple" size="kk" onClick={handleNext} className="h-14 px-10 shadow-xl flex flex-col items-center justify-center leading-none border-none shrink-0">
             <span className="text-[18px] md:text-[20px] font-bold tracking-wider font-kbh">Далі</span>
             <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic mt-1 lowercase">(Næste)</span>
           </Button>

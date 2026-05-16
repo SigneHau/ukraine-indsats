@@ -16,7 +16,7 @@ export default function Step1({ onNext }: Step1Props) {
       <div className="max-w-2xl w-full relative">
         
         {/* Overskrift sektion - font-normal (ikke bold) */}
-        <div className="mb-10 md:mb-14">
+        <div className="mb-8 md:mb-14">
           <h1 className="text-navy text-3xl md:text-4xl font-normal mb-4 leading-[1.1] uppercase tracking-tight">
             Встановити  контакт
           </h1>
@@ -40,9 +40,9 @@ export default function Step1({ onNext }: Step1Props) {
         <div className="flex flex-col items-center w-full mb-24">
           <Button
               variant="purple" 
-              size="xl" 
+              size="kk" 
               onClick={onNext}
-              className="h-14 rounded-none shadow-xl flex flex-col items-center justify-center leading-none border-none"
+              className="h-14 w-50 shadow-xl flex flex-col items-center justify-center leading-none border-none"
              >
               <span className="text-[20px] tracking-wider font-kbh">
                 Далі

@@ -6,17 +6,21 @@ import { Pencil } from "lucide-react";
 
 interface Step6Props {
   onBack: () => void;
+  onEdit: (stepNumber: number) => void; // Ny funktion til at hoppe til et specifikt step
   onSubmit: (finalData: any) => void;
   formData: any;
 }
 
-export default function Step6({ onBack, onSubmit, formData }: Step6Props) {
+export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props) {
   const [consent, setConsent] = useState(false);
   const [newsletter, setNewsletter] = useState(false);
 
   // Formatering af fødselsdag
   const bday = formData.birthday;
   const formattedBirthday = bday ? `${bday.day}. ${bday.month} ${bday.year}` : "";
+
+  // Hent valgte sportsgrene ud som et array: [["futbol", "Ny"], ["tennis", "Mellem"]]
+  const selectedSportsEntries = formData.selections ? Object.entries(formData.selections) : [];
 
   return (
     <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-20 text-center px-4">
@@ -33,56 +37,91 @@ export default function Step6({ onBack, onSubmit, formData }: Step6Props) {
         </div>
 
         {/* OPSAMLINGS BOKS */}
-        <div className="bg-white border-2 border-gray-100 shadow-sm text-left mb-10">
+        <div className="bg-white border-2 border-gray-100 shadow-sm text-left mb-10 rounded-sm">
           
-          {/* Navn */}
+          {/* Navn (Hører til Step 3) */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Ім'я:</p>
               <p className="text-xs opacity-50 italic mb-2 font-kbhtekst">(Navn)</p>
               <p className="text-navy text-xl">{formData.name || "—"}</p>
             </div>
-            <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <button type="button" onClick={() => onEdit(3)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
               <Pencil size={20} className="text-navy/40" />
             </button>
           </div>
 
-          {/* Køn */}
+          {/* Køn (Hører til Step 3) */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Секс:</p>
               <p className="text-xs opacity-50 italic mb-2 font-kbhtekst">(Køn)</p>
               <p className="text-navy text-xl">{formData.gender || "—"}</p>
             </div>
-            <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <button type="button" onClick={() => onEdit(3)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
               <Pencil size={20} className="text-navy/40" />
             </button>
           </div>
 
-          {/* Fødselsdag */}
+          {/* Fødselsdag (Hører til Step 3) */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">день народження:</p>
               <p className="text-xs opacity-50 italic mb-2 font-kbhtekst">(Fødselsdag)</p>
               <p className="text-navy text-xl">{formattedBirthday || "—"}</p>
             </div>
-            <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <button type="button" onClick={() => onEdit(3)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
               <Pencil size={20} className="text-navy/40" />
             </button>
           </div>
 
-          {/* Adresse & Kontakt (Tilføjet for at være komplet) */}
-          <div className="p-4 flex justify-between items-end">
+          {/* Adresse & Kontakt (Hører til Step 4) */}
+          <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
-              <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Контакт:</p>
-              <p className="text-xs opacity-50 italic mb-2 font-kbhtekst">(Kontakt)</p>
-              <p className="text-navy text-sm">{formData.email}</p>
-              <p className="text-navy text-sm">{formData.address?.street}, {formData.address?.zipCode} {formData.address?.city}</p>
+              <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Контакт і адреса:</p>
+              <p className="text-xs opacity-50 italic mb-2 font-kbhtekst">(Kontakt & Adresse)</p>
+              <p className="text-navy text-base font-semibold">{formData.email || "—"}</p>
+              <p className="text-navy text-sm">{formData.phone || "—"}</p>
+              {formData.address?.street && (
+                <p className="text-navy/80 text-sm mt-1">
+                  {formData.address.street}, {formData.address.zipCode} {formData.address.city}
+                </p>
+              )}
             </div>
-            <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <button type="button" onClick={() => onEdit(4)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
               <Pencil size={20} className="text-navy/40" />
             </button>
           </div>
+
+          {/* Sportsgrene og Niveauer (Hører til Step 5) */}
+          <div className="p-4 flex justify-between items-end">
+            <div className="w-full pr-4">
+              <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Інтереси та рівень:</p>
+              <p className="text-xs opacity-50 italic mb-3 font-kbhtekst">(Interesser & Niveau)</p>
+              
+              {selectedSportsEntries.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {selectedSportsEntries.map(([sport, level]) => (
+                    <div key={sport} className="bg-secondary-light border border-gray-200 px-3 py-1 text-sm rounded-full text-navy flex items-center gap-2">
+                      <span className="font-bold uppercase text-xs font-kbh">{sport}</span>
+                      <span className="text-[11px] opacity-60 italic font-kbhtekst">({level})</span>
+                    </div>
+                  ))}
+                  {formData.otherSport && (
+                    <div className="bg-secondary-light border border-dashed border-secondary-purple/40 px-3 py-1 text-sm rounded-full text-navy">
+                      <span className="font-bold uppercase text-xs font-kbh">Інше:</span> {formData.otherSport}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <p className="text-navy/40 italic text-sm">Не обрано жодного виду спорту (Ingen sport valgt)</p>
+              )}
+            </div>
+            <button type="button" onClick={() => onEdit(5)} className="p-2 hover:bg-gray-100 rounded-full transition-colors shrink-0">
+              <Pencil size={20} className="text-navy/40" />
+            </button>
+          </div>
+
         </div>
 
         {/* TJEKBOKSE SEKTION */}
@@ -91,10 +130,10 @@ export default function Step6({ onBack, onSubmit, formData }: Step6Props) {
           
           {/* Samtykke */}
           <div className="flex items-start gap-4 group cursor-pointer" onClick={() => setConsent(!consent)}>
-            <div className={`mt-1 shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-colors ${consent ? 'bg-secondary-purple border-secondary-purple' : 'border-gray-300'}`}>
+            <div className={`mt-1 shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-colors rounded-sm ${consent ? 'bg-secondary-purple border-secondary-purple' : 'border-gray-300'}`}>
               {consent && <div className="w-2 h-4 border-r-2 border-b-2 border-white rotate-45 mb-1" />}
             </div>
-            <p className="text-navy text-sm font-kbhtekst leading-snug">
+            <p className="text-navy text-sm font-kbhtekst leading-snug select-none">
               Цим я підтверджую, що мої дані використовуються за моєю згодою.
               <span className="block opacity-50 italic mt-1">(Jeg bekræfter hermed, at mine data bruges med mit samtykke.)</span>
             </p>
@@ -102,10 +141,10 @@ export default function Step6({ onBack, onSubmit, formData }: Step6Props) {
 
           {/* Nyhedsbrev */}
           <div className="flex items-start gap-4 group cursor-pointer" onClick={() => setNewsletter(!newsletter)}>
-            <div className={`mt-1 shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-colors ${newsletter ? 'bg-secondary-purple border-secondary-purple' : 'border-gray-300'}`}>
+            <div className={`mt-1 shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-colors rounded-sm ${newsletter ? 'bg-secondary-purple border-secondary-purple' : 'border-gray-300'}`}>
               {newsletter && <div className="w-2 h-4 border-r-2 border-b-2 border-white rotate-45 mb-1" />}
             </div>
-            <p className="text-navy text-sm font-kbhtekst leading-snug">
+            <p className="text-navy text-sm font-kbhtekst leading-snug select-none">
               Я хочу підписатися på інформаційний бюлетень.
               <span className="block opacity-50 italic mt-1">(Jeg ønsker at tilmelde mig nyhedsbrevet.)</span>
             </p>
@@ -126,12 +165,12 @@ export default function Step6({ onBack, onSubmit, formData }: Step6Props) {
 
           <Button 
             variant="purple" 
-            size="md" 
-            disabled={!consent} // Knappen er låst indtil man har givet samtykke
+            size="kk" 
+            disabled={!consent}
             onClick={() => onSubmit({ ...formData, newsletter })} 
-            className={`h-14 px-10 rounded-none shadow-xl flex flex-col items-center justify-center border-none ${!consent ? 'opacity-50 grayscale' : ''}`}
+            className={`h-14 w-40 px-10 shadow-xl flex flex-col items-center justify-center border-none ${!consent ? 'opacity-50 grayscale' : ''}`}
           >
-            <span className="text-[18px] md:text-[20px] font-bold tracking-wider font-kbh uppercase">Подати заявку</span>
+            <span className="text-[14px] md:text-[16px] font-bold tracking-wider font-kbh uppercase">Подати заявку</span>
             <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic mt-1 lowercase">(Ansøg)</span>
           </Button>
         </div>

@@ -132,9 +132,9 @@ export default function Step4({ onNext, onBack, initialData }: Step4Props) {
           {/* Næste-knap */}
           <Button 
             variant="purple" 
-            size="md" 
+            size="kk" 
             onClick={handleNext}
-            className="h-14 px-10 rounded-none shadow-xl flex flex-col items-center justify-center leading-none border-none shrink-0"
+            className="h-14 px-10 shadow-xl flex flex-col items-center justify-center leading-none border-none shrink-0"
           >
             <span className="text-[18px] md:text-[20px] font-bold tracking-wider font-kbh">
               Далі
