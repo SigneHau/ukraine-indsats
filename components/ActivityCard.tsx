@@ -15,7 +15,7 @@ export function ActivityCard({ title, image }: ActivityProps) {
 
   return (
     /* 1. Tilføj 'rounded-none' her for at fjerne kanten på selve kortet */
-    <Card className="overflow-hidden bg-white rounded-none border-0 border-none shadow-lg">
+    <Card className="overflow-hidden bg-white rounded-none border-0 border-none shadow-lg p-0 gap-0">
       {/* Billede i bredformat (h-48) */}
       <div className="relative h-64 w-full overflow-hidden shrink-0">
         <Image 
