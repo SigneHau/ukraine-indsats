@@ -102,11 +102,12 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
               {selectedSportsEntries.length > 0 ? (
                 <div className="flex flex-wrap gap-2">
                   {selectedSportsEntries.map(([sport, level]) => (
-                    <div key={sport} className="bg-secondary-light border border-gray-200 px-3 py-1 text-sm rounded-full text-navy flex items-center gap-2">
-                      <span className="font-bold uppercase text-xs font-kbh">{sport}</span>
-                      <span className="text-[11px] opacity-60 italic font-kbhtekst">({level})</span>
-                    </div>
-                  ))}
+                        <div key={sport} className="bg-secondary-light border border-gray-200 px-3 py-1 text-sm rounded-full text-navy flex items-center gap-2">
+                            <span className="font-bold uppercase text-xs font-kbh">{sport}</span>
+                            {/* FIX: Vi tvinger level til at blive læst som en string med 'as string' */}
+                            <span className="text-[11px] opacity-60 italic font-kbhtekst">({level as string})</span>
+                        </div>
+                        ))}
                   {formData.otherSport && (
                     <div className="bg-secondary-light border border-dashed border-secondary-purple/40 px-3 py-1 text-sm rounded-full text-navy">
                       <span className="font-bold uppercase text-xs font-kbh">Інше:</span> {formData.otherSport}

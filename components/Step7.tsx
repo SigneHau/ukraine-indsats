@@ -47,11 +47,11 @@ export default function Step7({ onReset }: Step7Props) {
         <div className="flex justify-center w-full max-w-md mx-auto">
           <Button 
             variant="purple" 
-            size="xl" 
+            size="kk" 
             onClick={onReset}
-            className="h-16 px-16 rounded-none shadow-xl flex flex-col items-center justify-center border-none"
+            className="h-16 w-50 px-16 shadow-xl flex flex-col items-center justify-center border-none"
           >
-            <span className="text-[18px] md:text-[20px] font-bold uppercase tracking-wider font-kbh">Завершити</span>
+            <span className="text-[18px] md:text-[20px] tracking-wider font-kbh">Завершити</span>
             <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic mt-1 lowercase">(Afslut)</span>
           </Button>
         </div>
