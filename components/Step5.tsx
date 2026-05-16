@@ -142,7 +142,7 @@ export default function Step5({ onNext, onBack, initialData }: Step5Props) {
         </div>
 
         {/* NAVIGATION */}
-        <div className="flex items-center justify-between w-full max-w-md mx-auto pt-8 border-t border-gray-100">
+        <div className="flex items-center justify-between w-full max-w-md mx-auto pt-8 ">
           <button type="button" onClick={onBack} className="flex items-center gap-2 text-navy group hover:opacity-70 transition-all">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 md:w-6 md:h-6">
               <path d="M9 14l-4-4 4-4" /><path d="M5 10h11a4 4 0 1 1 0 8h-1" />

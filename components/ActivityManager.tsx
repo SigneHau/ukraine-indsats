@@ -163,7 +163,7 @@ export default function ActivityManager() {
                 />
               ))}
             </div>
-            {/* VIS ALLE LINK */}
+            {/* LINK til aktivtets siden */}
               <div className="flex justify-end w-full mt-8 py-6">
                 <button onClick={() => router.push('/activities')} className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group">
                   Показати всі

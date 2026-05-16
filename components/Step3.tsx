@@ -81,7 +81,7 @@ export default function Step3({ onNext, onBack, initialData, userType }: Step3Pr
                 className={`h-12 md:h-14 border-2 transition-all font-kbh font-bold uppercase text-sm rounded-none
                     ${gender === "Чоловік" || gender === "Хлопчик"
                     ? "bg-secondary-purple border-secondary-purple text-white shadow-md" 
-                    : "border-gray-200 bg-white text-navy hover:border-gray-300"}`}
+                    : "border-gray-200 bg-white text-navy"}`}
                 >
                 {userType === "self" ? "Чоловік" : "Хлопчик"}
                 <span className="block text-[9px] font-normal font-kbhtekst italic lowercase opacity-70">
@@ -139,7 +139,7 @@ export default function Step3({ onNext, onBack, initialData, userType }: Step3Pr
         </div>
 
         {/* NAVIGATION */}
-        <div className="flex items-center justify-between w-full max-w-md mx-auto pt-10 border-t border-gray-100">
+        <div className="flex items-center justify-between w-full max-w-md mx-auto pt-10 ">
           <button type="button" onClick={onBack} className="flex items-center gap-2 text-navy group hover:opacity-70 transition-all">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 md:w-6 md:h-6 text-navy">
               <path d="M9 14l-4-4 4-4" /><path d="M5 10h11a4 4 0 1 1 0 8h-1" />
