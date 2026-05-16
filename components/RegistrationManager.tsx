@@ -76,7 +76,6 @@ export default function RegistrationManager() {
           }} 
           onBack={prevStep}
           initialData={formData} 
-          userType={formData.userType} // <--- Sender typen med
         />
       );
 
