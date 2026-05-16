@@ -73,7 +73,7 @@ export function ActivityOverview() {
     <div className="w-full max-w-7xl mx-auto px-4 md:px-0 py-6 md:py-12 bg-white">
       
       {/* INTRO BANNER */}
-      <div className="relative w-full max-w-xl mx-auto h-40 md:h-50 overflow-hidden mb-8 bg-primary-blue text-black">
+      <div className="relative w-full max-w-4xl mx-auto h-40 md:h-50 overflow-hidden mb-8 bg-primary-blue text-black">
         <div className="absolute inset-0 flex flex-col justify-center p-6 md:p-10 z-10">
           <span className="text-xs uppercase tracking-wider font-bold opacity-80 font-kbh mb-1">
             Københavns Kommune
