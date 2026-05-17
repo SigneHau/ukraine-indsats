@@ -27,26 +27,26 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl h-full w-full">
         
-        {/* DEN BLÅ BOKS: Opdateret med standard Tailwind-højde, der fjerner hoppet */}
-          <div className="absolute -bottom-60 md:-bottom-64 left-0 z-30 w-full md:max-w-2xl bg-primary-blue p-6 md:p-12 shadow-1xl flex flex-col justify-between md:h-115">
-          
-          <div className="mb-8">
-            {/* OVERSKRIFT: ALTID BILINGVAL (UX-strategi: Hurtig scanning for alle) */}
+        {/* DEN BLÅ BOKS: Ændret fra justify-between til justify-start + gap-4 for tættere knap-placering */}
+        <div className="absolute -bottom-60 md:-bottom-64 left-0 z-30 w-full md:max-w-2xl bg-primary-blue p-6 md:p-12 shadow-1xl flex flex-col justify-start gap-3 md:gap-8 h-99 md:h-115">
+
+          <div>
+            {/* OVERSKRIFT: ALTID BILINGVAL */}
             <h1 className="text-3xl md:text-5xl mb-2 font-kbh text-navy">
               Стань частиною спільноти <br /> <span className="text-2xl md:text-4xl">Bliv en del af et fællesskab</span> 
             </h1>
             
-            {/* BRØDTEKST: Skifter dynamisk for at undgå kognitivt overload */}
+            {/* BRØDTEKST: Skifter dynamisk */}
             <p className="text-base md:text-xl font-kbhtekst text-navy">
               {language === "ua" 
-                ? "Копенгаген має насичене спортивне та культурне життя. Наші консультанти допоможуть вам сконтактувати з організацією, яка вас цікавить, та підтримають у процесі реєстрації. Оберіть те, що вам до душі, і ми допоможемо з усім іншим."
+                ? "Копенгаген має насичене спортивне та культурне життя. Наші консультанти допоможуть вам сконтактувати з організацією, яка вас цікавить, та підтримають у процесі реєстрації. Оберіть те, що вам до душі, і we допоможемо з усім іншим."
                 : "København har et rigt sports- og kulturliv. Vores konsulenter hjælper dig med at kontakte den forening, der interesserer dig, og støtter dig gennem hele registreringsprocessen. Vælg det, du brænder for, så hjælper vi med resten."
               }
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            {/* KNAPTEKST: Skifter dynamisk */}
+          {/* KNAP-CONTAINER: Lægger sig nu tættere op grundet flex justify-start på forælderen */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full mt-2">
             <Button 
               variant="purple" 
               size="xl" 
@@ -56,6 +56,7 @@ export default function Hero() {
               {language === "ua" ? "Контакт" : "Kontakt"}
             </Button>
           </div>
+          
         </div>
       </div>
     </section>
