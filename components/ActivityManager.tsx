@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { ActivityCard } from "./ActivityCard";
 import {
   Carousel,
-  
   CarouselContent,
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext"; // 1. Importer din sprog-context
 
 const categories = [
   { id: 'ballgames', nameUk: "Ігри з м'ячем", nameDk: 'Boldspil' },
@@ -20,9 +20,6 @@ const categories = [
   { id: 'social', nameUk: 'Соціальне', nameDk: 'Socialt' }
 ];
 
-/** * HER LIGGER ALLE AKTIVITETERNE
- * Titlen er nu opdateret med både ukrainsk og dansk navn (f.eks. 'Футбол | Fodbold').
- */
 const activitiesData = [
   // BOLDSPIL
   { id: 1, category: 'ballgames', title: 'Футбол | Fodbold', image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80', link: '#' },
@@ -61,48 +58,44 @@ export default function ActivityManager() {
   const [carouselControl, setCarouselControl] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
+  const { language } = useLanguage(); // 2. Hent det aktive sprog
 
   const filteredActivities = activitiesData.filter(act => act.category === activeCategory);
 
-  // Lytter på hvornår karrusellen skifter kort via vores controller
   useEffect(() => {
     if (!carouselControl) return;
 
-    // Vi lytter kun på "select" hændelsen. 
-    // Embla (karrusellen) starter automatisk på 0, så vi behøver ikke sætte den synkront.
     carouselControl.on("select", () => {
       setCurrentSlide(carouselControl.selectedScrollSnap());
     });
 
-    // Husk at rydde op efter dig, så du ikke har flere lyttere kørende
     return () => {
       carouselControl.off("select", () => {
         setCurrentSlide(carouselControl.selectedScrollSnap());
       });
     };
   }, [carouselControl]);
+
   return (
     <div className="w-full max-w-7xl mx-auto px-3 py-12">
       
-      
-  
-      {/* 1. Overskrift */}
-        <div className="text-left md:text-center mb-10 w-full">
-          <h2 className="text-navy text-2xl md:text-3xl mb-1 font-kbh">
-            Різноманітні можливості в Копенгагені
-            <br />
-           <span className=" text-1xl md:text-2xl"> Mange forskellige tilbud i København</span>
-          </h2>
-        </div>
+      {/* 1. Overskrift (Bilingval) */}
+      <div className="text-left md:text-center mb-10 w-full">
+        <h2 className="text-navy text-2xl md:text-3xl mb-1 font-kbh">
+          Різноманітні можливості в Копенгагені
+          <br />
+          <span className=" text-1xl md:text-2xl"> Mange forskellige tilbud i København</span>
+        </h2>
+      </div>
 
-      {/* 2. Filtre */}
+      {/* 2. Filtre (Bilingvale knapper) */}
       <div className="w-full mb-5">
         <div className="flex gap-4 overflow-x-auto flex-nowrap pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:justify-between md:flex-wrap">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`flex-none px-6 py-1 transition-all border-2 font-kbhtekst text-center flex flex-col
+              className={`flex-none px-6 py-1 transition-all border-2 font-kbhtekst text-center flex flex-col cursor-pointer
                 ${activeCategory === cat.id ? 'bg-primary-blue border-uk-blue text-black shadow-md' : 'bg-white border-slate-200 text-navy'}`}
             >
               <span className="text-lg font-bold whitespace-nowrap">{cat.nameUk}</span>
@@ -123,21 +116,17 @@ export default function ActivityManager() {
                 className="w-full" 
                 opts={{ align: "start", loop: false }}
               >
-                {/* Vi bruger 'gap' i stedet for padding for at styre mellemrummet præcist */}
                 <CarouselContent className="ml-0 flex gap-4">
                   {filteredActivities.map((activity) => (
-                    /* basis-full sikrer at du kun ser ét slide ad gangen */
                     <CarouselItem key={activity.id} className="basis-full pl-0 min-w-0">
                       <ActivityCard title={activity.title} image={activity.image} />
                     </CarouselItem>
                   ))}
-
                 </CarouselContent>
               </Carousel>
 
               {/* BUND SEKTION */}
               <div className="mt-6 flex flex-col gap-4">
-                {/* Prikkerne - Centreret */}
                 <div className="flex justify-center gap-2">
                   {filteredActivities.map((_, index) => (
                     <div 
@@ -148,8 +137,6 @@ export default function ActivityManager() {
                     />
                   ))}
                 </div>
-
-               
               </div>
             </div>
 
@@ -163,17 +150,25 @@ export default function ActivityManager() {
                 />
               ))}
             </div>
-            {/* LINK til aktivtets siden */}
-              <div className="flex justify-end w-full mt-8 py-6">
-                <button onClick={() => router.push('/activities')} className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group">
-                  Показати всі
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
+
+            {/* RETTET: Linket skifter nu sprog dynamisk */}
+            <div className="flex justify-end w-full mt-8 py-6">
+              <button 
+                onClick={() => router.push('/activities')} 
+                className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group cursor-pointer"
+              >
+                {language === "ua" ? "Показати всі" : "Vis alle"}
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         ) : (
+          /* RETTET: Fejlmeddelelsen skifter nu sprog dynamisk */
           <div className="py-20 text-center border-2 border-dashed rounded-xl border-slate-100 text-slate-400 font-bold">
-            На даний момент заходів не заплановано
+            {language === "ua" 
+              ? "На даний момент заходів не заплановано" 
+              : "Der er i øjeblikket ingen planlagte aktiviteter"
+            }
           </div>
         )}
       </div>

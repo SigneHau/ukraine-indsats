@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useLanguage } from "@/context/LanguageContext"
 import {
   Carousel,
   CarouselContent,
@@ -11,20 +12,22 @@ import {
 
 const stories = [
   {
-    quote: "Завдяки вашій допомозі та цим активностям мій син більше спілкується з данськими (і не тільки) дітьми, вчиться працювати в команді та ще краще розуміє данську культуру. Він став впевненішим у собі та навіть щасливішим.",
-    
+    ua: "Завдяки вашій допомозі та цим активностям мій син більше спілкується з данськими (і не тільки) дітьми, вчиться працювати в команді та ще краще розуміє данську культуру. Він став впевненішим у собі та навіть щасливішим.",
+    dk: "Takket være jeres hjælp og disse aktiviteter taler min søn mere med danske (og andre) børn, lærer at arbejde i teams og forstår den danske kultur endnu bedre. Han er blevet mere selvsikker og endda gladere."
   },
   {
-    quote: "Ваша допомога багато значить для нас. Завдяки вам мій син зміг знайти себе у баскетболі та плаванні. Ви полегшили мені цей пошук, на який я б витратила дуже багато часу самостійно через брак часу та нерозуміння того, як все працює.",
-   
+    ua: "Ваша допомога багато значить для нас. Завдяки вам мій син зміг знайти себе у баскетболі та плаванні. Ви полегшили мені цей пошук, на який я б витратила дуже багато часу самостійно через брак часу та нерозуміння того, як все працює.",
+    dk: "Jeres hjælp betyder meget for os. Takket være jer lykkedes det min søn at finde sig selv i basketball og svømning. I gjorde denne søgning lettere for mig, som jeg ellers ville have brugt rigtig meget tid på selv pga. tidsmangel og manglende forståelse for, hvordan det hele fungerer."
   },
   {
-    quote: "Моєму сину дуже сподобався початок дозвілля. Це подарувало йому відчуття радості та можливість досліджувати свої інтереси по-новому. Цей досвід не лише приніс йому щастя, а й підвищив впевненість та соціальну взаємодію.",
-    
+    ua: "Моєму сину дуже сподобався початок дозвілля. Це подарувало йому відчуття радості та можливість досліджувати свої інтереси по-новому. Цей досвід не лише приніс йому щастя, а й підвищив впевненість та соціальну взаємодію.",
+    dk: "Min søn var vild med starten på sin nye fritidsaktivitet. Det gav ham en følelse af glæde og mulighed for at udforske sine interesser på en ny måde. Denne oplevelse bragte ham ikke kun lykke, men øgede også hans selvtillid og sociale interaktion."
   },
 ]
 
 export default function SuccessStories() {
+  const { language } = useLanguage()
+
   return (
     <section className="w-full py-0 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-12 md:px-16 relative">
@@ -37,35 +40,39 @@ export default function SuccessStories() {
           className="w-full"
         >
           <CarouselContent className="-ml-4">
-            {stories.map((item, index) => (
-              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="bg-primary-blue p-10 h-full flex flex-col justify-between min-height: 420px relative">
-                  
-                  <div className="relative h-full flex flex-col justify-center">
-                    <span className="text-8xl text-navy opacity-20 font-serif absolute -top-4 -left-4 select-none">
-                      “
-                    </span>
+            {stories.map((item, index) => {
+              const activeQuote = language === "ua" ? item.ua : item.dk
+
+              return (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="bg-primary-blue p-10 h-full min-h-[380px] md:min-h-[320px] flex flex-col justify-between relative">
                     
-                    <p className="text-navy text-base leading-relaxed relative z-12 py-6">
-                      {item.quote}
-                    </p>
-                    
-                    <span className="text-8xl text-navy opacity-20 font-serif absolute -bottom-15 right-0 select-none">
-                      ”
-                    </span>
+                    <div className="relative h-full flex flex-col justify-center">
+                      <span className="text-8xl text-navy opacity-20 font-serif absolute -top-4 -left-4 select-none">
+                        “
+                      </span>
+                      
+                      <p className="text-navy text-base leading-relaxed relative z-10 py-6">
+                        {activeQuote}
+                      </p>
+                      
+                      <span className="text-8xl text-navy opacity-20 font-serif absolute -bottom-15 right-0 select-none">
+                        ”
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </CarouselItem>
-            ))}
+                </CarouselItem>
+              )
+            })}
           </CarouselContent>
           
-          {/* Pile på siderne uden blå ring */}
-          <div className="absolute top-1/2 -translate-y-1/2 w-full left-0 flex justify-between px-2 pointer-events-none">
+          {/* RETTET: md:hidden tilføjet, så containeren med pilene helt forsvinder på desktop */}
+          <div className="absolute top-1/2 -translate-y-1/2 w-full left-0 flex justify-between px-2 pointer-events-none md:hidden">
             <CarouselPrevious 
-              className="static translate-y-0 border-none bg-transparent text-navy hover:text-secondary-purple h-12 w-4 pointer-events-auto" 
+              className="static translate-y-0 border-none bg-transparent text-navy hover:text-secondary-purple h-12 w-4 pointer-events-auto cursor-pointer" 
             />
             <CarouselNext 
-              className="static translate-y-0 border-none bg-transparent text-navy hover:text-secondary-purple h-12 w-4 pointer-events-auto" 
+              className="static translate-y-0 border-none bg-transparent text-navy hover:text-secondary-purple h-12 w-4 pointer-events-auto cursor-pointer" 
             />
           </div>
         </Carousel>

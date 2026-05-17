@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { useLanguage } from "@/context/LanguageContext"; // Importer din sprog-context
 
 interface Step1Props {
   onNext: () => void;
 }
 
 export default function Step1({ onNext }: Step1Props) {
+  const { language } = useLanguage(); // Hent det aktive sprog
+
   return (
     /* Vi bruger min-h-screen og pb-20 for at sikre, at man kan scrolle og der er luft i bunden */
     <div className="flex flex-col items-center text-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-32">
@@ -25,38 +28,37 @@ export default function Step1({ onNext }: Step1Props) {
           </p>
         </div>
 
-        {/* Brødtekst - Venstrestillet */}
+        {/* Brødtekst - Venstrestillet. Skifter dynamisk baseret på sprogvalg */}
         <div className="text-left text-navy leading-relaxed space-y-6 mb-16 md:mb-20 font-kbhtekst text-base md:text-xl">
           <p>
-            Фрітідсгуїдерне (Fritidsguiderne) — це ініціатива, яка допомагає дітям і молоді віком 3–30 років, 
-            які ще не вирішили, як організувати своє дозвілля, стати частиною спільноти та обрати заняття до душі. 
-            Цю форму можна заповнити, якщо ви хочете отримати допомогу у пошуку відповідної позашкільної активності. 
-            Fritidsguiderne допомагають із реєстрацією та подачею заявки на отримання фінансової підтримки (гранту), 
-            якщо це необхідно.
+            {language === "ua" 
+              ? "Фрітідсгуїдерне (Fritidsguiderne) — це ініціатива, яка допомагає дітям і молоді віком 3–30 років, які ще не вирішили, як організувати своє дозвілля, стати частиною спільноти та обрати заняття до душі. Цю форму можна заповнити, якщо ви хочете отримати допомогу у пошуку відповідної позашкільної активності. Fritidsguiderne допомагають із реєстрацією та подачею заявки на отримання фінансової підтримки (гранту), якщо це необхідно."
+              : "Fritidsguiderne er et initiativ, der hjælper børn og unge i alderen 3-30 år, som endnu ikke har fundet ud af, hvordan de vil organisere deres fritid, med at blive en del af et fællesskab og vælge en aktivitet, de holder af. Denne blanket kan udfyldes, hvis du ønsker hjælp til at finde en passende fritidsaktivitet. Fritidsguiderne hjælper med tilmelding og ansøgning om økonomisk støtte (kontingentstøtte), hvis der er behov for det."
+            }
           </p>
         </div>
 
         {/* Hovedknap (Begynd) - Centreret */}
         <div className="flex flex-col items-center w-full mb-24">
           <Button
-              variant="purple" 
-              size="kk" 
-              onClick={onNext}
-              className="h-14 w-50 shadow-xl flex flex-col items-center justify-center leading-none border-none"
-             >
-              <span className="text-[20px] tracking-wider font-kbh">
-                Далі
-              </span>
-              <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic mt-1 lowercase">
-                (Næste)
-              </span>
-            </Button>
+            variant="purple" 
+            size="kk" 
+            onClick={onNext}
+            className="h-14 w-50 shadow-xl flex flex-col items-center justify-center leading-none border-none cursor-pointer"
+          >
+            <span className="text-[20px] tracking-wider font-kbh">
+              Далі
+            </span>
+            <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic mt-1 lowercase">
+              (Næste)
+            </span>
+          </Button>
         </div>
 
         {/* Tilbage-knap: Placeret til VENSTRE i bunden af containeren */}
         <button 
           onClick={() => window.location.href = "/"}
-          className="absolute -bottom-16 left-0 flex items-center gap-3 text-navy group hover:opacity-70 transition-all pb-20"
+          className="absolute -bottom-16 left-0 flex items-center gap-3 text-navy group hover:opacity-70 transition-all pb-20 cursor-pointer"
         >
           <svg 
             width="24" 

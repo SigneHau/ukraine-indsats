@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "./ui/button";
@@ -13,6 +14,8 @@ interface ActivityDetailProps {
 
 export function ActivityDetailCard({ title, image, description }: ActivityDetailProps) {
   const router = useRouter();
+  
+  // Bevarer din fuldstændig originale opsplitning af titlen
   const [ukTitle, dkTitle] = title.split(" | ");
 
   return (
@@ -33,7 +36,7 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
       {/* INDHOLD */}
       <CardContent className="bg-white p-5 md:p-6 flex flex-col justify-between grow text-left w-full border-0">
         <div className="w-full">
-          {/* Titler: Præcis som du havde lavet dem, hvor dansk beholder sin egen bold/normal-case stil */}
+          {/* Helt uændret layout: Vis altid ukrainsk først og dansk bagefter */}
           <h3 className="font-kbh text-navy font-black uppercase tracking-tight leading-none text-base md:text-lg mb-2">
             {ukTitle}
             {dkTitle && (
@@ -43,7 +46,7 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
             )}
           </h3>
 
-          {/* Ukrainsk beskrivelse */}
+          {/* Beskrivelse (Skifter flydende via den displayDescription, vi sender fra overview) */}
           <p className="font-kbhtekst text-navy/80 text-xs md:text-sm leading-relaxed mb-4 line-clamp-3">
             {description}
           </p>
@@ -54,7 +57,7 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
           variant="purple" 
           size="md" 
           onClick={() => router.push('/registration')}
-          className="w-full md:w-auto md:px-6 py-4 rounded-none font-kbh font-bold uppercase tracking-wide text-[11px] mt-auto"
+          className="w-full md:w-auto md:px-6 py-4 rounded-none font-kbh font-bold uppercase tracking-wide text-[11px] mt-auto cursor-pointer"
         >
           <div className="flex flex-col items-center justify-center leading-none">
             <span>Зареєструватися</span>

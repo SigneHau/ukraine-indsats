@@ -1,8 +1,7 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useState, useEffect } from "react"
 
-// Vi definerer de to sprog, applikationen understøtter
 type Language = "ua" | "dk"
 
 interface LanguageContextType {
@@ -10,12 +9,23 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void
 }
 
-// Opretter selve contexten
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-// Provider-komponenten som omslutter appen og styrer staten
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("ua") // Ukrainsk som standard
+  // Vi starter med "ua", men tjekker browseren så snart komponenten vågner
+  const [language, setLanguageState] = useState<Language>("ua")
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("app-language") as Language
+    if (savedLanguage === "ua" || savedLanguage === "dk") {
+      setLanguageState(savedLanguage)
+    }
+  }, [])
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang)
+    localStorage.setItem("app-language", lang) // Gemmer valget permanent i browseren
+  }
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
@@ -24,7 +34,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
-// Custom hook så det er ultranemt at hente sproget ude i komponenterne
 export function useLanguage() {
   const context = useContext(LanguageContext)
   if (!context) {

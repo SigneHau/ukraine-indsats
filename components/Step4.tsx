@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/context/LanguageContext"; // Importer din sprog-context
 
 interface Step4Props {
   onNext: (data: any) => void;
@@ -12,6 +13,7 @@ interface Step4Props {
 }
 
 export default function Step4({ onNext, onBack, initialData, userType }: Step4Props) {
+  const { language } = useLanguage(); // Hent det aktive sprog
   const [address, setAddress] = useState(initialData?.address || { street: "", zipCode: "", city: "" });
   const [phone, setPhone] = useState(initialData?.phone || "+45 ");
   const [email, setEmail] = useState(initialData?.email || "");
@@ -25,15 +27,23 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
       address,
       phone,
       email,
-      ...(userType === "pro" && { institution, proName }) // Gemmer kun pro-felter hvis relevant
+      ...(userType === "pro" && { institution, proName })
     });
+  };
+
+  // Ordbog til placeholders baseret på sprogvalget
+  const placeholders = {
+    street: language === "ua" ? "назва вулиці та nummer" : "Vejnavn og husnummer",
+    zip: language === "ua" ? "Поштовий індекс" : "Postnummer",
+    city: language === "ua" ? "Місто" : "By",
+    institution: language === "ua" ? "f.eks. Skole eller Klub" : "f.eks. Skole, Klub eller Institution"
   };
 
   return (
     <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-20 text-center px-4">
       <div className="max-w-2xl w-full">
         
-        {/* DYNAMISK OVERSKRIFT BASERET PÅ VALG */}
+        {/* DYNAMISK OVERSKRIFT BASERET PÅ VALG (Bilingval) */}
         <div className="mb-10 md:mb-14">
           {userType === "self" && (
             <>
@@ -79,7 +89,7 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
                 </label>
                 <Input 
                   type="text"
-                  placeholder="f.eks. Skole eller Klub"
+                  placeholder={placeholders.institution}
                   value={institution}
                   onChange={(e) => setInstitution(e.target.value)}
                   className="h-12 md:h-14 border-2 border-gray-200 rounded-none bg-white text-base"
@@ -88,18 +98,19 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
             </>
           )}
 
-          {/* ADRESSE (Bruges i alle 3 spor, men labels ændrer sig mentalt for hvem der bor der) */}
+          {/* ADRESSE */}
           <div className="space-y-4">
             <label className="block text-navy font-bold text-lg uppercase font-kbh">
-              {userType === "guardian" ? "Адреса батьків:" : "Адреса:"} 
+              {userType === "guardian" ? "Адреса батьків:" : "Адреса:"}{" "}
               <span className="text-navy/60 font-normal normal-case italic font-kbhtekst text-sm ml-1">
                 ({userType === "guardian" ? "Forældres adresse" : "Adresse"})
               </span>
             </label>
             
             <div className="space-y-1">
+              {/* RETTET: Sprogstyret placeholder */}
               <Input 
-                placeholder="назва вулиці та nummer"
+                placeholder={placeholders.street}
                 value={address.street}
                 onChange={(e) => setAddress({...address, street: e.target.value})}
                 className="h-12 md:h-14 border-2 border-gray-200 rounded-none bg-white text-base"
@@ -108,16 +119,18 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
+                {/* RETTET: Sprogstyret placeholder */}
                 <Input 
-                  placeholder="Поштовий індекс"
+                  placeholder={placeholders.zip}
                   value={address.zipCode}
                   onChange={(e) => setAddress({...address, zipCode: e.target.value})}
                   className="h-12 md:h-14 border-2 border-gray-200 rounded-none bg-white text-base"
                 />
               </div>
               <div className="space-y-1">
+                {/* RETTET: Sprogstyret placeholder */}
                 <Input 
-                  placeholder="Місто"
+                  placeholder={placeholders.city}
                   value={address.city}
                   onChange={(e) => setAddress({...address, city: e.target.value})}
                   className="h-12 md:h-14 border-2 border-gray-200 rounded-none bg-white text-base"
@@ -129,7 +142,7 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
           {/* TELEFONNUMMER */}
           <div className="space-y-2">
             <label className="block text-navy font-bold text-lg uppercase font-kbh">
-              {userType === "guardian" ? "Телефон батьків:" : userType === "pro" ? "Робочий телефон:" : "Телефонний номер:"}
+              {userType === "guardian" ? "Телефон батьків:" : userType === "pro" ? "Робочий телефон:" : "Телефонний номер:"}{" "}
               <span className="text-navy/60 font-normal normal-case italic font-kbhtekst text-sm ml-1">
                 ({userType === "guardian" ? "Forældres tlf." : userType === "pro" ? "Arbejds tlf." : "Telefonnummer"})
               </span>
@@ -145,7 +158,7 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
           {/* EMAIL */}
           <div className="space-y-2">
             <label className="block text-navy font-bold text-lg uppercase font-kbh">
-              {userType === "guardian" ? "Електронна пошта батьків:" : userType === "pro" ? "Робоча електронна пошта:" : "електронна адреса:"}
+              {userType === "guardian" ? "Електронна пошта батьків:" : userType === "pro" ? "Робоча електронна пошта:" : "електронна адреса:"}{" "}
               <span className="text-navy/60 font-normal normal-case italic font-kbhtekst text-sm ml-1">
                 ({userType === "guardian" ? "Forældres e-mail" : userType === "pro" ? "Arbejds e-mail" : "E-mailadresse"})
               </span>
@@ -161,9 +174,9 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
 
         </div>
 
-        {/* NAVIGATION (Uændret, stabil flexbox) */}
-        <div className="flex items-center justify-between w-full max-w-md mx-auto pt-10  px-2">
-          <button type="button" onClick={onBack} className="flex items-center gap-2 text-navy group hover:opacity-70 transition-all">
+        {/* NAVIGATION */}
+        <div className="flex items-center justify-between w-full max-w-md mx-auto pt-10 px-2">
+          <button type="button" onClick={onBack} className="flex items-center gap-2 text-navy group hover:opacity-70 transition-all cursor-pointer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 md:w-6 md:h-6 text-navy">
               <path d="M9 14l-4-4 4-4" /><path d="M5 10h11a4 4 0 1 1 0 8h-1" />
             </svg>
@@ -173,7 +186,7 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
             </div>
           </button>
 
-          <Button variant="purple" size="kk" onClick={handleNext} className="h-14 px-10 shadow-xl flex flex-col items-center justify-center border-none">
+          <Button variant="purple" size="kk" onClick={handleNext} className="h-14 px-10 shadow-xl flex flex-col items-center justify-center border-none cursor-pointer">
             <span className="text-[18px] md:text-[20px] font-bold tracking-wider font-kbh">Далі</span>
             <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic lowercase">(Næste)</span>
           </Button>

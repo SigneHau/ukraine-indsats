@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useState } from "react"
 import { supabase } from "@/lib/supabaseClient"
+import { useLanguage } from "@/context/LanguageContext" // Importer din sprog-context
 
 import { Button } from "@/components/ui/button"
 import {
@@ -16,14 +17,18 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-const formSchema = z.object({
-  email: z.string().email({
-    message: "Будь ласка, введіть коректну адресу електронної пошти.",
-  }),
-})
-
 export default function Newsletter() {
+  const { language } = useLanguage() // Hent det aktive sprog
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+
+  // Dynamisk formSchema så Zod-fejlbeskeden retter sig efter sproget
+  const formSchema = z.object({
+    email: z.string().email({
+      message: language === "ua" 
+        ? "Будь ласка, введіть коректну адресу електронної пошти."
+        : "Indtast venligst en gyldig e-mailadresse.",
+    }),
+  })
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,15 +53,33 @@ export default function Newsletter() {
     }
   }
 
+  // Ordbog til de resterende tekster i formularen
+  const t = {
+    subText: language === "ua" 
+      ? "Підпишіться на наші новини, щоб бути в курсі останніх подій."
+      : "Tilmeld dig vores nyhedsbrev for at holde dig opdateret med de seneste begivenheder.",
+    placeholder: language === "ua" ? "імейл..." : "E-mail...",
+    submitBtn: language === "ua" ? "відправити" : "Send",
+    successMsg: language === "ua"
+      ? "Дякуємо! Ви успішно підписалися на розсилку."
+      : "Tak! Du er nu tilmeldt nyhedsbrevet.",
+    errorMsg: language === "ua"
+      ? "Сталася помилка. Будь ласка, спробуйте ще раз."
+      : "Der skete en fejl. Prøv venligst igen.",
+  }
+
   return (
     <section className="w-full bg-primary-blue py-6">
       <div className="mt-10 px-8 md:px-6 flex flex-col items-center text-center">
         
-        <div className=" w-full">
-          <h2 className="text-navy  text-3xl font-bold mb-1">Інформаційний бюлетень</h2>
+        {/* OVERSKRIFT: ALTID BILINGVAL (UX-Dogme) */}
+        <div className="w-full">
+          <h2 className="text-navy text-3xl font-bold mb-1">Інформаційний бюлетень</h2>
           <p className="text-navy text-lg opacity-80">Nyhedsbrev</p>
+          
+          {/* Brødtekst skifter efter sprog */}
           <p className="text-navy italic opacity-80 max-w-sm mt-2 mb-8 mx-auto text-center">
-            Підпишіться на наші новини, щоб бути в курсі останніх подій.
+            {t.subText}
           </p>
         </div>
 
@@ -72,7 +95,7 @@ export default function Newsletter() {
                 <FormItem className="flex-1 space-y-0 text-left w-full">
                   <FormControl>
                     <Input 
-                      placeholder="імейл" 
+                      placeholder={t.placeholder} 
                       {...field} 
                       className="h-12 bg-white border-none rounded-none text-navy focus-visible:ring-secondary-purple text-lg w-full"
                     />
@@ -82,28 +105,29 @@ export default function Newsletter() {
               )}
             />
             
-           <Button 
-                type="submit" 
-                disabled={status === "loading"}
-                variant="purple" 
-                size="xl" 
-                className="w-full md:w-fit md:min-w-50 flex-shrink-0"
-                  >
-                {status === "loading" ? "..." : "відправити"}
+            <Button 
+              type="submit" 
+              disabled={status === "loading"}
+              variant="purple" 
+              size="xl" 
+              className="w-full md:w-fit md:min-w-50 flex-shrink-0 cursor-pointer"
+            >
+              {status === "loading" ? "..." : t.submitBtn}
             </Button>
           
           </form>
         </Form>
 
+        {/* STATUSBESKEDER (Success / Error) */}
         <div className="h-8 mt-4 w-full"> 
           {status === "success" && (
             <p className="text-green-700 font-bold animate-in fade-in slide-in-from-top-1 text-sm">
-              Дякуємо! Ви успішно підписалися на розсилку.
+              {t.successMsg}
             </p>
           )}
           {status === "error" && (
             <p className="text-red-600 font-bold text-sm">
-              Сталася помилка. Будь ласка, спробуйте ще раз.
+              {t.errorMsg}
             </p>
           )}
         </div>

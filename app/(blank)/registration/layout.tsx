@@ -10,29 +10,33 @@ export default function RegistrationLayout({
   children: React.ReactNode;
 }) {
   return (
+    // Sprog-provideren pakkes udenom det hele
     <LanguageProvider>
-      <div className="min-h-screen bg-white font-kbhtekst overflow-y-auto">
-        
-        {/* LOGO SEKTION */}
-        <div className="p-6 md:p-10 relative z-20">
-          <Link href="/">
-            <Image
-              src="/img/kk-logo.svg"
-              alt="KK-Logo"
-              width={300}
-              height={180}
-              className="h-16 md:h-24 w-auto object-contain cursor-pointer"
-              priority
-            />
-          </Link>
-        </div>
+      {/* Disse tags skal være her, da (blank) er en isoleret rod-mappe */}
+      <html lang="da" className="h-full bg-white">
+        <body className="min-h-screen bg-white font-kbhtekst overflow-y-auto">
+          
+          {/* LOGO SEKTION */}
+          <div className="p-6 md:p-10 relative z-20">
+            <Link href="/">
+              <Image
+                src="/img/kk-logo.svg"
+                alt="KK-Logo"
+                width={300}
+                height={180}
+                className="h-16 md:h-24 w-auto object-contain cursor-pointer"
+                priority
+              />
+            </Link>
+          </div>
 
-        {/* Formularindhold */}
-        <main className="relative z-10 w-full">
-          {children}
-        </main>
-        
-      </div>
+          {/* Formularindhold */}
+          <main className="relative z-10 w-full">
+            {children}
+          </main>
+          
+        </body>
+      </html>
     </LanguageProvider>
   );
 }

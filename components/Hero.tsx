@@ -28,11 +28,11 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl h-full w-full">
         
         {/* DEN BLÅ BOKS: Opdateret med standard Tailwind-højde, der fjerner hoppet */}
-          <div className="absolute -bottom-60 md:-bottom-64 left-0 z-30 w-full md:max-w-2xl bg-primary-blue p-6 md:p-12 shadow-1xl flex flex-col justify-between h-auto md:h-115">
+          <div className="absolute -bottom-60 md:-bottom-64 left-0 z-30 w-full md:max-w-2xl bg-primary-blue p-6 md:p-12 shadow-1xl flex flex-col justify-between md:h-115">
           
           <div className="mb-8">
             {/* OVERSKRIFT: ALTID BILINGVAL (UX-strategi: Hurtig scanning for alle) */}
-            <h1 className="text-3xl md:text-5xl mb-2 font-kbh text-black">
+            <h1 className="text-3xl md:text-5xl mb-2 font-kbh text-navy">
               Стань частиною спільноти <br /> <span className="text-2xl md:text-4xl">Bliv en del af et fællesskab</span> 
             </h1>
             
@@ -45,7 +45,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 md:mt-5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             {/* KNAPTEKST: Skifter dynamisk */}
             <Button 
               variant="purple" 
