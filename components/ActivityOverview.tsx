@@ -70,7 +70,7 @@ export function ActivityOverview() {
   );
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 md:px-0 py-6 md:py-12 bg-white">
+    <div className="w-full max-w-7xl mx-auto px-4 md:px-0 bg-white">
       
       {/* INTRO BANNER */}
       <div className="relative w-full max-w-4xl mx-auto h-40 md:h-50 overflow-hidden mb-8 bg-primary-blue text-black">
