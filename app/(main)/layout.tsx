@@ -3,6 +3,8 @@ import "../globals.css";
 import type { Metadata } from "next";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "../../context/LanguageContext";
+
 
 export const metadata: Metadata = {
   title: "Københavns Kommune - Ukraine Indsats",
@@ -17,6 +19,7 @@ export default function MainLayout({
   return (
     <html lang="da" className="h-full antialiased">
       <body className="min-h-screen flex flex-col font-kbhtekst">
+        <LanguageProvider>
         {/* Her lever navigationen for alle sider i (main) mappen */}
         <NavBar />
         
@@ -25,6 +28,7 @@ export default function MainLayout({
         </main>
         
         <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

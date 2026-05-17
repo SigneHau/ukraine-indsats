@@ -1,8 +1,8 @@
-// app/(blank)/registration/layout.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
 import "../../globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export default function RegistrationLayout({
   children,
@@ -10,9 +10,8 @@ export default function RegistrationLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="da">
-      {/* FJERNEDE: overflow-hidden. TILFØJEDE: bg-white og scroll-behavior */}
-      <body className="min-h-screen bg-white font-kbhtekst overflow-y-auto">
+    <LanguageProvider>
+      <div className="min-h-screen bg-white font-kbhtekst overflow-y-auto">
         
         {/* LOGO SEKTION */}
         <div className="p-6 md:p-10 relative z-20">
@@ -28,13 +27,12 @@ export default function RegistrationLayout({
           </Link>
         </div>
 
-        {/* ÆNDRET: Vi sikrer at main kan fylde mere end skærmen 
-            og vi fjerner de stramme begrænsninger 
-        */}
+        {/* Formularindhold */}
         <main className="relative z-10 w-full">
           {children}
         </main>
-      </body>
-    </html>
+        
+      </div>
+    </LanguageProvider>
   );
 }
