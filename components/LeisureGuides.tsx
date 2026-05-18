@@ -33,8 +33,9 @@ export default function LeisureGuides() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group cursor-pointer"
           >
-            {language === "ua" ? "Гіди з дозвілля" : "Læs mere om Fritidsguiderne"}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            {language === "ua" ? "Гіди з дозвілля" : "Læs mere"}
+             
           </a>
         </div>
       </div>

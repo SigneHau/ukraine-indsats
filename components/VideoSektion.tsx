@@ -14,7 +14,7 @@ export default function VideoSektion() {
         <div className="w-full lg:w-2/5 text-left flex flex-col items-start">
           {/* OVERSKRIFT: ALTID BILINGVAL (UX-strategi: Hurtig scanning) */}
           <h2 className="text-navy text-2xl mb-2 md:text-3xl">
-            Співпраця з організаціями Копенгагена <br /> <span className="text-1xl md:text-2xl"> I Samarbejde med foreninger i København</span>
+            Співпраця з організаціями Копенгагена <br /> <span className="text-1xl md:text-2xl"> Samarbejde med foreninger i København</span>
           </h2>
           
           {/* BRØDTEKST: Skifter alt efter valgt sprog for at beskytte mod kognitivt overload */}

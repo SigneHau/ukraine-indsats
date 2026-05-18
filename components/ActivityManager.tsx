@@ -114,7 +114,7 @@ export default function ActivityManager() {
               <Carousel 
                 setApi={setCarouselControl}
                 className="w-full" 
-                opts={{ align: "start", loop: false }}
+                opts={{ align: "start", loop: true }}
               >
                 <CarouselContent className="ml-0 flex gap-4">
                   {filteredActivities.map((activity) => (
@@ -151,16 +151,18 @@ export default function ActivityManager() {
               ))}
             </div>
 
-            {/* RETTET: Linket skifter nu sprog dynamisk */}
-            <div className="flex justify-end w-full mt-8 py-6">
-              <button 
-                onClick={() => router.push('/activities')} 
-                className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group cursor-pointer"
-              >
-                {language === "ua" ? "Показати всі" : "Vis alle"}
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
+            {/* RETTET: Linket skifter nu sprog dynamisk og pilen er forrest */}
+          <div className="flex justify-end w-full mt-8 py-6">
+            <button 
+              onClick={() => router.push('/activities')} 
+              className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group cursor-pointer"
+            >
+              {/* Pilen er nu flyttet herop, og flytter sig mod venstre ved hover */}
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              
+              {language === "ua" ? "Показати всі" : "Vis alle"}
+            </button>
+          </div>
           </>
         ) : (
           /* RETTET: Fejlmeddelelsen skifter nu sprog dynamisk */

@@ -2,13 +2,12 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext"; // Importer din sprog-context
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Registration() {
   const router = useRouter();
-  const { language } = useLanguage(); // Hent det aktive sprog
+  const { language } = useLanguage();
 
-  // Struktureret array-data med oversættelser for trinene
   const steps = [
     {
       number: 1,
@@ -49,7 +48,7 @@ export default function Registration() {
     <section className="bg-primary-blue py-16 relative z-40">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
-        {/* Overskrift (Bilingval - UX-Dogme) */}
+        {/* Overskrift */}
         <div className="text-center mb-16">
           <h2 className="text-navy text-3xl font-bold md:text-4xl mb-2 font-kbh">
             Як це працює <br /> <span className="text-xl md:text-2xl font-normal">Sådan hjælper vi dig</span>
@@ -59,16 +58,27 @@ export default function Registration() {
         {/* Steps Container Wrapper */}
         <div className="relative">
           
-          {/* VANDRETTE LINJER (KUN DESKTOP) */}
+          {/* RETTET: VANDRETTE LINJER (DESKTOP) 
+              Her bruger vi et linear-gradient inline-style til at lave de stiplede streger. 
+              'repeating-linear-gradient(90deg, ..., transparent 0px, transparent 12px)' gør mellemrummene større. */}
           <div className="hidden md:flex absolute top-10 left-0 w-full justify-between items-center px-[15%] z-0">
-            <div className="flex-1 h-[2px] border-t-2 border-dashed border-secondary-light mx-12" />
-            <div className="flex-1 h-[2px] border-t-2 border-dashed border-secondary-light mx-12" />
+            <div 
+              className="flex-1 h-[2px] mx-12" 
+              style={{
+                backgroundImage: 'repeating-linear-gradient(90deg, var(--color-secondary-light, #c3dafe) 0px, var(--color-secondary-light, #c3dafe) 8px, transparent 8px, transparent 20px)'
+              }}
+            />
+            <div 
+              className="flex-1 h-[2px] mx-12" 
+              style={{
+                backgroundImage: 'repeating-linear-gradient(90deg, var(--color-secondary-light, #c3dafe) 0px, var(--color-secondary-light, #c3dafe) 8px, transparent 8px, transparent 20px)'
+              }}
+            />
           </div>
 
           {/* Grid med cirkler og tekst */}
           <div className="grid grid-cols-1 md:grid-cols-3 md:gap-12 mb-16 relative z-10">
             {steps.map((step, index) => {
-              // Hent indholdet baseret på det valgte sprog
               const content = language === "ua" ? step.ua : step.dk;
 
               return (
@@ -77,13 +87,16 @@ export default function Registration() {
                   {/* Cirkel Container */}
                   <div className="flex flex-col items-center mr-6 md:mr-0 md:mb-4 shrink-0 relative">
                     
-                    {/* LODRET LINJE (MOBIL) */}
+                    {/* RETTET: LODRET LINJE (MOBIL) 
+                        Her bruger vi samme gradient-metode (sat til 180deg for lodret) 
+                        for at øge afstanden mellem prikkerne på mobilen */}
                     {index !== steps.length - 1 && (
                       <div 
-                        className="absolute left-1/2 w-0 border-l-2 border-dashed border-secondary-light md:hidden -translate-x-1/2 z-0" 
+                        className="absolute left-1/2 w-[2px] md:hidden -translate-x-1/2 z-0" 
                         style={{ 
                           top: "84px", 
-                          height: "calc(100% + 30px)" 
+                          height: "calc(100% + 30px)",
+                          backgroundImage: 'repeating-linear-gradient(180deg, var(--color-secondary-light, #c3dafe) 0px, var(--color-secondary-light, #c3dafe) 8px, transparent 8px, transparent 20px)'
                         }}
                       />
                     )}
@@ -111,7 +124,7 @@ export default function Registration() {
           </div>
         </div>
 
-        {/* CTA Knap - Skifter tekst dynamisk */}
+        {/* CTA Knap */}
         <div className="flex justify-center w-full mt-8">
           <Button 
             variant="purple" 

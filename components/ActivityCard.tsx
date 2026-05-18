@@ -15,11 +15,10 @@ export function ActivityCard({ title, image }: ActivityProps) {
 
   return (
     <Card 
-      data-category="B2B"
       /* Nu med en markant mørkere og mere massiv skygge, der slår 100% igennem.
          Vi har også tilføjet en lidt tydeligere grå bundstreg (border-gray-200) for at indramme bunden perfekt. */
-      className="overflow-hidden bg-white rounded-none border-0 border-none shadow-[0_15px_35px_rgba(0,0,0,0.35)] border-b-2 border-gray-200 !p-0 !gap-0"
-    >
+      className="overflow-hidden bg-white rounded-none border-none ring-0 !p-0 !gap-0">
+    
       {/* BILLED-CONTAINER */}
       <div className="relative h-64 w-full overflow-hidden shrink-0 m-0 p-0 block">
         <Image 

@@ -30,7 +30,7 @@ export default function Home() {
             - px-4: Sikrer luft til kanten på mobil (matcher Hero's left-4).
             - mt-96 md:mt-74: Justeret afstand så den ikke rammer den hvide boks.
         */}
-        <section className="w-full max-w-7xl mx-auto px-4 mt-66 md:mt-74"> 
+        <section className="w-full max-w-7xl mx-auto px-4 mt-66 md:mt-45"> 
           <ActivityManager />
         </section>
 
