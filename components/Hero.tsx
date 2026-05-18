@@ -36,7 +36,7 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl h-full w-full">
         
         {/* DEN BLÅ BOKS: 100% dit originale design og præcise placering over billedet */}
-        <div className="absolute -bottom-60 md:-bottom-64 left-0 z-30 w-full md:max-w-2xl bg-primary-blue p-6 md:p-12 shadow-1xl flex flex-col justify-start gap-3 md:gap-8 h-99 md:h-115">
+        <div className="absolute -bottom-60 md:-bottom-26 left-0 z-30 w-full md:max-w-2xl bg-primary-blue p-6 md:p-12 shadow-1xl flex flex-col justify-start gap-3 md:gap-8 h-99 md:h-115">
 
           <div>
             {/* OVERSKRIFT: ALTID BILINGVAL */}

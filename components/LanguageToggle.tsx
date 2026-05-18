@@ -31,7 +31,7 @@ export default function LanguageToggle() {
             : "opacity-50 hover:opacity-100"
         }`}
       >
-        Dk
+        DK
       </button>
     </div>
   )
