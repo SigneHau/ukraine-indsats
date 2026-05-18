@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext"; // Importer din sprog-context
 
 interface ActivityProps {
   title: string;
@@ -12,6 +13,7 @@ interface ActivityProps {
 
 export function ActivityCard({ title, image }: ActivityProps) {
   const router = useRouter();
+  const { language } = useLanguage(); // Hent det aktive sprog
 
   return (
     <Card 
@@ -37,14 +39,14 @@ export function ActivityCard({ title, image }: ActivityProps) {
           {title}
         </h3>
 
-        {/* Knap indsat centreret */}
+        {/* Knap indsat centreret - Nu med dynamisk sprogvalg */}
         <Button 
           variant="purple" 
           size="md" 
           onClick={() => router.push('/registration')}
-          className="mx-auto mt-auto"
+          className="mx-auto mt-auto cursor-pointer"
         >
-          Контакт
+          {language === "ua" ? "Контакт" : "Kontakt"}
         </Button>
       </CardContent>
     </Card>

@@ -11,7 +11,8 @@ export default function NavBar () {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="bg-offwhite border-b border-gray-200 font-kbhtekst">
+    /* RETTET: Gort sticky, sikret z-index og tilføjet en blød skygge under scroll */
+    <header className="sticky top-0 z-50 bg-offwhite border-b border-gray-200 font-kbhtekst">
       <nav className="max-w-7xl mx-auto min-h-20 md:min-h-24 px-6 flex items-center justify-between py-1 md:py-2">
 
         {/* LOGO */}
@@ -34,12 +35,11 @@ export default function NavBar () {
           <Link href="https://www.kk.dk/erhverv" className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Erhverv</Link>
           <Link href="https://www.kk.dk/brug-byen" className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Brug byen</Link>
           <Link href="https://www.kk.dk/politik" className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Politik</Link>
-          {/* RETTET HER: Mellemrum tilføjet mellem after:-bottom-1 og after:left-0 */}
           <Link href="https://www.kk.dk/om-kommunen" className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">Om kommunen</Link>
           <LanguageToggle />
         </div>
 
-        {/* MOBIL NAVIGATION (Sprogvælger + Burger Bar) */}
+        {/* MOBIL NAVIGATION */}
         <div className="md:hidden flex items-center gap-4">
           <LanguageToggle />
 

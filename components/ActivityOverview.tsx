@@ -4,86 +4,132 @@ import React, { useState } from "react";
 import { ActivityDetailCard } from "./ActivityDetailCard";
 import { Search, X, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext"; // Importer din sprog-context
+import { useLanguage } from "@/context/LanguageContext";
 
 const activitiesData = [
-  // RÆKKE 1: 3 kort
   { 
     id: 1, 
-    title: 'Футбол | Fodbold', 
-    image: 'https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=800&q=80',
-    ua: 'Приєднуйтесь до нашого футбольного турніру! Ми збираємося для дружніх матчів, де головне — це рух та спілкування. Понеділок та середа з 17:00 до 19:00.',
-    dk: 'Kom og vær med til vores fodboldturnering! Vi samles til hyggelige kampe, hvor fokus er på motion og fællesskab. Mandag og onsdag fra kl. 17:00 til 19:00.'
+    title: 'Гімнастика та рух | Gymnastik og bevægelse', 
+    image: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=800&q=80',
+    ua: 'Ознайомтеся з різними видами гімнастики, включаючи ритмічну гімнастику, стрибки на батуті та акробатику. Заняття спрямовані на розвиток координації, гнучкості та базової фізичної підготовки.',
+    dk: 'Oplev de mange grene inden for gymnastik, lige fra rytmisk gymnastik og springgymnastik til redskabsaktiviteter. Fokus er på kropsbevidsthed, motorik og bevægelsesglæde.'
   },
   { 
     id: 2, 
-    title: 'Баскетбол | Basketball', 
-    image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80', 
-    ua: 'Вдосконалюйте свої кидки та грайте у драйвовий баскетбол. Чудова можливість знайти нових друзів. Щовівторка та щочетверга з 18:30 до 20:30.',
-    dk: 'Forbedr dine skud og spil tempofyldt basketball. En fantastisk mulighed for at få nye venner. Hver tirsdag og torsdag fra kl. 18:30 til 20:30.'
+    title: 'Гандбол | Håndbold', 
+    /* OPDATERET STABIL BILLEDE URL */
+    image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80', 
+    ua: 'Динамічний командний спорт, де розвиваються швидкість, влучність та стратегічне мислення. Чудова можливість стане частиною сильної клубної спільноти.',
+    dk: 'En tempofyldt holdsport, hvor der er fokus på boldfortrolighed, præcision, hurtighed og holdsamarbejde. En god måde at blive en del af et stærkt foreningsfællesskab.'
   },
   { 
     id: 3, 
-    title: 'Теніс | Tennis', 
-    image: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&q=80', 
-    ua: 'Одиночні та парні ігри для всіх рівнів підготовки. Тренери допоможуть розібратися з технікою. Щосуботи з 10:00 до 12:00.',
-    dk: 'Singles- og doubles-kampe for alle niveauer. Trænere står klar til at hjælpe med teknikken. Hver lørdag fra kl. 10:00 til 12:00.'
+    title: 'Тхеквондо | Taekwondo', 
+    image: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&q=80', 
+    ua: 'Корейське бойове мистецтво, яке поєднує вивчення ударів ногами, техніку захисту та самооборону. Тренування розвивають силу, гнучкість і внутрішню дисципліну.',
+    dk: 'Koreansk kampsport med fokus på høje spark, blokeringer og selvforsvarsteknikker. Træningen opbygger både fysisk styrke, smidighed, respekt og mental disciplin.'
   },
-  
-  // RÆKKE 2: 2 indrykkede kort
   { 
-    id: 10, 
+    id: 4, 
+    title: 'Баскетбол | Basket', 
+    image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80', 
+    ua: 'Інтенсивна гра з м’ячем, що включає ведення, паси та кидки в кільце. Чудово розвиває витривалість, спритність та вміння взаємодіяти в команді.',
+    dk: 'Intensiv holdsport baseret på driblinger, afleveringer og skud mod kurv. Aktiviteten styrker konditionen, koordinationen og det taktiske samarbejde på banen.'
+  },
+  { 
+    id: 5, 
+    title: 'Мистецтво та креативність | Kunst og kreativitet', 
+    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80', 
+    ua: 'Простір для творчого самовираження. Сюди входить малювання фарбами, ліплення з глини, колажі, робота з текстилем та створення різноманітних поробок.',
+    dk: 'Kreativt værksted med plads til fordybelse. Aktiviteterne omfatter alt fra tegning og maling til keramik, papirkunst, tekstilarbejde og spændende genbrugsprojekter.'
+  },
+  { 
+    id: 6, 
+    title: 'Футбол | Fodbold', 
+    image: 'https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=800&q=80', 
+    ua: 'Класичний командний спорт, орієнтований на гру в команді, тактику, ведення м’яча та удари по воротах. Наголос на взаємодопомогу та задоволення від гри.',
+    dk: 'Klassisk holdsport med fokus på boldkontrol, spilforståelse, koordination og skudtræning. Der lægges vægt på holdsammenhold og glæden ved at spille sammen.'
+  },
+  { 
+    id: 7, 
+    title: 'Бокс | Boksning', 
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&q=80', 
+    ua: 'Класичний бокс, де вивчаються базові стійки, захисні рухи, удари по груші та робота в парах у захисному спорядженні. Покращує реакцію та силу.',
+    dk: 'Traditionel boksning, hvor der trænes teknik, slagkombinationer, fodarbejde og skyggeboksning under kontrollerede forhold. Udvikler styrke, koordination og hurtighed.'
+  },
+  { 
+    id: 8, 
     title: 'Карате | Karate', 
     image: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=800&q=80', 
-    ua: 'Вивчайте дисципліну, баланс та базові техніки самооборони у безпечному та професійному середовищі для будь-якого віку. Пʼятниця з 16:30 до 18:00.',
-    dk: 'Lær disciplin, balance og basale selvforsvarsteknikker i et sikkert og professionelt milieu for alle aldersgrupper. Fredag fra kl. 16:30 til 18:00.'
+    ua: 'Богове мистецтво, що фокусується на ударах руками, блоках та ката (послідовності рухів). Навчає самоконтролю, поваги та базових навичок самооборони.',
+    dk: 'Japansk kampsport baseret på præcise stød, spark og blokeringer samt kata (mønstre). Træningen vægter balance, kropskontrol, respekt og selvforsvar.'
+  },
+  { 
+    id: 9, 
+    title: 'Кікбоксинг | Kick boxing', 
+    image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&q=80', 
+    ua: 'Енергійний вид єдиноборств, що поєднує техніку ударів руками з боксу та ударів ногами з карате. Інтенсивне тренування для витривалості та швидкості.',
+    dk: 'Dynamisk kampsport, der kombinerer slagteknikker fra boksning med spark fra karate og taekwondo. Højintensiv træning af kondition, eksplosivitet og parader.'
+  },
+  { 
+    id: 10, 
+    title: 'Танці | Dans', 
+    image: 'https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&q=80', 
+    ua: 'Знайомство з різними танцювальними стилями, такими як хіп-хоп, шоу-данс, сучасний танець чи зумба. Заняття розвивають почуття ритму та пластику.',
+    dk: 'Udforskning af forskellige dansestilarter, som f.eks. hiphop, showdance, moderne dans eller zumba. Der arbejdes med koreografi, rytmeforståelse og musikalsk udtryk.'
+  },
+  { 
+    id: 11, 
+    title: 'Теніс | Tennis', 
+    image: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&q=80', 
+    ua: 'Технічний спорт на корті. Охоплює тренування подачі, ударів справа і зліва, а також правила гри в одиночних та парних розрядах.',
+    dk: 'Ketchersport på bane, hvor der arbejdes med grundslag som forhånd og baghånd, serveteknik samt spilforståelse i både single- og double-format.'
   },
   { 
     id: 12, 
     title: 'Плавання | Svømning', 
     image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=800&q=80', 
-    ua: 'Освіжаючі тренування у воді для зміцнення всього тіла. Ідеально для покращення витривалості та м’язового тонусу. Щовівторка та щосуботи з 08:00.',
-    dk: 'Forfriskende træning i vandet, der styrker hele kroppen. Ideelt til at forbedre udholdenhed og muskeltonus. Hver tirsdag og lørdag fra kl. 08:00.'
+    ua: 'Заняття у басейні, спрямовані на освоєння різних стилів плавання (кроль, брас, на спині). Наголос на безпеку у воді, правильне дихання та зміцнення м’язів.',
+    dk: 'Træning i svømmehal, der dækker stilarter som crawl, brystsvømning og rygcrawl. Der fokuseres på vandtilvænning, vejrtrækning, svømmeteknik og vandsikkerhed.'
   },
-  
-  // RÆKKE 3: 3 kort
   { 
-    id: 5, 
-    title: 'Танці | Dans', 
-    image: 'https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&q=80', 
-    ua: 'Відчуйте ритм та розважайтеся у колі однодумців. Ми танцюємо під сучасну музику. Щосереди з 19:30 до 21:00.',
-    dk: 'Mærk rytmen og hav det sjovt sammen med andre. Vi danser til moderne musik. Hver onsdag fra kl. 19:30 til 21:00.'
+    id: 13, 
+    title: 'Хокей | Hockey', 
+    image: 'https://images.unsplash.com/photo-1515523110800-9415d13b84a8?w=800&q=80', 
+    ua: 'Командна гра з ключками, яка може проходити як на траві, так і в залі (флорбол) або на льоду. Розвиває спритність, швидку реакцію та координацію.',
+    dk: 'Hurtig holdsport med stav og bold/puck, som kan omfatte både floorball (indendørs), rulleskøjtehockey eller ishockey. Styrker koordination, acceleration og overblik.'
   },
   { 
     id: 14, 
-    title: 'Живопис | Maleri', 
-    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80', 
-    ua: 'Проявіть свій творчий потенціал за допомогою фарб та полотна. Художня студія відкрита для всіх. Щочетверга з 16:00.',
-    dk: 'Udtryk dit kreative potentiale med maling og lærred. Kunststudiet er åbent for alle interesserede. Hver torsdag fra kl. 16:00.'
+    title: 'Бадмінтон | Badminton', 
+    image: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=800&q=80', 
+    ua: 'Швидкий ракетковий спорт, де потрібно відбивати волан через сітку. Тренування спрямовані на покращення реакції, швидкості ніг та точності ударів.',
+    dk: 'Ketchersport med fokus på hurtige reflekser, præcision og benarbejde, hvor der spilles med fjerbold over net. Kan spilles som både single og double.'
   },
   { 
-    id: 17, 
-    title: 'Кулінарія | Madlavning', 
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80', 
-    ua: 'Готуйте смачні страви разом та діліться традиційними рецептами. Продуктами забезпечуємо. Щодва тижні по суботах з 14:00.',
-    dk: 'Lav lækker mad sammen og del traditionelle opskrifter. Vi sørger for råvarerne. Hver anden lørdag fra kl. 14:00.'
+    id: 15, 
+    title: 'Фітнес | Fitness', 
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&q=80', 
+    ua: 'Різноманітні загальнозміцнюючі тренування, що включають кругові заняття, вправи з власною вагою, кросфіт та легку атлетику для зміцнення здоров’я.',
+    dk: 'Alsidig fysisk træning, der dækker elementer som cirkeltræning, kropsvægtsøvelser, funktionel træning og styrke. Fokus er på sundhed, styrke og generel form.'
   },
 ];
 
 export function ActivityOverview() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
-  const { language } = useLanguage(); // Hent det aktive sprog
+  const { language } = useLanguage();
 
   const filteredActivities = activitiesData.filter((activity) =>
     activity.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 md:px-0 bg-white">
+    /* RETTET: fjernet px-4 på mobil, så indholdet trækkes helt ud til kanten fra start */
+    <div className="w-full max-w-7xl mx-auto px-0 md:px-0 bg-white">
       
-      {/* INTRO BANNER */}
-      <div className="relative w-full max-w-4xl mx-auto h-40 md:h-50 overflow-hidden mb-8 bg-primary-blue font-kbh text-navy">
+      {/* RETTET: -mt-20 på mobil skubber den blå kasse helt op i top på mobilskærmen */}
+      <div className="relative w-full max-w-4xl mx-auto h-40 md:h-50 overflow-hidden -mt-20 md:mt-0 mb-12 bg-primary-blue font-kbh text-navy">
         <div className="absolute inset-0 flex flex-col justify-center p-6 md:p-10 z-10">
           <span className="text-xs font-bold opacity-80 font-kbh mb-1">
             Københavns Kommune
@@ -100,78 +146,49 @@ export function ActivityOverview() {
         </div>
       </div>
 
-      {/* SØGEBAR */}
-      <div className="w-full max-w-xl mx-auto mb-12 md:mb-16 px-4 md:px-0">
-        <div className="relative w-full">
-          <input
-            type="text"
-            placeholder={language === "ua" ? "Шукати активність / Søg efter aktivitet..." : "Søg efter aktivitet / Шукати активність..."}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-bg-secondary-light border border-slate-300 text-black placeholder-black/40 pl-12 pr-10 py-3.5 rounded-none font-kbhtekst text-base focus:outline-none focus:border-primary-blue transition-colors shadow-sm"
-          />
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black/50" />
-          {searchQuery && (
-            <button onClick={() => setSearchQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-black/50 hover:text-black cursor-pointer">
-              <X className="w-5 h-5" />
-            </button>
-          )}
+      {/* RETTET: LILLA SØGEKNAP ER TRUKKET UDENFOR MED MELLEMRUM (gap-3) */}
+      <div className="w-full max-w-xl mx-auto mb-12 md:mb-12 px-4 md:px-0">
+        <div className="flex flex-col md:flex-row items-stretch w-full gap-3">
+          
+          {/* Input-felt container */}
+          <div className="relative flex-1 flex items-center border border-slate-300 bg-bg-secondary-light shadow-sm">
+            <input
+              type="text"
+              placeholder={language === "ua" ? "Шукати активність..." : "Søg efter aktivitet..."}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-transparent text-black placeholder-black/40 pl-12 pr-10 py-3.5 font-kbhtekst text-base focus:outline-none"
+            />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black/50" />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery("")} 
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-black/50 hover:text-black cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+
+          {/* Den uafhængige lilla søgeknap */}
+          <button 
+            type="button"
+            className="bg-secondary-purple hover:bg-navy text-white px-8 h-[52px] font-kbh font-bold text-sm uppercase tracking-wider transition-colors shrink-0 cursor-pointer flex items-center justify-center border-none shadow-sm"
+          >
+            {language === "ua" ? "Пошук" : "Søg"}
+          </button>
+
         </div>
       </div>
 
       {/* GRID MED CARDS */}
       {filteredActivities.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-x-8 md:gap-y-16 w-full">
-          {filteredActivities.map((activity, index) => {
-            // Vælg beskrivelsessproget dynamisk baseret på contexten
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-x-8 md:gap-y-20 w-full px-4 md:px-0">
+          {filteredActivities.map((activity) => {
             const displayDescription = language === "ua" ? activity.ua : activity.dk;
             
-            if (searchQuery !== "") {
-              return (
-                <div key={activity.id} className="md:col-span-3 w-full">
-                  <ActivityDetailCard 
-                    title={activity.title} 
-                    image={activity.image}
-                    description={displayDescription}
-                  />
-                </div>
-              );
-            }
-
-            // RÆKKE 1
-            if (index < 3) {
-              return (
-                <div key={activity.id} className="md:col-span-2 w-full">
-                  <ActivityDetailCard 
-                    title={activity.title} 
-                    image={activity.image}
-                    description={displayDescription}
-                  />
-                </div>
-              );
-            }
-            
-            // RÆKKE 2
-            if (index >= 3 && index < 5) {
-              return (
-                <div 
-                  key={activity.id} 
-                  className={`md:col-span-3 w-full transition-all ${
-                    index === 3 ? 'md:pl-12 md:pr-4' : 'md:pr-12 md:pl-4'
-                  }`}
-                >
-                  <ActivityDetailCard 
-                    title={activity.title} 
-                    image={activity.image}
-                    description={displayDescription}
-                  />
-                </div>
-              );
-            }
-
-            // RÆKKE 3
             return (
-              <div key={activity.id} className="md:col-span-2 w-full">
+              <div key={activity.id} className="w-full">
                 <ActivityDetailCard 
                   title={activity.title} 
                   image={activity.image}
@@ -182,28 +199,28 @@ export function ActivityOverview() {
           })}
         </div>
       ) : (
-        /* SPROGSTYRET TOM TILSTAND (NO RESULTS) */
-        <div className="py-20 text-center font-kbhtekst text-black/60 border-2 border-dashed border-gray-200 w-full">
+        /* SPROGSTYRET TOM TILSTAND */
+        <div className="py-20 text-center font-kbhtekst text-black/60 border-2 border-dashed border-gray-200 w-full px-4">
           <p className="font-bold text-lg mb-1">
             {language === "ua" ? "Нічого не знайдено" : "Ingen resultater fundet"}
           </p>
           <p className="text-sm">
             {language === "ua" 
-              ? "Der blev ikke fundet nogen aktiviteter, der matcher din søgning."
+              ? "Не знайдено жодної активності, що відповідає вашому запиту."
               : "Der blev ikke fundet nogen aktiviteter, der matcher din søgning."
             }
           </p>
         </div>
       )}
 
-      {/* DIN TILBAGE-KNAP */}
-      <div className="flex justify-end w-full mt-12 py-6">
+      {/* TILBAGE-KNAP */}
+      <div className="flex justify-start w-full mt-12 py-6 px-4 md:px-0">
         <button 
           onClick={() => router.push('/')} 
           className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group cursor-pointer"
         >
-          {language === "ua" ? "Назад" : "Tilbage"}
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          {language === "ua" ? "Назад" : "Tilbage"}
         </button>
       </div>
 

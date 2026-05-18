@@ -62,7 +62,7 @@ export default function Step3({ onNext, onBack, initialData, userType }: Step3Pr
               </span>
             </label>
             <Input 
-              placeholder="f.eks. Olexander"
+              placeholder=""
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="h-12 md:h-14 border-2 border-gray-200 rounded-none bg-white text-base"

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+// useEffect er nu tilføjet i dit React import
+import { useState, useEffect } from "react";
 import { Check } from "lucide-react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -17,6 +18,14 @@ export default function RegistrationManager() {
     userType: "", 
   });
 
+  // EFFEKT TILFØJET: Sørger for at scrolle helt op på skærmen ved hvert step-skift
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant", // Sker i samme millisekund uden glidende forsinkelse
+    });
+  }, [currentStep]);
+
   // FIX: Loftet er ændret fra 6 til 7, så den kan ramme bekræftelsessiden!
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 7));
   const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
@@ -26,85 +35,84 @@ export default function RegistrationManager() {
     nextStep();
   };
 
-  
   const renderStep = () => {
-  switch (currentStep) {
-    case 1:
-      return <Step1 onNext={nextStep} />;
+    switch (currentStep) {
+      case 1:
+        return <Step1 onNext={nextStep} />;
 
-    case 2:
-      return (
-        <Step2 
-          onNext={handleStep2Data} 
-          onBack={prevStep} 
-          initialData={formData} 
-        />
-      );
+      case 2:
+        return (
+          <Step2 
+            onNext={handleStep2Data} 
+            onBack={prevStep} 
+            initialData={formData} 
+          />
+        );
 
-    case 3:
-      return (
-        <Step3 
-          onNext={(data) => {
-            setFormData((prev) => ({ ...prev, ...data }));
-            nextStep();
-          }} 
-          onBack={prevStep}
-          initialData={formData}
-          userType={formData.userType} // <--- Sender typen med
-        />
-      );
+      case 3:
+        return (
+          <Step3 
+            onNext={(data) => {
+              setFormData((prev) => ({ ...prev, ...data }));
+              nextStep();
+            }} 
+            onBack={prevStep}
+            initialData={formData}
+            userType={formData.userType} // <--- Sender typen med
+          />
+        );
 
-    case 4:
-      return (
-        <Step4 
-          onNext={(data) => {
-            setFormData((prev) => ({ ...prev, ...data }));
-            nextStep();
-          }} 
-          onBack={prevStep} 
-          initialData={formData}
-          userType={formData.userType} // <--- Sender typen med
-        />
-      );
+      case 4:
+        return (
+          <Step4 
+            onNext={(data) => {
+              setFormData((prev) => ({ ...prev, ...data }));
+              nextStep();
+            }} 
+            onBack={prevStep} 
+            initialData={formData}
+            userType={formData.userType} // <--- Sender typen med
+          />
+        );
 
-    case 5:
-      return (
-        <Step5 
-          onNext={(data) => {
-            setFormData((prev) => ({ ...prev, ...data }));
-            nextStep();
-          }} 
-          onBack={prevStep}
-          initialData={formData} 
-        />
-      );
+      case 5:
+        return (
+          <Step5 
+            onNext={(data) => {
+              setFormData((prev) => ({ ...prev, ...data }));
+              nextStep();
+            }} 
+            onBack={prevStep}
+            initialData={formData} 
+          />
+        );
 
-    case 6:
-      return (
-        <Step6 
-          formData={formData} 
-          onBack={prevStep} 
-          onEdit={(stepNumber) => setCurrentStep(stepNumber)} 
-          onSubmit={(finalData) => {
-            console.log("Afsendt data:", finalData);
-            nextStep(); 
-          }} 
-        />
-      );
+      case 6:
+        return (
+          <Step6 
+            formData={formData} 
+            onBack={prevStep} 
+            onEdit={(stepNumber) => setCurrentStep(stepNumber)} 
+            onSubmit={(finalData) => {
+              console.log("Afsendt data:", finalData);
+              nextStep(); 
+            }} 
+          />
+        );
 
-    case 7:
-      return (
-        <Step7 
-          onReset={() => {
-            window.location.href = '/'; 
-          }} 
-        />
-      );
-      
-    default:
-      return null;
-  }
-};
+      case 7:
+        return (
+          <Step7 
+            onReset={() => {
+              window.location.href = '/'; 
+            }} 
+          />
+        );
+        
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="w-full max-w-7xl mx-auto flex flex-col items-center px-4 min-h-screen">

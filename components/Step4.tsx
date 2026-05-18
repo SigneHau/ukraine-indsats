@@ -165,7 +165,7 @@ export default function Step4({ onNext, onBack, initialData, userType }: Step4Pr
             </label>
             <Input 
               type="email"
-              placeholder="name@example.com"
+              placeholder=""
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="h-12 md:h-14 border-2 border-gray-200 rounded-none bg-white text-lg"

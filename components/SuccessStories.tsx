@@ -52,7 +52,7 @@ export default function SuccessStories() {
                 <CarouselItem key={index} className="pl-0 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   
                   {/* DEN BLÅ KASSE - Helt firkantet, og med din skygge intakt */}
-                  <div className=" bg-primary-blue p-10 h-full min-h-[380px] md:min-h-[320px] flex flex-col justify-between relative shadow-[8px_0_20px_rgba(0,0,0,0.8)]">
+                  <div className=" bg-primary-blue p-10 h-full min-h-[380px] md:min-h-[320px] flex flex-col justify-between relative shadow-[8px_0_20px_rgba(0,0,0,0.2)]">
                     
                     <div className="relative h-full flex flex-col justify-center">
                       <span className="text-8xl text-navy opacity-20 font-serif absolute -top-4 -left-4 select-none">

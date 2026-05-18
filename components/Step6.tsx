@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
-import { useLanguage } from "@/context/LanguageContext"; // Importer din sprog-context
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Step6Props {
   onBack: () => void;
@@ -13,11 +13,10 @@ interface Step6Props {
 }
 
 export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props) {
-  const { language } = useLanguage(); // Hent det aktive sprog
+  const { language } = useLanguage();
   const [consent, setConsent] = useState(false);
   const [newsletter, setNewsletter] = useState(false);
 
-  // Ordbog til statiske sektionstitler og systemtekster
   const t = {
     headerUa: "Чи є ця інформація правильною?",
     headerDk: "Er disse oplysninger korrekte?",
@@ -26,7 +25,6 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     declaration: language === "ua" ? "Заява" : "Erklæring"
   };
 
-  // Datamodeller til at oversætte værdierne fra staten i realtid
   const sportsData = [
     { ukr: "футбол", dan: "Fodbold" },
     { ukr: "Гандбол", dan: "Håndbold" },
@@ -43,7 +41,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
   ];
 
   const levelsData = [
-    { ukr: "Новачок", dan: "Ny" },
+    { ukr: "Новачок", dan: "Begynder" },
     { ukr: "Середній", dan: "Mellem" },
     { ukr: "Просунутий", dan: "Øvet" }
   ];
@@ -55,24 +53,21 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     { ukr: "Дівчинка", dan: "Pige" }
   ];
 
-  // Dynamisk oversættelse af køn baseret på det sprog, der vises lige nu
   const displayGender = language === "ua" 
     ? formData.gender 
     : (genderData.find(g => g.ukr === formData.gender)?.dan || formData.gender);
 
-  // Formatering af fødselsdag
   const bday = formData.birthday;
   const formattedBirthday = bday ? `${bday.day}. ${bday.month} ${bday.year}` : "";
 
-  // Hent valgte sportsgrene ud
   const selectedSportsEntries = formData.selections ? Object.entries(formData.selections) : [];
 
   return (
     <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-20 text-center px-4">
       <div className="max-w-2xl w-full">
         
-        {/* Overskrift (Bilingval) */}
-        <div className="mb-10">
+        {/* Overskrift */}
+        <div className="mb-8">
           <h1 className="text-navy text-2xl md:text-3xl font-bold mb-2 uppercase font-kbh">
             {t.headerUa}
           </h1>
@@ -81,8 +76,8 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
           </p>
         </div>
 
-        {/* OPSAMLINGS BOKS */}
-        <div className="bg-white border-2 border-gray-100 shadow-sm text-left mb-10 rounded-sm">
+        {/* OPSAMLINGS BOKS MED INDBYGGET SCROLL (Præcis som på dit uploadede billede) */}
+        <div className="bg-white border-2 border-gray-100 shadow-sm text-left mb-8 rounded-sm max-h-[340px] overflow-y-auto pr-1">
           
           {/* SPOR C: VISES KUN HVIS DET ER EN FAGPERSON */}
           {formData.userType === "pro" && (
@@ -99,7 +94,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </div>
           )}
 
-          {/* Navn (Ung/Barn) */}
+          {/* Navn */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">
@@ -161,16 +156,16 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Sportsgrene og Niveauer */}
+          {/* RETTET: Interesser, niveauer og den nye dynamiske "Andet"-liste */}
           <div className="p-4 flex justify-between items-end">
             <div className="w-full pr-4">
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Інтереси та рівень:</p>
               <p className="text-xs opacity-50 italic mb-3 font-kbhtekst">(Interesser & Niveau)</p>
               
-              {selectedSportsEntries.length > 0 ? (
+              {((selectedSportsEntries.length > 0) || (formData.customSports && formData.customSports.length > 0)) ? (
                 <div className="flex flex-wrap gap-2">
+                  {/* Vis faste valg */}
                   {selectedSportsEntries.map(([sport, level]) => {
-                    // RETTET: Vælg det rigtige sprog til selve sportstitlen og niveauteksten i din badge
                     const sportLabel = language === "ua" ? sport : (sportsData.find(s => s.ukr === sport)?.dan || sport);
                     const levelLabel = language === "ua" ? (level as string) : (levelsData.find(l => l.ukr === level)?.dan || (level as string));
 
@@ -181,11 +176,13 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
                       </div>
                     );
                   })}
-                  {formData.otherSport && (
-                    <div className="bg-secondary-light border border-dashed border-secondary-purple/40 px-3 py-1 text-sm rounded-full text-navy">
-                      <span className="font-bold uppercase text-xs font-kbh">{language === "ua" ? "Інше:" : "Andet:"}</span> {formData.otherSport}
+                  
+                  {/* Vis listens elementer fra "Andet" inputfeltet */}
+                  {formData.customSports && formData.customSports.map((customSport: string, i: number) => (
+                    <div key={i} className="bg-secondary-light border border-dashed border-secondary-purple/40 px-3 py-1 text-sm rounded-full text-navy">
+                      <span className="font-bold uppercase text-xs font-kbh">{language === "ua" ? "Інше:" : "Andet:"}</span> {customSport}
                     </div>
-                  )}
+                  ))}
                 </div>
               ) : (
                 <p className="text-navy/40 italic text-sm">{t.noSport} ({t.noSport === "Не обрано жодного виду спорту" ? "Ingen sport valgt" : "Не обрано жодного виду спорту"})</p>
@@ -198,8 +195,8 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
 
         </div>
 
-        {/* TJEKBOKSE SEKTION */}
-        <div className="space-y-6 mb-16 text-left max-w-md mx-auto">
+        {/* TJEKBOKSE SEKTION (Altid synlig og skubbet op pga. scroll-boksen) */}
+        <div className="space-y-6 mb-12 text-left max-w-md mx-auto">
           <h3 className="text-navy font-bold uppercase font-kbh text-lg border-b border-gray-200 pb-2">{t.declaration}</h3>
           
           <div className="flex items-start gap-4 group cursor-pointer" onClick={() => setConsent(!consent)}>
