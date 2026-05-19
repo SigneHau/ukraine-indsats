@@ -73,6 +73,9 @@ export default function Step5({ onNext, onBack, initialData }: Step5Props) {
     onNext({ selections, customSports });
   };
 
+  // Tjekker om den aktive sport har fået tildelt et niveau
+  const hasSelectedLevel = activeSport ? !!selections[activeSport] : false;
+
   return (
     <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full text-center px-4 pb-20">
       <div className="max-w-2xl w-full">
@@ -83,7 +86,7 @@ export default function Step5({ onNext, onBack, initialData }: Step5Props) {
             Яким видом спорту ти цікавишся?
           </h1>
           <p className="text-navy/70 text-lg italic font-kbhtekst">
-            (Hvilken sport er du interesseret i?)
+            (Vælg en eller flere sportsgrene?)
           </p>
         </div>
 
@@ -151,6 +154,14 @@ export default function Step5({ onNext, onBack, initialData }: Step5Props) {
                 );
               })}
             </div>
+
+            {/* DYNAMISK TEKST EFTER VALG AF NIVEAU */}
+            {hasSelectedLevel && (
+              <div className="mt-4 pt-3 border-t border-navy/10 animate-in fade-in duration-300 text-xs md:text-sm font-kbhtekst text-navy/80">
+                <p className="font-bold">Ви можете вибрати більше видів спорту вище, якщо хочете!</p>
+                <p className="text-[11px] opacity-60 italic">(Du kan sagtens vælge flere sportsgrene ovenfor, hvis du vil)</p>
+              </div>
+            )}
           </div>
         )}
 
