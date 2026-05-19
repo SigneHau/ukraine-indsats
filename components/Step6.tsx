@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import emailjs from "@emailjs/browser";
+import { EMAIL_CONFIG } from "@/emailjs-config";
 
 interface Step6Props {
   onBack: () => void;
@@ -16,7 +18,9 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
   const { language } = useLanguage();
   const [consent, setConsent] = useState(false);
   const [newsletter, setNewsletter] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
+  // Oversættelser til faste tekster (Dansk / Ukrainsk)
   const t = {
     headerUa: "Чи є ця інформація правильною?",
     headerDk: "Er disse oplysninger korrekte?",
@@ -25,6 +29,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     declaration: language === "ua" ? "Заява" : "Erklæring"
   };
 
+  // Data-lister til oversættelse af sport, niveauer og køn
   const sportsData = [
     { ukr: "футбол", dan: "Fodbold" },
     { ukr: "Гандбол", dan: "Håndbold" },
@@ -53,20 +58,67 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     { ukr: "Дівчинка", dan: "Pige" }
   ];
 
+  // Formatering af køn, fødselsdag og valgte sportsgrene fra formData
   const displayGender = language === "ua" 
     ? formData.gender 
     : (genderData.find(g => g.ukr === formData.gender)?.dan || formData.gender);
 
   const bday = formData.birthday;
   const formattedBirthday = bday ? `${bday.day}. ${bday.month} ${bday.year}` : "";
-
   const selectedSportsEntries = formData.selections ? Object.entries(formData.selections) : [];
+
+  // FUNKTION: Samler alle formData, klargør tekst og sender mailen via EmailJS
+  const handleFinalSubmit = async () => {
+    setIsSending(true);
+
+    // Omdanner valgte sportsgrene og niveauer til en samlet tekststreng
+    const sportsList = selectedSportsEntries.map(([sport, level]) => {
+      const danSport = sportsData.find(s => s.ukr === sport)?.dan || sport;
+      const danLevel = levelsData.find(l => l.ukr === level)?.dan || level;
+      return `${danSport} (${danLevel})`;
+    }).join(", ");
+
+    const customSportsList = formData.customSports ? formData.customSports.join(", ") : "Ingen";
+
+    // Matcher data med de variable {{felt_navn}} du har lavet i din EmailJS-skabelon
+    const templateParams = {
+      user_type: formData.userType === "pro" ? "Fagperson" : formData.userType === "guardian" ? "Forælder" : "Selv",
+      pro_name: formData.proName || "—",
+      institution: formData.institution || "—",
+      applicant_name: formData.name || "—",
+      gender: displayGender || "—",
+      birthday: formattedBirthday || "—",
+      email: formData.email || "—",
+      phone: formData.phone || "—",
+      address: formData.address?.street ? `${formData.address.street}, ${formData.address.zipCode} ${formData.address.city}` : "—",
+      sports: sportsList || "Ingen faste valg",
+      custom_sports: customSportsList,
+      newsletter: newsletter ? "Ja" : "Nej"
+    };
+
+    try {
+      // Sender mailen og aktiverer derefter onSubmit (som sender brugeren til din succes-side)
+      await emailjs.send(
+        EMAIL_CONFIG.serviceId,
+        EMAIL_CONFIG.templateId,
+        templateParams,
+        EMAIL_CONFIG.publicKey
+      );
+
+      onSubmit({ ...formData, newsletter });
+    } catch (error) {
+      console.error("Fejl ved afsendelse:", error);
+      alert("Der skete en fejl under afsendelsen. Prøv venligst igen.");
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-20 text-center px-4">
       <div className="max-w-2xl w-full">
         
-        {/* Overskrift */}
+        {/* VISNING: Overskrift */}
         <div className="mb-8">
           <h1 className="text-navy text-2xl md:text-3xl font-bold mb-2 uppercase font-kbh">
             {t.headerUa}
@@ -76,10 +128,10 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
           </p>
         </div>
 
-        {/* OPSAMLINGS BOKS MED INDBYGGET SCROLL (Præcis som på dit uploadede billede) */}
+        {/* VISNING: Opsamlingsboks med scroll (Viser alle indtastede data) */}
         <div className="bg-white border-2 border-gray-100 shadow-sm text-left mb-8 rounded-sm max-h-[340px] overflow-y-auto pr-1">
           
-          {/* SPOR C: VISES KUN HVIS DET ER EN FAGPERSON */}
+          {/* Sektion for Fagperson (Vises kun hvis userType er 'pro') */}
           {formData.userType === "pro" && (
             <div className="p-4 border-b border-purple-100 bg-secondary-light/30 flex justify-between items-end">
               <div>
@@ -94,7 +146,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </div>
           )}
 
-          {/* Navn */}
+          {/* Sektion for Navn */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">
@@ -110,7 +162,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Køn */}
+          {/* Sektion for Køn */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Стать:</p>
@@ -122,7 +174,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Fødselsdag */}
+          {/* Sektion for Fødselsdag */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">день народження:</p>
@@ -134,7 +186,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Adresse & Kontakt */}
+          {/* Sektion for Kontakt og Adresse */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">
@@ -156,7 +208,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* RETTET: Interesser, niveauer og den nye dynamiske "Andet"-liste */}
+          {/* Sektion for Sportsgrene og niveauer (Både faste valg og "Andet") */}
           <div className="p-4 flex justify-between items-end">
             <div className="w-full pr-4">
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Інтереси та рівень:</p>
@@ -164,7 +216,6 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
               
               {((selectedSportsEntries.length > 0) || (formData.customSports && formData.customSports.length > 0)) ? (
                 <div className="flex flex-wrap gap-2">
-                  {/* Vis faste valg */}
                   {selectedSportsEntries.map(([sport, level]) => {
                     const sportLabel = language === "ua" ? sport : (sportsData.find(s => s.ukr === sport)?.dan || sport);
                     const levelLabel = language === "ua" ? (level as string) : (levelsData.find(l => l.ukr === level)?.dan || (level as string));
@@ -177,7 +228,6 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
                     );
                   })}
                   
-                  {/* Vis listens elementer fra "Andet" inputfeltet */}
                   {formData.customSports && formData.customSports.map((customSport: string, i: number) => (
                     <div key={i} className="bg-secondary-light border border-dashed border-secondary-purple/40 px-3 py-1 text-sm rounded-full text-navy">
                       <span className="font-bold uppercase text-xs font-kbh">{language === "ua" ? "Інше:" : "Andet:"}</span> {customSport}
@@ -195,7 +245,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
 
         </div>
 
-        {/* TJEKBOKSE SEKTION (Altid synlig og skubbet op pga. scroll-boksen) */}
+        {/* VISNING: Tjekbokse til Samtykke og Nyhedsbrev */}
         <div className="space-y-6 mb-12 text-left max-w-md mx-auto">
           <h3 className="text-navy font-bold uppercase font-kbh text-lg border-b border-gray-200 pb-2">{t.declaration}</h3>
           
@@ -220,9 +270,9 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
           </div>
         </div>
 
-        {/* NAVIGATION */}
+        {/* VISNING: Navigationsknapper (Tilbage og Ansøg) */}
         <div className="flex items-center justify-between w-full max-w-md mx-auto">
-          <button type="button" onClick={onBack} className="flex items-center gap-2 text-navy group hover:opacity-70 transition-all cursor-pointer">
+          <button type="button" onClick={onBack} disabled={isSending} className="flex items-center gap-2 text-navy group hover:opacity-70 transition-all cursor-pointer disabled:opacity-50">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
               <path d="M9 14l-4-4 4-4" /><path d="M5 10h11a4 4 0 1 1 0 8h-1" />
             </svg>
@@ -235,12 +285,16 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
           <Button 
             variant="purple" 
             size="kk" 
-            disabled={!consent}
-            onClick={() => onSubmit({ ...formData, newsletter })} 
-            className={`h-14 w-38 md:w-50 px-10 shadow-xl flex flex-col items-center justify-center border-none cursor-pointer ${!consent ? 'opacity-50 grayscale' : ''}`}
+            disabled={!consent || isSending}
+            onClick={handleFinalSubmit}
+            className={`h-14 w-38 md:w-50 px-10 shadow-xl flex flex-col items-center justify-center border-none cursor-pointer ${(!consent || isSending) ? 'opacity-50 grayscale' : ''}`}
           >
-            <span className="text-[14px] md:text-[20px] font-bold tracking-wider font-kbh">Подати заявку</span>
-            <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic lowercase">(Ansøg)</span>
+            <span className="text-[14px] md:text-[20px] font-bold tracking-wider font-kbh">
+              {isSending ? "Надсилається..." : "Подати заявку"}
+            </span>
+            <span className="text-[10px] font-normal opacity-80 font-kbhtekst italic lowercase">
+              ({isSending ? "Sender..." : "Ansøg"})
+            </span>
           </Button>
         </div>
       </div>
