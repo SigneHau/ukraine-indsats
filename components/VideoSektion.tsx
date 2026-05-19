@@ -30,7 +30,7 @@ export default function VideoSektion() {
         <div className="w-full lg:w-3/5 aspect-video bg-gray-100 shadow-2xl overflow-hidden rounded-sm">
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/DIN_VIDEO_ID" 
+            src="/video/ukr-vid.mp4" 
             title={language === "ua" ? "Відео про співпрацю" : "Video om samarbejde"}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
