@@ -28,14 +28,18 @@ export default function VideoSektion() {
 
         {/* Video-sektion: Fylder 60% på desktop */}
         <div className="w-full lg:w-3/5 aspect-video bg-gray-100 shadow-2xl overflow-hidden rounded-sm">
-          <iframe
-            className="w-full h-full"
+          <video
+            className="w-full h-full object-cover"
             src="/video/ukr-vid.mp4" 
+            controls
+            preload="metadata"
             title={language === "ua" ? "Відео про співпрацю" : "Video om samarbejde"}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+          >
+            {language === "ua" 
+              ? "Ваш браузер не підтримує відео." 
+              : "Din browser understøtter ikke videoelementet."
+            }
+          </video>
         </div>
         
       </div>

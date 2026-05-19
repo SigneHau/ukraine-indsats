@@ -141,7 +141,7 @@ export default function Step5({ onNext, onBack, initialData }: Step5Props) {
                     key={l.ukr}
                     type="button"
                     onClick={() => setLevel(l.ukr)}
-                    className={`flex-1 py-3 rounded-full border-2 text-[10px] md:text-xs font-bold uppercase transition-all cursor-pointer outline-none focus:outline-none focus:ring-0
+                    className={`flex-1 py-1 px-2 rounded-full border-2 text-[10px] md:text-xs font-bold uppercase transition-all cursor-pointer outline-none focus:outline-none focus:ring-0
                       ${isLevelSelected
                         ? "bg-secondary-purple text-white border-transparent shadow-lg"
                         : "bg-white text-navy hover:border-secondary-purple/20"}`}

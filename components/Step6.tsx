@@ -58,7 +58,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     { ukr: "Дівчинка", dan: "Pige" }
   ];
 
-  // Formatering af køn, fødselsdag og valgte sportsgrene fra formData
+  // VISNING PÅ SKÆRM: Formatering af køn baseret på valgt UI-sprog
   const displayGender = language === "ua" 
     ? formData.gender 
     : (genderData.find(g => g.ukr === formData.gender)?.dan || formData.gender);
@@ -67,11 +67,14 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
   const formattedBirthday = bday ? `${bday.day}. ${bday.month} ${bday.year}` : "";
   const selectedSportsEntries = formData.selections ? Object.entries(formData.selections) : [];
 
-  // FUNKTION: Samler alle formData, klargør tekst og sender mailen via EmailJS
+  // FUNKTION: Samler alle formData, klargør tekst på DANSK og sender mailen via EmailJS
   const handleFinalSubmit = async () => {
     setIsSending(true);
 
-    // Omdanner valgte sportsgrene og niveauer til en samlet tekststreng
+    // 1. SIKRER DANSK KØN I MAILEN (Uanset hvad displayGender viser på skærmen)
+    const danishGender = genderData.find(g => g.ukr === formData.gender)?.dan || formData.gender;
+
+    // 2. Omdanner valgte sportsgrene og niveauer til en samlet dansk tekststreng
     const sportsList = selectedSportsEntries.map(([sport, level]) => {
       const danSport = sportsData.find(s => s.ukr === sport)?.dan || sport;
       const danLevel = levelsData.find(l => l.ukr === level)?.dan || level;
@@ -86,7 +89,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
       pro_name: formData.proName || "—",
       institution: formData.institution || "—",
       applicant_name: formData.name || "—",
-      gender: displayGender || "—",
+      gender: danishGender || "—", // <--- Her sendes det nu altid på dansk
       birthday: formattedBirthday || "—",
       email: formData.email || "—",
       phone: formData.phone || "—",
@@ -97,7 +100,8 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     };
 
     try {
-      // Sender mailen og aktiverer derefter onSubmit (som sender brugeren til din succes-side)
+      {/* category: B2B */}
+      // Sender mailen og aktiverer derefter onSubmit
       await emailjs.send(
         EMAIL_CONFIG.serviceId,
         EMAIL_CONFIG.templateId,
@@ -128,10 +132,10 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
           </p>
         </div>
 
-        {/* VISNING: Opsamlingsboks med scroll (Viser alle indtastede data) */}
+        {/* VISNING: Opsamlingsboks med scroll */}
         <div className="bg-white border-2 border-gray-100 shadow-sm text-left mb-8 rounded-sm max-h-[340px] overflow-y-auto pr-1">
           
-          {/* Sektion for Fagperson (Vises kun hvis userType er 'pro') */}
+          {/* Sektion for Fagperson */}
           {formData.userType === "pro" && (
             <div className="p-4 border-b border-purple-100 bg-secondary-light/30 flex justify-between items-end">
               <div>
@@ -208,7 +212,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Sektion for Sportsgrene og niveauer (Både faste valg og "Andet") */}
+          {/* Sektion for Sportsgrene og niveauer */}
           <div className="p-4 flex justify-between items-end">
             <div className="w-full pr-4">
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Інтереси та рівень:</p>
@@ -270,7 +274,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
           </div>
         </div>
 
-        {/* VISNING: Navigationsknapper (Tilbage og Ansøg) */}
+        {/* VISNING: Navigationsknapper */}
         <div className="flex items-center justify-between w-full max-w-md mx-auto">
           <button type="button" onClick={onBack} disabled={isSending} className="flex items-center gap-2 text-navy group hover:opacity-70 transition-all cursor-pointer disabled:opacity-50">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
