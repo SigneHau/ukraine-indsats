@@ -22,20 +22,21 @@ const categories = [
 
 const activitiesData = [
   // BOLDSPIL
-  { id: 1, category: 'ballgames', title: 'Футбол | Fodbold', image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80', link: '#' },
-  { id: 2, category: 'ballgames', title: 'Баскетбол | Basketball', image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80', link: '#' },
-  { id: 3, category: 'ballgames', title: 'Гандбол | Håndbold', image: 'https://images.unsplash.com/photo-1628779238951-be2c9f2a59f4?w=800&q=80', link: '#' },
+  { id: 1, category: 'ballgames', title: 'Футбол | Fodbold', image: '/img/fodboldkamp1.jpg', link: '#' },
+  { id: 2, category: 'ballgames', title: 'Баскетбол | Basketball', image: '/img/basket.jpg', link: '#' },
+  { id: 3, category: 'ballgames', title: 'Гандбол | Håndbold', image: '/img/Håndbold.jpg', link: '#' },
   { id: 4, category: 'ballgames', title: 'Волейбол | Volleyball', image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80', link: '#' },
   
   // KROP OG BEVÆGELSE
-  { id: 5, category: 'movement', title: 'Танці | Dans', image: 'https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&q=80', link: '#' },
-  { id: 6, category: 'movement', title: 'Гімнастика | Gymnastik', image: 'https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=800&q=80', link: '#' },
-  { id: 7, category: 'movement', title: 'Фітнес | Fitness', image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80', link: '#' },
+  { id: 5, category: 'movement', title: 'Танці | Dans', image: '/img/Hero-dans.jpg', link: '#' },
+  { id: 20, category: 'movement', title: 'Велоспорт | Cykling', image: '/img/Hero-Cykel.jpg', link: '#' },
+  { id: 6, category: 'movement', title: 'Гімнастика | Gymnastik', image: '/img/gym.jpg', link: '#' },
+  { id: 7, category: 'movement', title: 'Фітнес | Fitness', image: '/img/Fitness.jpg', link: '#' },
   { id: 8, category: 'movement', title: 'Йога | Yoga', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80', link: '#' },
   
   // KAMPSPORT
-  { id: 9, category: 'combat', title: 'Бокс | Boksning', image: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&q=80', link: '#' },
-  { id: 10, category: 'combat', title: 'Карате | Karate', image: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=800&q=80', link: '#' },
+  { id: 9, category: 'combat', title: 'Бокс | Boksning', image: '/img/boksning.png', link: '#' },
+  { id: 10, category: 'combat', title: 'Карате | Karate', image: '/img/boksning.jpg', link: '#' },
   { id: 11, category: 'combat', title: 'Дзюдо | Judo', image: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&q=80', link: '#' },
   
   // VANDSPORT
@@ -45,12 +46,12 @@ const activitiesData = [
   // KREATIVT
   { id: 14, category: 'creative', title: 'Живопис | Maleri', image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80', link: '#' },
   { id: 15, category: 'creative', title: 'Кераміка | Keramik', image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80', link: '#' },
-  { id: 16, category: 'creative', title: 'Музика | Musik', image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80', link: '#' },
+  { id: 16, category: 'creative', title: 'Музика | Musik', image: '/img/Musik.jpg', link: '#' },
   
   // SOCIALT
   { id: 17, category: 'social', title: 'Кулінарія | Madlavning', image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80', link: '#' },
-  { id: 18, category: 'social', title: 'Настільні ігри | Brætspil', image: 'https://images.unsplash.com/photo-1611371805429-8b5c1b2c34ba?w=800&q=80', link: '#' },
-  { id: 19, category: 'social', title: 'Мовне кафе | Sprogcafe', image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80', link: '#' },
+  { id: 18, category: 'social', title: 'Настільні ігри | Spejder', image: 'https://images.unsplash.com/photo-1611371805429-8b5c1b2c34ba?w=800&q=80', link: '#' },
+  { id: 19, category: 'social', title: 'Мовне кафе | Esport', image: '/img/eSport.jpg', link: '#' },
 ];
 
 export default function ActivityManager() {
