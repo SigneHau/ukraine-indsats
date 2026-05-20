@@ -19,7 +19,8 @@ import { Input } from "@/components/ui/input"
 
 export default function Newsletter() {
   const { language } = useLanguage() // Hent det aktive sprog
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  // Tilføjet "duplicate" som en mulig status
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" | "duplicate">("idle")
 
   // Dynamisk formSchema så Zod-fejlbeskeden retter sig efter sproget
   const formSchema = z.object({
@@ -40,13 +41,20 @@ export default function Newsletter() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setStatus("loading")
     
+    {/* category: B2B */}
     const { error } = await supabase
       .from('newsletter')
       .insert([{ email: values.email }])
 
     if (error) {
-      console.error("Supabase fejl:", error.message)
-      setStatus("error")
+      console.error("Supabase fejl:", error.code, error.message)
+      
+      // Kode "23505" er Supabases standardfejl for brud på UNIQUE (e-mailen findes allerede)
+      if (error.code === "23505") {
+        setStatus("duplicate")
+      } else {
+        setStatus("error")
+      }
     } else {
       setStatus("success")
       form.reset()
@@ -63,6 +71,9 @@ export default function Newsletter() {
     successMsg: language === "ua"
       ? "Дякуємо! Ви успішно підписалися на розсилку."
       : "Tak! Du er nu tilmeldt nyhedsbrevet.",
+    duplicateMsg: language === "ua"
+      ? "Ви вже підписані на нашу розсилку новин."
+      : "Du er allerede tilmeldt nyhedsbrevet.",
     errorMsg: language === "ua"
       ? "Сталася помилка. Будь ласка, спробуйте ще раз."
       : "Der skete en fejl. Prøv venligst igen.",
@@ -118,11 +129,16 @@ export default function Newsletter() {
           </form>
         </Form>
 
-        {/* STATUSBESKEDER (Success / Error) */}
+        {/* STATUSBESKEDER (Success / Duplicate / Error) */}
         <div className="h-8 mt-4 w-full"> 
           {status === "success" && (
             <p className="text-green-700 font-bold animate-in fade-in slide-in-from-top-1 text-sm">
               {t.successMsg}
+            </p>
+          )}
+          {status === "duplicate" && (
+            <p className="text-secondary-purple font-bold animate-in fade-in slide-in-from-top-1 text-sm">
+              {t.duplicateMsg}
             </p>
           )}
           {status === "error" && (

@@ -7,6 +7,7 @@ import SuccessStories from "@/components/SuccessStories";
 import LeisureGuides from "@/components/LeisureGuides";
 import Registration from "@/components/Registration";
 import { useEffect } from "react";
+import dynamic from "next/dynamic"
 
 export default function Home() {
   useEffect(() => {
@@ -15,7 +16,8 @@ export default function Home() {
     document.body.style.pointerEvents = "auto";
     window.scrollTo(0, 0);
   }, []);
-
+     // Hent Hero uden Server-Side Rendering (ssr: false)
+        const Hero = dynamic(() => import("@/components/Hero"), { ssr: false })
   return (
     <div className="flex flex-col flex-1">
       <main className="flex flex-col w-full">

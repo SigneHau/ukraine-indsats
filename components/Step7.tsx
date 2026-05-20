@@ -40,7 +40,7 @@ export default function Step7({ onReset }: Step7Props) {
             {/* Kontakt 1 */}
             <div className="space-y-1">
               <p className="font-bold text-lg leading-tight">Віктор Торвальд Хаурхольм</p>
-              <p className="text-sm opacity-70 italic font-kbhtekst mb-1">(Viktor Thorvald Haurholm)</p>
+              <p className="text-sm opacity-70 italic font-kbhtekst mb-1">(Victor Thorvald Haurholm)</p>
               <p className="text-base font-sans tracking-wide">29369943 / <a href="mailto:au4i@kk.dk" className="underline hover:text-secondary-purple">au4i@kk.dk</a></p>
             </div>
 
