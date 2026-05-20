@@ -17,7 +17,7 @@ export default function Hero() {
   const heroImages = [
     { src: "/img/Hero-trampolin.jpg", alt: "Trampolin" },
     { src: "/img/Hero-faellesskab.jpg", alt: "Faellesskab" },
-    { src: "/img/Hero-svom.jpg", alt: "Svommehal" },
+    { src: "/img/Hero-sv.jpg", alt: "Svømme" },
     { src: "/img/Hero-Cykel.jpg", alt: "Cykel" },
     { src: "/img/Hero-dans.jpg", alt: "Dans" },
     { 
