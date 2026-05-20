@@ -23,14 +23,14 @@ const categories = [
 const activitiesData = [
   // BOLDSPIL
   { id: 1, category: 'ballgames', title: 'Футбол | Fodbold', image: '/img/fodboldkamp1.jpg', link: '#' },
-  { id: 2, category: 'ballgames', title: 'Баскетбол | Basketball', image: '/img/basket.jpg', link: '#' },
+  { id: 2, category: 'ballgames', title: 'Баскетбол | Basketball', image: '/img/Basket.jpg', link: '#' },
   { id: 3, category: 'ballgames', title: 'Гандбол | Håndbold', image: '/img/Håndbold.jpg', link: '#' },
   { id: 4, category: 'ballgames', title: 'Волейбол | Volleyball', image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80', link: '#' },
   
   // KROP OG BEVÆGELSE
   { id: 5, category: 'movement', title: 'Танці | Dans', image: '/img/Hero-dans.jpg', link: '#' },
   { id: 20, category: 'movement', title: 'Велоспорт | Cykling', image: '/img/Hero-Cykel.jpg', link: '#' },
-  { id: 6, category: 'movement', title: 'Гімнастика | Gymnastik', image: '/img/gym.jpg', link: '#' },
+  { id: 6, category: 'movement', title: 'Гімнастика | Gymnastik', image: '/img/Gym.jpg', link: '#' },
   { id: 7, category: 'movement', title: 'Фітнес | Fitness', image: '/img/Fitness.jpg', link: '#' },
   { id: 8, category: 'movement', title: 'Йога | Yoga', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80', link: '#' },
   
@@ -41,7 +41,7 @@ const activitiesData = [
   
   // VANDSPORT
   { id: 12, category: 'water', title: 'Плавання | Svømning', image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=800&q=80', link: '#' },
-  { id: 13, category: 'water', title: 'Водне поло | Vandpolo', image: 'https://images.unsplash.com/photo-1533443141273-d421f77ef731?w=800&q=80', link: '#' },
+  
   
   // KREATIVT
   { id: 14, category: 'creative', title: 'Живопис | Maleri', image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80', link: '#' },
