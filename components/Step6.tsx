@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import emailjs from "@emailjs/browser";
-import { EMAIL_CONFIG } from "@/emailjs-config";
+import { EMAIL_CONFIG } from "@/emailjs-config"; // Henter dine EmailJS ID'er fra roden
 
 interface Step6Props {
   onBack: () => void;
@@ -16,9 +16,11 @@ interface Step6Props {
 
 export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props) {
   const { language } = useLanguage();
+  
+  // STATS: Husker om brugeren har sat flueben i samtykke og nyhedsbrev
   const [consent, setConsent] = useState(false);
   const [newsletter, setNewsletter] = useState(false);
-  const [isSending, setIsSending] = useState(false);
+  const [isSending, setIsSending] = useState(false); // Holder styr på, om mailen er ved at blive sendt
 
   // Oversættelser til faste tekster (Dansk / Ukrainsk)
   const t = {
@@ -29,7 +31,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     declaration: language === "ua" ? "Заява" : "Erklæring"
   };
 
-  // Data-lister til oversættelse af sport, niveauer og køn
+  // Data-lister til at oversætte sport, niveauer og køn fra ukrainsk til dansk
   const sportsData = [
     { ukr: "футбол", dan: "Fodbold" },
     { ukr: "Гандбол", dan: "Håndbold" },
@@ -58,7 +60,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     { ukr: "Дівчинка", dan: "Pige" }
   ];
 
-  // VISNING PÅ SKÆRM: Formatering af køn baseret på valgt UI-sprog
+  // Formatering og oversættelse af data fra formData-objektet
   const displayGender = language === "ua" 
     ? formData.gender 
     : (genderData.find(g => g.ukr === formData.gender)?.dan || formData.gender);
@@ -67,14 +69,11 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
   const formattedBirthday = bday ? `${bday.day}. ${bday.month} ${bday.year}` : "";
   const selectedSportsEntries = formData.selections ? Object.entries(formData.selections) : [];
 
-  // FUNKTION: Samler alle formData, klargør tekst på DANSK og sender mailen via EmailJS
+  // FUNKTION: Pakker alt sammen fra de 7 trin og sender mailen afsted via EmailJS
   const handleFinalSubmit = async () => {
     setIsSending(true);
 
-    // 1. SIKRER DANSK KØN I MAILEN (Uanset hvad displayGender viser på skærmen)
-    const danishGender = genderData.find(g => g.ukr === formData.gender)?.dan || formData.gender;
-
-    // 2. Omdanner valgte sportsgrene og niveauer til en samlet dansk tekststreng
+    // Laver de valgte sportsgrene og niveauer om til en pæn tekst-liste til mailen
     const sportsList = selectedSportsEntries.map(([sport, level]) => {
       const danSport = sportsData.find(s => s.ukr === sport)?.dan || sport;
       const danLevel = levelsData.find(l => l.ukr === level)?.dan || level;
@@ -83,13 +82,13 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
 
     const customSportsList = formData.customSports ? formData.customSports.join(", ") : "Ingen";
 
-    // Matcher data med de variable {{felt_navn}} du har lavet i din EmailJS-skabelon
+    // Matcher dine data med de variable {{felt_navn}}, du har oprettet i din EmailJS-skabelon
     const templateParams = {
       user_type: formData.userType === "pro" ? "Fagperson" : formData.userType === "guardian" ? "Forælder" : "Selv",
       pro_name: formData.proName || "—",
       institution: formData.institution || "—",
       applicant_name: formData.name || "—",
-      gender: danishGender || "—", // <--- Her sendes det nu altid på dansk
+      gender: displayGender || "—",
       birthday: formattedBirthday || "—",
       email: formData.email || "—",
       phone: formData.phone || "—",
@@ -100,8 +99,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
     };
 
     try {
-      {/* category: B2B */}
-      // Sender mailen og aktiverer derefter onSubmit
+      // Sender mailen ved hjælp af dine koder fra emailjs-config.js
       await emailjs.send(
         EMAIL_CONFIG.serviceId,
         EMAIL_CONFIG.templateId,
@@ -109,6 +107,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
         EMAIL_CONFIG.publicKey
       );
 
+      // Sender brugeren videre til din kvitterings-/succes-side
       onSubmit({ ...formData, newsletter });
     } catch (error) {
       console.error("Fejl ved afsendelse:", error);
@@ -132,10 +131,10 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
           </p>
         </div>
 
-        {/* VISNING: Opsamlingsboks med scroll */}
-        <div className="bg-white border-2 border-gray-100 shadow-sm text-left mb-8 rounded-sm max-h-[340px] overflow-y-auto pr-1">
+        {/* VISNING: Opsamlingsboks med scroll (Viser alt hvad brugeren har tastet) */}
+        <div className="bg-white border-2 border-gray-100 shadow-sm text-left mb-8 rounded-none max-h-[340px] overflow-y-auto pr-1">
           
-          {/* Sektion for Fagperson */}
+          {/* Fagperson (Vises kun hvis userType er 'pro') */}
           {formData.userType === "pro" && (
             <div className="p-4 border-b border-purple-100 bg-secondary-light/30 flex justify-between items-end">
               <div>
@@ -150,7 +149,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </div>
           )}
 
-          {/* Sektion for Navn */}
+          {/* Navn sektion */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">
@@ -166,7 +165,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Sektion for Køn */}
+          {/* Køn sektion */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Стать:</p>
@@ -178,7 +177,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Sektion for Fødselsdag */}
+          {/* Fødselsdag sektion */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">день народження:</p>
@@ -190,7 +189,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Sektion for Kontakt og Adresse */}
+          {/* Kontakt og Adresse sektion */}
           <div className="p-4 border-b border-gray-100 flex justify-between items-end">
             <div>
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">
@@ -212,7 +211,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </button>
           </div>
 
-          {/* Sektion for Sportsgrene og niveauer */}
+          {/* Valgte sportsgrene, underkategorier og "Andet" ønsker */}
           <div className="p-4 flex justify-between items-end">
             <div className="w-full pr-4">
               <p className="text-navy font-bold text-sm uppercase font-kbh leading-none">Інтереси та рівень:</p>
@@ -249,12 +248,13 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
 
         </div>
 
-        {/* VISNING: Tjekbokse til Samtykke og Nyhedsbrev */}
-        <div className="space-y-6 mb-12 text-left max-w-md mx-auto">
+        {/* INDRAMMET BOKS: Tjekbokse til samtykke (Nu indrammet i samme stil som Step4 og Step5A, uden afrundede hjørner) */}
+        <div className="bg-white p-6 border-2 border-gray-100 shadow-sm text-left space-y-6 max-w-md mx-auto mb-12 rounded-none">
           <h3 className="text-navy font-bold uppercase font-kbh text-lg border-b border-gray-200 pb-2">{t.declaration}</h3>
           
+          {/* Tjekboks 1: Samtykke */}
           <div className="flex items-start gap-4 group cursor-pointer" onClick={() => setConsent(!consent)}>
-            <div className={`mt-1 shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-colors rounded-sm ${consent ? 'bg-secondary-purple border-secondary-purple' : 'border-gray-300'}`}>
+            <div className={`mt-1 shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-colors rounded-none ${consent ? 'bg-secondary-purple border-secondary-purple' : 'border-gray-300'}`}>
               {consent && <div className="w-2 h-4 border-r-2 border-b-2 border-white rotate-45 mb-1" />}
             </div>
             <p className="text-navy text-sm font-kbhtekst leading-snug select-none">
@@ -263,8 +263,9 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
             </p>
           </div>
 
+          {/* Tjekboks 2: Nyhedsbrev */}
           <div className="flex items-start gap-4 group cursor-pointer" onClick={() => setNewsletter(!newsletter)}>
-            <div className={`mt-1 shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-colors rounded-sm ${newsletter ? 'bg-secondary-purple border-secondary-purple' : 'border-gray-300'}`}>
+            <div className={`mt-1 shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-colors rounded-none ${newsletter ? 'bg-secondary-purple border-secondary-purple' : 'border-gray-300'}`}>
               {newsletter && <div className="w-2 h-4 border-r-2 border-b-2 border-white rotate-45 mb-1" />}
             </div>
             <p className="text-navy text-sm font-kbhtekst leading-snug select-none">
@@ -274,8 +275,8 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
           </div>
         </div>
 
-        {/* VISNING: Navigationsknapper */}
-        <div className="flex items-center justify-between w-full max-w-md mx-auto">
+        {/* VISNING: Knapper til Tilbage og Ansøg (Afsender) */}
+        <div className="flex items-center justify-between w-full max-w-md mx-auto px-2">
           <button type="button" onClick={onBack} disabled={isSending} className="flex items-center gap-2 text-navy group hover:opacity-70 transition-all cursor-pointer disabled:opacity-50">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
               <path d="M9 14l-4-4 4-4" /><path d="M5 10h11a4 4 0 1 1 0 8h-1" />
