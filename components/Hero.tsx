@@ -16,8 +16,8 @@ export default function Hero() {
   // Liste med alle dine færdige og komprimerede Hero-billeder
   const heroImages = [
     { src: "/img/Hero-trampolin.jpg", alt: "Trampolin" },
-    { src: "/img/Hero-faellesskab.jpg", alt: "Fællesskab" },
-    { src: "/img/Hero-svommehallen.jpg", alt: "Svømmehal" },
+    { src: "/img/Hero-faellesskab.jpg", alt: "Faellesskab" },
+    { src: "/img/Hero-svom.jpg", alt: "Svommehal" },
     { src: "/img/Hero-Cykel.jpg", alt: "Cykel" },
     { src: "/img/Hero-dans.jpg", alt: "Dans" },
     { 
