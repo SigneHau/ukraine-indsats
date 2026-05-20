@@ -28,6 +28,7 @@ export default function Hero() {
     }
   ]
 
+  
   // AUTOMATISK TIMER: Skifter billede hvert 5. sekund (5000 millisekunder)
   useEffect(() => {
     const timer = setInterval(() => {
