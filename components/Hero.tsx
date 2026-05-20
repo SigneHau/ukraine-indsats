@@ -17,7 +17,7 @@ export default function Hero() {
   const heroImages = [
     { src: "/img/Hero-trampolin.jpg", alt: "Trampolin" },
     { src: "/img/Hero-faellesskab.jpg", alt: "Fællesskab" },
-    { src: "/img/Hero-svommehal.jpg", alt: "Svømmehal" },
+    { src: "/img/Hero-svommehallen.jpg", alt: "Svømmehal" },
     { src: "/img/Hero-Cykel.jpg", alt: "Cykel" },
     { src: "/img/Hero-dans.jpg", alt: "Dans" },
     { 
@@ -28,7 +28,7 @@ export default function Hero() {
     }
   ]
 
-  
+
   // AUTOMATISK TIMER: Skifter billede hvert 5. sekund (5000 millisekunder)
   useEffect(() => {
     const timer = setInterval(() => {
