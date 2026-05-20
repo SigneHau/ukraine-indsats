@@ -10,7 +10,7 @@ import Step4 from "./Step4";
 import Step5 from "./Step5";
 import Step6 from "./Step6";
 import Step7 from "./Step7";
-import Step5A from "./Step5A";
+
 
 export default function RegistrationManager() {
   const [currentStep, setCurrentStep] = useState(1);
