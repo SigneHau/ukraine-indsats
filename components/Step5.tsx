@@ -141,7 +141,7 @@ export default function Step5({ onBack, onNext, initialData }: Step5Props) {
   const hasAtLeastOneSelection = Object.keys(chosenSports).length > 0 || customSportsList.length > 0;
 
   return (
-    <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-20 text-center px-4">
+    <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-20 text-center">
       <div className="max-w-md w-full space-y-6">
         
         {/* OVERSKRIFT */}

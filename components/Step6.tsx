@@ -118,7 +118,7 @@ export default function Step6({ onBack, onEdit, onSubmit, formData }: Step6Props
   };
 
   return (
-    <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-20 text-center px-4">
+    <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 w-full pb-20 text-center">
       <div className="max-w-2xl w-full">
         
         {/* VISNING: Overskrift */}
