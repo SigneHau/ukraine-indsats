@@ -21,7 +21,7 @@
 
 /* Sekundær farve (den lilla) */
 --color-secondary-purple: #7C4BFF;
---color-secondary-light: rgba(124, 75, 255, 0.3); /* Den lyselilla til hover/baggrunde */
+--color-secondary-light: rgba(124, 75, 255, 0.3); /* Den lyselilla til hover/baggrunde er  */
 
 
   --color-background: var(--background);
