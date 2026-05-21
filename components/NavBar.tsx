@@ -19,7 +19,7 @@ export default function NavBar () {
         <div className="flex items-center">
           <Link href="/">
             <Image
-              src="/img/kk-logo.svg"
+              src="/image/kk-logo.svg"
               alt="KK-Logo"
               width={300}
               height={180}
