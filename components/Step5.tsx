@@ -43,7 +43,7 @@ export default function Step5({ onBack, onNext, initialData }: Step5Props) {
     addUa: "Додати",
     addDk: "Tilføj",
     otherUa: "Інше (напишіть самі):",
-    otherDk: "Andet (skriv selv):",
+    otherDk: "Інше (активність та рівень):",
     yourChoicesUa: "Ваш вибір:",
     yourChoicesDk: "Dine valg:",
     nextUa: "Далі",
@@ -220,7 +220,7 @@ export default function Step5({ onBack, onNext, initialData }: Step5Props) {
           </Button>
         </div>
 
-        {/* BOKS 2: MAL DET SELV IND (ANDET) */}
+        {/* BOKS 2: MELD DET SELV IND (ANDET) */}
         <div className="bg-white p-6 border-2 border-gray-100 shadow-sm text-left space-y-3">
           <label className="block text-navy font-bold text-sm uppercase font-kbh mb-1">
             {language === "ua" ? t.otherUa : t.otherDk}
@@ -230,8 +230,8 @@ export default function Step5({ onBack, onNext, initialData }: Step5Props) {
               type="text"
               value={customSportInput}
               onChange={(e) => setCustomSportInput(e.target.value)}
-              className="flex-1 p-3 border-2 border-gray-200  text-navy font-kbhtekst"
-              placeholder="..."
+              className="flex-1 border-2 border-gray-200  text-navy font-kbhtekst"
+              placeholder=" ........"
             />
             <Button type="button" variant="purple" onClick={addCustomSport} className="rounded-sm h-13 px-4 cursor-pointer">
               <Plus size={18} />
