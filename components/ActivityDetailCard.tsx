@@ -18,16 +18,25 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
   // Bevarer din fuldstændig originale opsplitning af titlen
   const [ukTitle, dkTitle] = title.split(" | ");
 
+  // SPLIT AF BILLEDE-URL OG TAILWIND-KLASSE
+  // Sker lige herunder titelsplittet, så det ligger samlet ét sted.
+  const [imgSrc, positionClass] = image.split(" ");
+
+  // Omdanner Tailwind-klassen (f.eks. 'object-right' eller 'object-left') til rå tekst ('right', 'left')
+  // som Next.js <Image> komponenten kan forstå og anvende i sin prop.
+  const cleanPosition = positionClass ? positionClass.replace("object-", "") : "center";
+
   return (
     <Card className="rounded-none border-0 border-none shadow-md bg-white w-full flex flex-col md:flex-row overflow-hidden h-full min-h-45 md:min-h-60 p-0 gap-0">
       
       {/* BILLEDE */}
       <div className="relative w-full md:w-[38%] h-52 md:h-auto shrink-0">
         <Image 
-          src={image} 
+          src={imgSrc} // Bruger den rene billed-URL her
           alt={title} 
           fill 
           className="object-cover transition-transform duration-500 hover:scale-105"
+          objectPosition={cleanPosition} // Styrer retningen dynamisk her (top, bottom, left, right, center)
           sizes="(max-w-768px) 100vw, 25vw"
           priority
         />
@@ -36,7 +45,7 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
       {/* INDHOLD */}
       <CardContent className="bg-white p-5 md:p-6 flex flex-col justify-between grow text-left w-full border-0">
         <div className="w-full">
-          {/* Helt uændret layout: Vis altid ukrainsk først og dansk bagefter */}
+          {/* Layout: Vis altid ukrainsk først og dansk bagefter */}
           <h3 className="font-kbh text-navy font-black uppercase tracking-tight leading-none text-base md:text-lg mb-2">
             {ukTitle}
             {dkTitle && (
@@ -46,7 +55,7 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
             )}
           </h3>
 
-          {/* Beskrivelse (Skifter flydende via den displayDescription, vi sender fra overview) */}
+          {/* Beskrivelse */}
           <p className="font-kbhtekst text-navy/80 text-xs md:text-sm leading-relaxed mb-4 line-clamp-3">
             {description}
           </p>

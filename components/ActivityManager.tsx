@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext"; // 1. Importer din sprog-context
+import { useLanguage } from "@/context/LanguageContext";
 
 const categories = [
   { id: 'ballgames', nameUk: "Ігри з м'ячем", nameDk: 'Boldspil' },
@@ -42,14 +42,13 @@ const activitiesData = [
   // VANDSPORT
   { id: 12, category: 'water', title: 'Плавання | Svømning', image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=800&q=80', link: '#' },
   
-  
   // KREATIVT
-  { id: 14, category: 'creative', title: 'Живопис | Maleri', image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80', link: '#' },
+  { id: 14, category: 'creative', title: 'Образотворче мистецтво | Billedekunst', image: '/img/krea.jpg', link: '#' },
   { id: 15, category: 'creative', title: 'Кераміка | Keramik', image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80', link: '#' },
   { id: 16, category: 'creative', title: 'Музика | Musik', image: '/img/Musik.jpg', link: '#' },
   
   // SOCIALT
-  { id: 17, category: 'social', title: 'Кулінарія | Madlavning', image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80', link: '#' },
+  { id: 17, category: 'social', title: 'Кулінарія | Madlavning', image: '/img/mad.jpg', link: '#' },
   { id: 18, category: 'social', title: 'Настільні ігри | Spejder', image: 'https://images.unsplash.com/photo-1611371805429-8b5c1b2c34ba?w=800&q=80', link: '#' },
   { id: 19, category: 'social', title: 'Мовне кафе | Esport', image: '/img/eSport.jpg', link: '#' },
 ];
@@ -59,7 +58,7 @@ export default function ActivityManager() {
   const [carouselControl, setCarouselControl] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
-  const { language } = useLanguage(); // 2. Hent det aktive sprog
+  const { language } = useLanguage();
 
   const filteredActivities = activitiesData.filter(act => act.category === activeCategory);
 
@@ -78,25 +77,27 @@ export default function ActivityManager() {
   }, [carouselControl]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-3 py-12">
+    <div className="w-full max-w-7xl mx-auto px-3 py-12 overflow-x-hidden">
       
-      {/* 1. Overskrift (Bilingval) */}
-      <div className="text-left md:text-center mb-10 w-full">
-        <h2 className="text-navy text-2xl md:text-3xl mb-1 font-kbh">
+      {/* 1. Overskrift */}
+      <div className="text-left md:text-center mt-8 w-full">
+        <h2 className="text-navy text-2xl md:text-3xl mb-10 font-kbh">
           Різноманітні можливості в Копенгагені
           <br />
           <span className=" text-1xl md:text-2xl"> Mange forskellige tilbud i København</span>
         </h2>
       </div>
 
-      {/* 2. Filtre (Bilingvale knapper) */}
-      <div className="w-full mb-5">
-        <div className="flex gap-4 overflow-x-auto flex-nowrap pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:justify-between md:flex-wrap">
+      {/* 2. Filtre */}
+      <div className="w-full mb-3 relative">
+        {/* RETTET: Tilføjet scroll-smooth, touch-pan-x og tvungen overflow-x-scroll for maksimal mobilsikkerhed */}
+        <div className="flex gap-4 overflow-x-scroll flex-nowrap pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden justify-start md:justify-between md:flex-wrap scroll-smooth touch-pan-x w-full">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`flex-none px-6 py-1 transition-all border-2 font-kbhtekst text-center flex flex-col cursor-pointer
+              /* RETTET: Ændret flex-none til shrink-0 og lagt en min-w brik på, så de holdes på stribe uanset skærmstørrelse */
+              className={`shrink-0 min-w-[140px] px-6 py-2 transition-all border-2 font-kbhtekst text-center flex flex-col cursor-pointer rounded-none
                 ${activeCategory === cat.id ? 'bg-primary-blue border-uk-blue text-black shadow-md' : 'bg-white border-slate-200 text-navy'}`}
             >
               <span className="text-lg font-bold whitespace-nowrap">{cat.nameUk}</span>
@@ -152,21 +153,18 @@ export default function ActivityManager() {
               ))}
             </div>
 
-            {/* RETTET: Linket skifter nu sprog dynamisk og pilen er forrest */}
-          <div className="flex justify-end w-full mt-8 py-6">
-            <button 
-              onClick={() => router.push('/activities')} 
-              className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group cursor-pointer"
-            >
-              {/* Pilen er nu flyttet herop, og flytter sig mod venstre ved hover */}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              
-              {language === "ua" ? "Показати всі" : "Vis alle"}
-            </button>
-          </div>
+            {/* Link til alle aktiviteter */}
+            <div className="flex justify-end w-full mt-8 py-6">
+              <button 
+                onClick={() => router.push('/activities')} 
+                className="flex items-center gap-2 text-black text-lg font-bold hover:text-secondary-purple transition-all group cursor-pointer"
+              >
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {language === "ua" ? "Показати всі" : "Vis alle"}
+              </button>
+            </div>
           </>
         ) : (
-          /* RETTET: Fejlmeddelelsen skifter nu sprog dynamisk */
           <div className="py-20 text-center border-2 border-dashed rounded-xl border-slate-100 text-slate-400 font-bold">
             {language === "ua" 
               ? "На даний момент заходів не заплановано" 
