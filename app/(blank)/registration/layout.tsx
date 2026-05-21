@@ -20,7 +20,7 @@ export default function RegistrationLayout({
           <div className="p-6 md:p-10 relative z-20">
             <Link href="/">
               <Image
-                src="/img/kk-logo.svg"
+                src="/image/kk-logo.svg"
                 alt="KK-Logo"
                 width={300}
                 height={180}

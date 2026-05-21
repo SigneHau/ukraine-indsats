@@ -28,7 +28,7 @@ const activitiesData = [
   { id: 4, category: 'ballgames', title: 'Бадмінтон | Badminton', image: '/image/badminton-2.jpg', link: '#' },
   
   // KROP OG BEVÆGELSE
-  { id: 5, category: 'movement', title: 'Танці | Dans', image: '/img/hero-dans.jpg', link: '#' },
+  { id: 5, category: 'movement', title: 'Танці | Dans', image: '/image/hero-dans.jpg', link: '#' },
   { id: 20, category: 'movement', title: 'Велоспорт | Cykling', image: '/image/hero-cykel.jpg', link: '#' }, // Rettet til lille c
   { id: 6, category: 'movement', title: 'Гімнастика | Gymnastik', image: '/image/gym.jpg', link: '#' },
   { id: 7, category: 'movement', title: 'Фітнес | Fitness', image: '/image/fitness.jpg', link: '#' },
@@ -49,7 +49,7 @@ const activitiesData = [
   
   // SOCIALT
   { id: 17, category: 'social', title: 'Кулінарія | Madlavning', image: '/image/mad.jpg', link: '#' },
-  { id: 18, category: 'social', title: 'Настільні ігри | Spejder', image: 'https://images.unsplash.com/photo-1611371805429-8b5c1b2c34ba?w=800&q=80', link: '#' },
+  { id: 18, category: 'social', title: 'Настільні ігри | Spejder', image: 'https://unsplash.com/photos/a-man-kneeling-down-next-to-a-dog-on-a-field-Tp_Ek6I6Jq4?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink', link: '#' },
   { id: 19, category: 'social', title: 'Мовне кафе | Esport', image: '/image/eSport.jpg', link: '#' }, // Bevaret som eSport.jpg
 ];
 
