@@ -17,21 +17,21 @@ const activitiesData = [
   { 
     id: 2, 
     title: 'Футбол | Fodbold', 
-    image: '/img/Fodboldkamp1.jpg object-center', 
+    image: '/img/fodboldkamp1.jpg object-center', 
     ua: 'Класичний командний спорт, орієнтований на гру в команді, тактику, ведення м’яча та удари по воротах. Наголос на взаємодопомогу та задоволення від gre.',
     dk: 'Klassisk holdsport med fokus på boldkontrol, spilforståelse, koordination og skudtræning. Der lægges vægt på holdsammenhold og glæden ved at spille sammen.'
   },
   { 
     id: 3, 
     title: 'Танці | Dans', 
-    image: '/img/Hero-dans.jpg object-right', 
+    image: '/img/hero-dans.jpg object-right', 
     ua: 'Знайомство з різними танцювальними стилями, такими як хіп-хоп, шоу-данс, сучасний танець чи зумба. Заняття розвивають почуття ритму та пластику.',
     dk: 'Udforskning af forskellige dansestilarter, som f.eks. hiphop, showdance, moderne dans eller zumba. Der arbejdes med koreografi, rytmeforståelse og musikalsk udtryk.'
   },
   { 
     id: 4, 
     title: 'Гімнастика | Gymnastik', 
-    image: '/img/Gym.jpg object-center', 
+    image: '/img/gym.jpg object-center', 
     ua: 'Ознайомтеся з різними видами гімнастики, включаючи ритмічну гімнастику, стрибки на батуті та акробатику. Заняття спрямовані на розвиток координації, гнучкості та базової фізичної підготовки.',
     dk: 'Oplev de many grene inden for gymnastik, lige fra rytmisk gymnastik og springgymnastik to redskabsaktiviteter. Fokus er på kropsbevidsthed, motorik og bevægelsesglæde.'
   },
@@ -73,14 +73,14 @@ const activitiesData = [
   { 
     id: 10, 
     title: 'Велоспорт | Cykling', 
-    image: '/img/Hero-Cykel.jpg object-center', 
+    image: '/img/hero-Cykel.jpg object-center', 
     ua: 'Заняття велоспортом, де ви можете спробувати себе в катанні на гірських велосипедах (маунтінбайк) або тренуватися в класичному велоклубі. Чудова можливість покращити витривалість та техніку їзди.',
     dk: 'Cykling for alle, hvor du kan gå til mountainbike (MTB) eller træne landevejscykling i en rigtig cykelklub. En fantastisk aktivitet, der styrker din kondition, balance og køreteknik.'
   },
   { 
     id: 11, 
     title: 'Гандбол | Håndbold', 
-    image: '/img/Håndbold.jpg object-right', 
+    image: '/img/håndbold.jpg object-right', 
     ua: 'Динамічний командний спорт, де розвиваються швидкість, влучність та strategiчне мислення. Чудова можливість стане частиною сильної клубної спільноти.',
     dk: 'En tempofyldt holdsport, hvor der er fokus på boldfortrolighed, præcision, hurtighed og holdsamarbejde. En god måde at blive en del af et stærkt foreningsfællesskab.'
   },
@@ -94,14 +94,14 @@ const activitiesData = [
   { 
     id: 13, 
     title: 'Фexecute | Fægtning', 
-    image: '/img/Fægtning.jpg object-right', 
+    image: '/img/faegtning.jpg object-right', 
     ua: 'Елегантний та динамічний спорт, що розвиває блискавичну реакцію, координацію та стратегічне мислення. Тренування включають роботу зі зброєю (рапіра, шпага або шабля) та вивчення техніки швидких випадів і захисту.',
     dk: 'En elegant og dynamisk sport, der udvikler lynhurtige reflekser, koordination og strategisk tænkning. Træningen omfatter arbejde med våben (fleuret, kårde eller sabel) samt teknikker til hurtige udfald og parader.'
   },
   { 
     id: 14, 
     title: 'Бадмінтон | Badminton', 
-    image: '/img/Badminton.jpg object-center', 
+    image: '/img/badminton-2.jpg object-center', 
     ua: 'Швидкий ракетковий спорт, де потрібно відбивати волан через сітку. Тренування спрямовані на покращення реакції, швидкості ніг та точності ударів.',
     dk: 'Ketchersport med fokus på hurtige reflekser, præcision og benarbejde, hvor der spilles med fjerbold over net. Kan spilles som både single og double.'
   },
