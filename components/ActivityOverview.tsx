@@ -17,42 +17,42 @@ const activitiesData = [
   { 
     id: 2, 
     title: 'Футбол | Fodbold', 
-    image: '/img/fodboldkamp1.jpg object-center', 
+    image: '/image/fodboldkamp1.jpg object-center', 
     ua: 'Класичний командний спорт, орієнтований на гру в команді, тактику, ведення м’яча та удари по воротах. Наголос на взаємодопомогу та задоволення від gre.',
     dk: 'Klassisk holdsport med fokus på boldkontrol, spilforståelse, koordination og skudtræning. Der lægges vægt på holdsammenhold og glæden ved at spille sammen.'
   },
   { 
     id: 3, 
     title: 'Танці | Dans', 
-    image: '/img/hero-dans.jpg object-right', 
+    image: '/image/hero-dans.jpg object-right', 
     ua: 'Знайомство з різними танцювальними стилями, такими як хіп-хоп, шоу-данс, сучасний танець чи зумба. Заняття розвивають почуття ритму та пластику.',
     dk: 'Udforskning af forskellige dansestilarter, som f.eks. hiphop, showdance, moderne dans eller zumba. Der arbejdes med koreografi, rytmeforståelse og musikalsk udtryk.'
   },
   { 
     id: 4, 
     title: 'Гімнастика | Gymnastik', 
-    image: '/img/gym.jpg object-center', 
+    image: '/image/gym.jpg object-center', 
     ua: 'Ознайомтеся з різними видами гімнастики, включаючи ритмічну гімнастику, стрибки на батуті та акробатику. Заняття спрямовані на розвиток координації, гнучкості та базової фізичної підготовки.',
     dk: 'Oplev de many grene inden for gymnastik, lige fra rytmisk gymnastik og springgymnastik to redskabsaktiviteter. Fokus er på kropsbevidsthed, motorik og bevægelsesglæde.'
   },
   { 
     id: 5, 
     title: 'Мистецтво та креативність | Kunst og kreativitet', 
-    image: '/img/krea.jpg object-left', 
+    image: '/image/krea.jpg object-left', 
     ua: 'Простір для творчого самовираження. Сюди входить малювання фарбами, ліплення з глини, колажі, робота з текстилем та створення різноманітних поробок.',
     dk: 'Kreativt værksted med plads til fordybelse. Aktiviteterne omfatter alt fra tegning og maling til keramik, papirkunst, tekstilarbejde og spændende genbrugsprojekter.'
   },
   { 
     id: 6, 
     title: 'Музика | Musik', 
-    image: '/img/musik1.jpg object-left', 
+    image: '/image/musik1.jpg object-left', 
     ua: 'Світ музики та звуків, де ви можете навчитися грати на різних інструментах, співати або грати в групі. Заняття розвивають музичний слух, почуття ритму та дають можливість для творчого самовираження.',
     dk: 'Musikkens verden, hvor du kan lære at spille på forskellige instrumenter, synge eller spille i et band. Aktiviteterne styrker dit gehør, din rytmeforståelse og giver rig mulighed for kreativ udfoldelse og samvær.'
   },
   { 
     id: 7, 
     title: 'Бокс | Boksning', 
-    image: '/img/boksning.png object-center', 
+    image: '/image/boksning.png object-center', 
     ua: 'Класичний бокс, де вивчаються базові стійки, захисні рухи, удари по груші та робота в парах у захисному спорядженні. Тут також є можливість спробувати тайський боксом (муай-тай) або кікбоксинг для розвитку сили та витривалості.',
     dk: 'Traditionel klassisk boksning, hvor der trænes teknik, slagkombinationer og fodarbejde under kontrollerede forhold. Du finder også tilbud inden for thaiboksning og kickboksning, som giver sved på panden.'
   },
@@ -66,49 +66,49 @@ const activitiesData = [
   { 
     id: 9, 
     title: 'Баскетбол | Basket', 
-    image: '/img/basket.jpg object-right', 
+    image: '/image/basket.jpg object-right', 
     ua: 'Інтенсивна гра з м’ячем, що включає ведення, паси та кидки в кільце. Чудово розвиває витривалість, спритність та вміння взаємодіяти в команді.',
     dk: 'Intensiv holdsport baseret på driblinger, afleveringer og skud mod kurv. Aktivitet styrker konditionen, koordinationen og det taktiske samarbejde på banen.'
   },
   { 
     id: 10, 
     title: 'Велоспорт | Cykling', 
-    image: '/img/hero-cykel.jpg object-center', 
+    image: '/image/hero-cykel.jpg object-center', 
     ua: 'Заняття велоспортом, де ви можете спробувати себе в катанні на гірських велосипедах (маунтінбайк) або тренуватися в класичному велоклубі. Чудова можливість покращити витривалість та техніку їзди.',
     dk: 'Cykling for alle, hvor du kan gå til mountainbike (MTB) eller træne landevejscykling i en rigtig cykelklub. En fantastisk aktivitet, der styrker din kondition, balance og køreteknik.'
   },
   { 
     id: 11, 
     title: 'Гандбол | Håndbold', 
-    image: '/img/håndbold.jpg object-right', 
+    image: '/image/håndbold.jpg object-right', 
     ua: 'Динамічний командний спорт, де розвиваються швидкість, влучність та strategiчне мислення. Чудова можливість стане частиною сильної клубної спільноти.',
     dk: 'En tempofyldt holdsport, hvor der er fokus på boldfortrolighed, præcision, hurtighed og holdsamarbejde. En god måde at blive en del af et stærkt foreningsfællesskab.'
   },
   { 
     id: 12, 
     title: 'Кіберспорт | Esport', 
-    image: '/img/eSport.jpg object-center', 
+    image: '/image/eSport.jpg object-center', 
     ua: 'Змагання з відеоігор, які розвивають стратегічне мислення, швидкість реакції, координацію рук та очей, а також вміння працювати в команді та комунікувати.',
     dk: 'Konkurrencepræget gaming, der styrker strategisk tænkning, reaktionshastighed, hånd-øje-koordination samt evnen til teamwork og taktisk kommunikation.'
   },
   { 
     id: 13, 
     title: 'Фexecute | Fægtning', 
-    image: '/img/faegtning.jpg object-right', 
+    image: '/image/faegtning.jpg object-right', 
     ua: 'Елегантний та динамічний спорт, що розвиває блискавичну реакцію, координацію та стратегічне мислення. Тренування включають роботу зі зброєю (рапіра, шпага або шабля) та вивчення техніки швидких випадів і захисту.',
     dk: 'En elegant og dynamisk sport, der udvikler lynhurtige reflekser, koordination og strategisk tænkning. Træningen omfatter arbejde med våben (fleuret, kårde eller sabel) samt teknikker til hurtige udfald og parader.'
   },
   { 
     id: 14, 
     title: 'Бадмінтон | Badminton', 
-    image: '/img/badminton-2.jpg object-center', 
+    image: '/image/badminton-2.jpg object-center', 
     ua: 'Швидкий ракетковий спорт, де потрібно відбивати волан через сітку. Тренування спрямовані на покращення реакції, швидкості ніг та точності ударів.',
     dk: 'Ketchersport med fokus på hurtige reflekser, præcision og benarbejde, hvor der spilles med fjerbold over net. Kan spilles som både single og double.'
   },
   { 
     id: 15, 
     title: 'Фітнес | Fitness', 
-    image: '/img/fitness.jpg object-center', 
+    image: '/image/fitness.jpg object-center', 
     ua: 'Різноманітні загальнозміцнюючі тренування, що включають кругові заняття, вправи з власною вагою, кросфіт та легку атлетику для зміцнення здоров’я.',
     dk: 'Alsidig fysisk træning, der dækker elementer som cirkeltræning, kropsvægtsøvelser, funktionel træning og styrke. Fokus er på sundhed, styrke og generel form.'
   },

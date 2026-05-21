@@ -22,35 +22,35 @@ const categories = [
 
 const activitiesData = [
   // BOLDSPIL
-  { id: 1, category: 'ballgames', title: 'Футбол | Fodbold', image: '/img/fodboldkamp1.jpg', link: '#' },
-  { id: 2, category: 'ballgames', title: 'Баскетбол | Basketball', image: '/img/basket.jpg', link: '#' },
-  { id: 3, category: 'ballgames', title: 'Гандбол | Håndbold', image: '/img/håndbold.jpg', link: '#' },
-  { id: 4, category: 'ballgames', title: 'Бадмінтон | Badminton', image: '/img/badminton-2.jpg', link: '#' },
+  { id: 1, category: 'ballgames', title: 'Футбол | Fodbold', image: '/image/fodboldkamp1.jpg', link: '#' },
+  { id: 2, category: 'ballgames', title: 'Баскетбол | Basketball', image: '/image/basket.jpg', link: '#' },
+  { id: 3, category: 'ballgames', title: 'Гандбол | Håndbold', image: '/image/håndbold.jpg', link: '#' },
+  { id: 4, category: 'ballgames', title: 'Бадмінтон | Badminton', image: '/image/badminton-2.jpg', link: '#' },
   
   // KROP OG BEVÆGELSE
   { id: 5, category: 'movement', title: 'Танці | Dans', image: '/img/hero-dans.jpg', link: '#' },
-  { id: 20, category: 'movement', title: 'Велоспорт | Cykling', image: '/img/hero-cykel.jpg', link: '#' }, // Rettet til lille c
-  { id: 6, category: 'movement', title: 'Гімнастика | Gymnastik', image: '/img/gym.jpg', link: '#' },
-  { id: 7, category: 'movement', title: 'Фітнес | Fitness', image: '/img/fitness.jpg', link: '#' },
+  { id: 20, category: 'movement', title: 'Велоспорт | Cykling', image: '/image/hero-cykel.jpg', link: '#' }, // Rettet til lille c
+  { id: 6, category: 'movement', title: 'Гімнастика | Gymnastik', image: '/image/gym.jpg', link: '#' },
+  { id: 7, category: 'movement', title: 'Фітнес | Fitness', image: '/image/fitness.jpg', link: '#' },
   { id: 8, category: 'movement', title: 'Йога | Yoga', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80', link: '#' },
   
   // KAMPSPORT
-  { id: 9, category: 'combat', title: 'Бокс | Boksning', image: '/img/boksning.png', link: '#' },
-  { id: 10, category: 'combat', title: 'Карате | Karate', image: '/img/boksning.jpg', link: '#' },
+  { id: 9, category: 'combat', title: 'Бокс | Boksning', image: '/image/boksning.png', link: '#' },
+  { id: 10, category: 'combat', title: 'Карате | Karate', image: '/image/boksning.jpg', link: '#' },
   { id: 11, category: 'combat', title: 'Дзюдо | Judo', image: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&q=80', link: '#' },
   
   // VANDSPORT
   { id: 12, category: 'water', title: 'Плавання | Svømning', image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=800&q=80', link: '#' },
   
   // KREATIVT
-  { id: 14, category: 'creative', title: 'Образотворче мистецтво | Billedekunst', image: '/img/krea.jpg', link: '#' },
+  { id: 14, category: 'creative', title: 'Образотворче мистецтво | Billedekunst', image: '/image/krea.jpg', link: '#' },
   { id: 15, category: 'creative', title: 'Кераміка | Keramik', image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80', link: '#' },
-  { id: 16, category: 'creative', title: 'Музика | Musik', image: '/img/musik.jpg', link: '#' },
+  { id: 16, category: 'creative', title: 'Музика | Musik', image: '/image/musik.jpg', link: '#' },
   
   // SOCIALT
-  { id: 17, category: 'social', title: 'Кулінарія | Madlavning', image: '/img/mad.jpg', link: '#' },
+  { id: 17, category: 'social', title: 'Кулінарія | Madlavning', image: '/image/mad.jpg', link: '#' },
   { id: 18, category: 'social', title: 'Настільні ігри | Spejder', image: 'https://images.unsplash.com/photo-1611371805429-8b5c1b2c34ba?w=800&q=80', link: '#' },
-  { id: 19, category: 'social', title: 'Мовне кафе | Esport', image: '/img/eSport.jpg', link: '#' }, // Bevaret som eSport.jpg
+  { id: 19, category: 'social', title: 'Мовне кафе | Esport', image: '/image/eSport.jpg', link: '#' }, // Bevaret som eSport.jpg
 ];
 
 export default function ActivityManager() {
