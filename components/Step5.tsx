@@ -52,33 +52,96 @@ export default function Step5({ onBack, onNext, initialData }: Step5Props) {
     backDk: "Tilbage"
   };
 
-  // Den udvidede liste med kampsport og gymnastik underkategorier
+  // Komplet liste genereret direkte ud fra dit Excel-billede og dine instruktioner
   const sportsDataExtended = [
-    { ukr: "футбол", dan: "Fodbold" },
-    { ukr: "Гандбол", dan: "Håndbold" },
-    { ukr: "Баскетбол", dan: "Basketball" },
-    { ukr: "Регбі", dan: "Rugby" },
-    { ukr: "теніс", dan: "Tennis" },
-    { ukr: "Бадмінтон", dan: "Badminton" },
-    { 
-      ukr: "Бойові мистецтва", 
-      dan: "Kampsport",
+    {
+      ukr: "Ігри з м'ячем",
+      dan: "Boldspil",
       subtypes: [
-        { ukr: "дзюдо", dan: "Judo" },
-        { ukr: "тхеквондо", dan: "Tae kwon do" },
-        { ukr: "бокс", dan: "Boksning" }
+        { ukr: "Футбол", dan: "Fodbold" },
+        { ukr: "Гандбол", dan: "Håndbold" },
+        { ukr: "Баскетбол", dan: "Basketball" },
+        { ukr: "Бадмінтон", dan: "Badminton" },
+        { ukr: "Теніс", dan: "Tennis" }
+      ]
+    },
+    {
+      ukr: "Плавання",
+      dan: "Svømning"
+    },
+    { 
+      ukr: "Танець", 
+      dan: "Dans",
+      subtypes: [
+        { ukr: "Хіп-хоп", dan: "Hip hop" },
+        { ukr: "Вуличний танець (Стріт)", dan: "Street dance" },
+        { ukr: "Брейк-данс", dan: "Breakdance" },
+        { ukr: "Шоу-танець", dan: "Showdance" },
+        { ukr: "Сучасний танець", dan: "Modern" }
       ]
     },
     { 
       ukr: "Гімнастика", 
       dan: "Gymnastik",
       subtypes: [
+        { ukr: "Батут", dan: "Trampolin" },
         { ukr: "Стрибки", dan: "Spring" },
         { ukr: "Ритміка", dan: "Rytme" }
       ]
     },
-    { ukr: "Танець", dan: "Dans" },
-    { ukr: "Творчий", dan: "Kreativitet" },
+    { 
+      ukr: "Бойові мистецтва", 
+      dan: "Kampsport",
+      subtypes: [
+        { ukr: "Бокс", dan: "Boksning" },
+        { ukr: "Тхеквондо", dan: "Taekwondo" },
+        { ukr: "Дзюдо", dan: "Judo" },
+        { ukr: "Карате", dan: "Karate" },
+        { ukr: "Кікбоксинг", dan: "Kickboxing" },
+        { ukr: "Тайський бокс", dan: "Thaiboksning" }
+      ]
+    },
+    {
+      ukr: "Йога",
+      dan: "Yoga"
+    },
+    { 
+      ukr: "Творчість та дозвілля", 
+      dan: "Kreativitet",
+      subtypes: [
+        { ukr: "Образотворче мистецтво", dan: "Billedkunst" },
+        { ukr: "Малювання", dan: "Maling" },
+        { ukr: "Кераміка", dan: "Keramik" },
+        { ukr: "Кулінарія", dan: "Madlavning" },
+       
+      ]
+    },
+    {
+      ukr: "Музика",
+      dan: "Musik",
+      subtypes: [
+        { ukr: "Спів / Вокал", dan: "Sang / Vokal" },
+        { ukr: "Гітара", dan: "Guitar" },
+        { ukr: "Клавішні / Піаніно", dan: "Klaver / Keyboard" },
+        { ukr: "Ударні / Барабани", dan: "Trommer" },
+        { ukr: "Ансамбль / Група", dan: "Sammenspil / Band" }
+      ]
+    },
+    {
+      ukr: "Велоспорт",
+      dan: "Cykling"
+    },
+    {
+      ukr: "Кіберспорт",
+      dan: "Esport"
+    },
+    {
+      ukr: "Фехтування",
+      dan: "Fægtning"
+    },
+    { ukr: "Скаутинг (Пласт)", 
+      dan: "Spejder"
+     }
   ];
 
   const levelsData = [
@@ -95,7 +158,7 @@ export default function Step5({ onBack, onNext, initialData }: Step5Props) {
     if (!selectedMainSport || !selectedLevel) return;
     if (hasSubtypes && !selectedSubSport) return;
 
-    // Sammensæt navnet hvis der er en underkategori (f.eks. "Gymnastik - Spring")
+    // Sammensæt navnet hvis der er en underkategori (f.eks. "Gymnastik - Trampolin")
     const finalSportName = hasSubtypes ? `${selectedMainSport} - ${selectedSubSport}` : selectedMainSport;
 
     setChosenSports(prev => ({
