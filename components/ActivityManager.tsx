@@ -25,17 +25,11 @@ const activitiesData = [
   { id: 1, category: 'ballgames', title: 'Футбол | Fodbold', image: '/img/fodboldkamp1.jpg', link: '#' },
   { id: 2, category: 'ballgames', title: 'Баскетбол | Basketball', image: '/img/basket.jpg', link: '#' },
   { id: 3, category: 'ballgames', title: 'Гандбол | Håndbold', image: '/img/håndbold.jpg', link: '#' },
-  { 
-    id: 4, 
-    category: 'ballgames', 
-    title: 'Бадмінтон | Badminton', 
-    image: '/img/badminton-2.jpg',  // Bruger jeres lokale kommunebillede
-    link: '#' 
-  },
+  { id: 4, category: 'ballgames', title: 'Бадмінтон | Badminton', image: '/img/badminton-2.jpg', link: '#' },
   
   // KROP OG BEVÆGELSE
   { id: 5, category: 'movement', title: 'Танці | Dans', image: '/img/hero-dans.jpg', link: '#' },
-  { id: 20, category: 'movement', title: 'Велоспорт | Cykling', image: '/img/hero-Cykel.jpg', link: '#' },
+  { id: 20, category: 'movement', title: 'Велоспорт | Cykling', image: '/img/hero-cykel.jpg', link: '#' }, // Rettet til lille c
   { id: 6, category: 'movement', title: 'Гімнастика | Gymnastik', image: '/img/gym.jpg', link: '#' },
   { id: 7, category: 'movement', title: 'Фітнес | Fitness', image: '/img/fitness.jpg', link: '#' },
   { id: 8, category: 'movement', title: 'Йога | Yoga', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80', link: '#' },
@@ -56,7 +50,7 @@ const activitiesData = [
   // SOCIALT
   { id: 17, category: 'social', title: 'Кулінарія | Madlavning', image: '/img/mad.jpg', link: '#' },
   { id: 18, category: 'social', title: 'Настільні ігри | Spejder', image: 'https://images.unsplash.com/photo-1611371805429-8b5c1b2c34ba?w=800&q=80', link: '#' },
-  { id: 19, category: 'social', title: 'Мовне кафе | Esport', image: '/img/eSport.jpg', link: '#' },
+  { id: 19, category: 'social', title: 'Мовне кафе | Esport', image: '/img/eSport.jpg', link: '#' }, // Bevaret som eSport.jpg
 ];
 
 export default function ActivityManager() {

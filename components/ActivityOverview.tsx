@@ -73,7 +73,7 @@ const activitiesData = [
   { 
     id: 10, 
     title: 'Велоспорт | Cykling', 
-    image: '/img/hero-Cykel.jpg object-center', 
+    image: '/img/hero-cykel.jpg object-center', 
     ua: 'Заняття велоспортом, де ви можете спробувати себе в катанні на гірських велосипедах (маунтінбайк) або тренуватися в класичному велоклубі. Чудова можливість покращити витривалість та техніку їзди.',
     dk: 'Cykling for alle, hvor du kan gå til mountainbike (MTB) eller træne landevejscykling i en rigtig cykelklub. En fantastisk aktivitet, der styrker din kondition, balance og køreteknik.'
   },

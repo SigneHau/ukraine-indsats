@@ -15,13 +15,13 @@ export default function Hero() {
 
   // Liste med alle dine færdige og komprimerede Hero-billeder
   const heroImages = [
-    { src: "/img/Hero-trampolin.jpg", alt: "Trampolin" },
-    { src: "/img/Hero-faellesskab.jpg", alt: "Faellesskab" },
-    { src: "/img/Hero-sv.jpg", alt: "Svømme" },
-    { src: "/img/Hero-Cykel.jpg", alt: "Cykel" },
-    { src: "/img/Hero-dans.jpg", alt: "Dans" },
+    { src: "/img/hero-trampolin.jpg", alt: "Trampolin" },
+    { src: "/img/hero-faellesskab.jpg", alt: "Faellesskab" },
+    { src: "/img/hero-sv.jpg", alt: "Svømme" },
+    { src: "/img/hero-cykel.jpg", alt: "Cykel" },
+    { src: "/img/hero-dans.jpg", alt: "Dans" },
     { 
-      src: "/img/Hero-basket.jpg", 
+      src: "/img/hero-basket.jpg", 
       alt: "Basketball", 
       // Særligt trick: Låser billedet til venstre på mobil, så drengen ikke forsvinder
       className: "object-cover object-left md:object-center" 
