@@ -152,7 +152,7 @@ export function ActivityOverview() {
               placeholder={language === "ua" ? "Шукати активність..." : "Søg efter aktivitet..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent text-black placeholder-black/40 pl-12 pr-10 py-3.5 font-kbhtekst text-base focus:outline-none"
+              className="w-full bg-transparent text-navy placeholder-black/40 pl-12 pr-10 py-3.5 font-kbhtekst text-base focus:outline-none"
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black/50" />
             {searchQuery && (

@@ -7,7 +7,7 @@ import { Phone, ArrowRight } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-offwhite  border-navy/10 pb-16 font-kbhtekst">
+    <footer className="bg-grey-kk  border-navy/10 pb-16 font-kbhtekst">
       <div className="max-w-7xl mx-auto px-15">
         
         {/* Logo-overlap sektionen */}
@@ -39,18 +39,18 @@ export default function Footer() {
               </p>
               <div className="flex flex-col gap-3">
                 <div className="flex items-center text-sm gap-3">
-                  <Phone size={18} className="text-ua-blue" />
+                  <Phone size={18} className="text-navy" />
                   <Link href="tel:33663366" className="hover:underline font-kbhTekst text-sm text-navy">
                     33 66 33 66
                   </Link>
                 </div>
                 <div className="flex items-center gap-3">
-                  <ArrowRight size={18} className="text-ua-blue" />
+                  <ArrowRight size={18} className="text-navy" />
                   <Link href="https://www.kk.dk/" className="hover:underline text-navy">
                     Find andre kontakter her
                   </Link>
                 </div>
-                <p className="text-navy/70 text-sm mt-2 font-kbhtekst">
+                <p className="text-navy/90 text-sm mt-2 font-kbhtekst">
                   CVR-nummer 64942212
                 </p>
               </div>
@@ -58,7 +58,7 @@ export default function Footer() {
 
             {/* Kolonne 2: Genveje */}
             <div className="flex flex-col gap-5">
-              <p className="text-navy/50 tracking-widest text-xs font-bold uppercase">
+              <p className="text-navy tracking-widest text-xs font-bold uppercase">
                 Genveje
               </p>
               <nav className="flex flex-col gap-3">

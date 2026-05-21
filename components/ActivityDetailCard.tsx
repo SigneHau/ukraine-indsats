@@ -19,11 +19,9 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
   const [ukTitle, dkTitle] = title.split(" | ");
 
   // SPLIT AF BILLEDE-URL OG TAILWIND-KLASSE
-  // Sker lige herunder titelsplittet, så det ligger samlet ét sted.
   const [imgSrc, positionClass] = image.split(" ");
 
-  // Omdanner Tailwind-klassen (f.eks. 'object-right' eller 'object-left') til rå tekst ('right', 'left')
-  // som Next.js <Image> komponenten kan forstå og anvende i sin prop.
+  // Omdanner Tailwind-klassen til rå tekst, som Next.js Image kan forstå via style
   const cleanPosition = positionClass ? positionClass.replace("object-", "") : "center";
 
   return (
@@ -32,11 +30,12 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
       {/* BILLEDE */}
       <div className="relative w-full md:w-[38%] h-52 md:h-auto shrink-0">
         <Image 
-          src={imgSrc} // Bruger den rene billed-URL her
+          src={imgSrc} 
           alt={title} 
           fill 
           className="object-cover transition-transform duration-500 hover:scale-105"
-          objectPosition={cleanPosition} // Styrer retningen dynamisk her (top, bottom, left, right, center)
+          // RETTET: Er flyttet ind i style-proppen for at overholde Next.js 13+ standarden
+          style={{ objectPosition: cleanPosition }} 
           sizes="(max-w-768px) 100vw, 25vw"
           priority
         />
@@ -49,14 +48,14 @@ export function ActivityDetailCard({ title, image, description }: ActivityDetail
           <h3 className="font-kbh text-navy font-black uppercase tracking-tight leading-none text-base md:text-lg mb-2">
             {ukTitle}
             {dkTitle && (
-              <span className="font-kbhtekst font-bold normal-case tracking-normal ml-1.5">
+              <span className="font-kbhtekst text-navy font-bold normal-case tracking-normal ml-1.5">
                 | {dkTitle}
               </span>
             )}
           </h3>
 
-          {/* Beskrivelse */}
-          <p className="font-kbhtekst text-navy/80 text-xs md:text-sm leading-relaxed mb-4 line-clamp-3">
+          {/* Beskrivelse – uden line-clamp så teksten kan folde sig ud på desktop */}
+          <p className="font-kbhtekst text-navy/80 text-xs md:text-sm leading-relaxed mb-4">
             {description}
           </p>
         </div>

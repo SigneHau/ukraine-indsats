@@ -14,7 +14,9 @@
 --font-kbh: 'KBH', sans-serif;
 --font-kbhtekst: 'KBHTekst', sans-serif;
 --color-navy: #000c2e;
---color-offwhite: #F5F3E8;
+--color-offwhite: #F5F3E8; 
+--color-grey-kk: #fafafb;
+
 
 /* Primær farve (den lyseblå) */
 --color-primary-blue: #BEE2FE;
